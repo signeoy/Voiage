@@ -7,7 +7,7 @@ import { getAnalytics } from "firebase/analytics";
 
 // New
 import { getAuth} from "firebase/auth";
-import { getFirestore, collection} from "firebase/firestore";
+import { getFirestore} from "firebase/firestore";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -23,10 +23,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+//const analytics = getAnalytics(app);
 
 // New
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-export {db, auth, app, getFirestore, collection}
+export {db, auth, app, getFirestore}

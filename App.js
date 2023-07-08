@@ -1,15 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView, SafeAreaView, Pressable } from 'react-native';
+import React, {useState} from 'react';
 
 import {NavigationContainer, navigationRef, onReady, useRoute} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 
 
+// Import our userComponents. See the userComponents directory
+import Login from "./userComponents/Login";
+import Logout from "./userComponents/Logout";
+import Register from "./userComponents/Register";
+
 const Stack = createStackNavigator();
 
 
 function TempMenu({ navigation }) {
+    const [user, setUser] = useState(null);
+    //const route = useRoute();
+    //const { userId, userEmail } = route.params;
 
   return (
       <SafeAreaView>
@@ -38,7 +47,7 @@ function TempMenu({ navigation }) {
             </Pressable>
 
             <Pressable
-                onPress={() => navigation.navigate('Privacy Policy',{userId})}>
+                onPress={() => navigation.navigate('Privacy Policy',)}>
               <View style={{...styles.nav_button, backgroundColor: "#F8DAC4",}}>
                 <Text style={styles.nav_button_text}>Privacy Policy</Text>
               </View>
@@ -85,14 +94,6 @@ function HomeScreen({ navigation }) {
         </View>
     );
 }
-function SettingsScreen({ navigation }) {
-
-  return (
-      <View>
-
-      </View>
-  );
-}
 function MyProfileScreen({ navigation }) {
 
   return (
@@ -101,19 +102,27 @@ function MyProfileScreen({ navigation }) {
       </View>
   );
 }
-function LoginScreen({ navigation }) {
+function SettingsScreen({ navigation }) {
 
+    return (
+        <View>
+            <Logout navigation={navigation}/>
+        </View>
+    );
+}
+function LoginScreen({ navigation }) {
+  const [user, setUser] = useState(null);
   return (
       <View>
-
+          <Login navigation={navigation} setUser={setUser}/>
       </View>
   );
 }
 function RegisterScreen({ navigation }) {
-
+  const [user, setUser] = useState(null);
   return (
       <View>
-
+          <Register navigation={navigation} setUser={setUser}/>
       </View>
   );
 }

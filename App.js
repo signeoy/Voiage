@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView, SafeAreaView, Pressable } from 'react-native';
 import React, {useState} from 'react';
 
-import {NavigationContainer, navigationRef, onReady, useRoute} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 
@@ -16,9 +16,6 @@ const Stack = createStackNavigator();
 
 
 function TempMenu({ navigation }) {
-    const [user, setUser] = useState(null);
-    //const route = useRoute();
-    //const { userId, userEmail } = route.params;
 
   return (
       <SafeAreaView>
@@ -76,36 +73,95 @@ function TempMenu({ navigation }) {
       </SafeAreaView>
   );
 }
+function HomeScreen({ navigation }) {
+
+    return (
+        <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+            <Pressable onPress={() => navigation.navigate('My Favourites')}>
+                <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
+                    <Text style={styles.nav_button_text}>Favourites</Text>
+                </View>
+            </Pressable>
+            <Pressable onPress={() => navigation.navigate('Profile')}>
+                <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
+                    <Text style={styles.nav_button_text}>a profile</Text>
+                </View>
+            </Pressable>
+        </View>
+
+    );
+}
 
 
 function FavouriteScreen({ navigation }) {
 
   return (
-      <View>
-
+      <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+          <Pressable onPress={() => navigation.navigate('Home')}>
+              <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
+                  <Text style={styles.nav_button_text}>All profiles</Text>
+              </View>
+          </Pressable>
+          <Pressable onPress={() => navigation.navigate('Profile')}>
+              <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
+                  <Text style={styles.nav_button_text}>a profile</Text>
+              </View>
+          </Pressable>
       </View>
   );
 }
-function HomeScreen({ navigation }) {
-
+function ProfileScreen({ navigation }) {
     return (
-        <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
-
+        <View>
+            <Pressable onPress={() => navigation.navigate('Journal')}>
+                <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
+                    <Text style={styles.nav_button_text}>a journal</Text>
+                </View>
+            </Pressable>
         </View>
     );
 }
+
 function MyProfileScreen({ navigation }) {
+
+    return (
+        <View>
+            <Pressable onPress={() => navigation.navigate('Add Journal')}>
+                <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
+                    <Text style={styles.nav_button_text}>add journal</Text>
+                </View>
+            </Pressable>
+            <Pressable onPress={() => navigation.navigate('Journal Editor')}>
+                <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
+                    <Text style={styles.nav_button_text}>edit journal</Text>
+                </View>
+            </Pressable>
+            <Pressable onPress={() => navigation.navigate('Journal')}>
+                <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
+                    <Text style={styles.nav_button_text}>a journal</Text>
+                </View>
+            </Pressable>
+        </View>
+    );
+}
+function JournalScreen({ navigation }) {
 
   return (
       <View>
-
+        <Text>Journal</Text>
       </View>
   );
 }
+
 function SettingsScreen({ navigation }) {
 
     return (
         <View>
+            <Pressable onPress={() => navigation.navigate('Privacy')}>
+                <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
+                    <Text style={styles.nav_button_text}>Privacy policy</Text>
+                </View>
+            </Pressable>
             <Logout navigation={navigation}/>
         </View>
     );
@@ -134,18 +190,58 @@ function PrivacyScreen({ navigation }) {
       </View>
   );
 }
+function AddJournalScreen({ navigation }) {
+
+  return (
+      <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+
+      </View>
+  );
+}
+function AddEntryScreen({ navigation }) {
+
+  return (
+      <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+
+      </View>
+  );
+}
+function JournalEditorScreen({ navigation }) {
+
+  return (
+      <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+          <Pressable onPress={() => navigation.navigate('Add Entry')}>
+              <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
+                  <Text style={styles.nav_button_text}>add entry</Text>
+              </View>
+          </Pressable>
+      </View>
+  );
+}
 
 function MyStack() {
   return (
       <Stack.Navigator /*screenOptions={{headerShown: false}}*/>
         <Stack.Screen name="TempMenu" component={TempMenu} options={{ headerLeft: null, headerShown: false }} />
+
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerLeft: null, headerShown: false }} />
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="My Favourites" component={FavouriteScreen} />
-        <Stack.Screen name="Settings" component={SettingsScreen} />
+        <Stack.Screen name="My Favourites" component={FavouriteScreen} options={{ headerLeft: null, headerShown: false }}/>
+        <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="My Profile" component={MyProfileScreen} />
+        <Stack.Screen name="Journal" component={JournalScreen} />
+
+
+
+        <Stack.Screen name="Settings" component={SettingsScreen} />
+
+        <Stack.Screen name="Login" component={LoginScreen} options={{ headerLeft: null, headerShown: false }}/>
+        <Stack.Screen name="Register" component={RegisterScreen} options={{ headerLeft: null, headerShown: false }}/>
         <Stack.Screen name="Privacy Policy" component={PrivacyScreen} />
+
+        <Stack.Screen name="Add Journal" component={AddJournalScreen} />
+        <Stack.Screen name="Add Entry" component={AddEntryScreen} />
+
+        <Stack.Screen name="Journal Editor" component={JournalEditorScreen} />
       </Stack.Navigator>
   );
 }
@@ -154,7 +250,7 @@ export default function App() {
 
   return (
 
-      <NavigationContainer  ref={navigationRef} onReady={onReady}>
+      <NavigationContainer>
         <MyStack />
       </NavigationContainer>
 

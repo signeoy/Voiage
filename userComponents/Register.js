@@ -124,6 +124,13 @@ const Register = ({navigation, setUser}) => {
                         </View>
                     </Pressable>
                 )}
+                <Pressable style={{marginTop: 40}}
+                           onPress={() => navigation.navigate('Login')}>
+                    <View>
+                        <Text style={styles.text}>Already have an account?</Text>
+                        <Text style={{...styles.text, ...styles.linkText, marginTop:10}}>Log in here!</Text>
+                    </View>
+                </Pressable>
 
             </View>
         </ScrollView>

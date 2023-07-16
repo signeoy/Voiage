@@ -19,7 +19,7 @@ const Login = ({navigation, setUser}) => {
 
                 // Call the setter passed to us as a prop
                 setUser(user);
-                navigation.navigate('TempMenu', { userId, userEmail });
+                navigation.navigate('Home', { userId, userEmail });
             })
             .catch((error) => {
                 console.log(`Error: ${error.code} ${error.message}`);

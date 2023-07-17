@@ -1,8 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView, SafeAreaView, Pressable } from 'react-native';
 import React, {useState} from 'react';
 
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, useRoute} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 
@@ -11,6 +10,9 @@ import 'react-native-gesture-handler';
 import Login from "./userComponents/Login";
 import Logout from "./userComponents/Logout";
 import Register from "./userComponents/Register";
+
+
+import Profile from "./profileComponents/Profiles";
 
 const Stack = createStackNavigator();
 
@@ -75,6 +77,11 @@ function TempMenu({ navigation }) {
 }
 function HomeScreen({ navigation }) {
 
+    const [user, setUser] = useState(null);
+    const route = useRoute();
+    const { userId, userEmail } = route.params;
+
+
     return (
         <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
             <Pressable onPress={() => navigation.navigate('My Favourites')}>
@@ -82,11 +89,8 @@ function HomeScreen({ navigation }) {
                     <Text style={styles.nav_button_text}>Favourites</Text>
                 </View>
             </Pressable>
-            <Pressable onPress={() => navigation.navigate('Profile')}>
-                <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
-                    <Text style={styles.nav_button_text}>a profile</Text>
-                </View>
-            </Pressable>
+
+            <Profile navigation={navigation} userId={userId}/>
         </View>
 
     );
@@ -222,21 +226,20 @@ function JournalEditorScreen({ navigation }) {
 function MyStack() {
   return (
       <Stack.Navigator /*screenOptions={{headerShown: false}}*/>
+        <Stack.Screen name="Login" component={LoginScreen} options={{ headerLeft: null, headerShown: false }}/>
+        <Stack.Screen name="Register" component={RegisterScreen} options={{ headerLeft: null, headerShown: false }}/>
+        <Stack.Screen name="Privacy Policy" component={PrivacyScreen} />
+
         <Stack.Screen name="TempMenu" component={TempMenu} options={{ headerLeft: null, headerShown: false }} />
 
-        <Stack.Screen name="Home" component={HomeScreen} options={{ headerLeft: null, headerShown: false }} />
+        <Stack.Screen name="Home" component={HomeScreen}/>
         <Stack.Screen name="My Favourites" component={FavouriteScreen} options={{ headerLeft: null, headerShown: false }}/>
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="My Profile" component={MyProfileScreen} />
         <Stack.Screen name="Journal" component={JournalScreen} />
 
-
-
         <Stack.Screen name="Settings" component={SettingsScreen} />
 
-        <Stack.Screen name="Login" component={LoginScreen} options={{ headerLeft: null, headerShown: false }}/>
-        <Stack.Screen name="Register" component={RegisterScreen} options={{ headerLeft: null, headerShown: false }}/>
-        <Stack.Screen name="Privacy Policy" component={PrivacyScreen} />
 
         <Stack.Screen name="Add Journal" component={AddJournalScreen} />
         <Stack.Screen name="Add Entry" component={AddEntryScreen} />

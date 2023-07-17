@@ -12,7 +12,7 @@ import {
 import React, { useState, useEffect} from "react";
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { db } from "../firebaseConfig"
-import { doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc} from "firebase/firestore"
+import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc} from "firebase/firestore"
 
 import {useRoute} from "@react-navigation/native";
 
@@ -22,6 +22,7 @@ import ProfileComp from "./ProfileComp";
 const Profile = ({navigation}) => {
 
     const [profileList, setProfileList] = useState([]);
+    const [isChecked, setIsChecked] = useState(false);
     //const navigation = useNavigation();
     const [username,setUsername] = useState("");
 
@@ -43,7 +44,6 @@ const Profile = ({navigation}) => {
     };
 
 
-
     useEffect(() => {
         getProfileList();
     }, []);
@@ -63,10 +63,7 @@ const Profile = ({navigation}) => {
                         setUsername={item.setUsername}
                         getProfileList={getProfileList}
 
-                        // profileId={123}
-                        // profileName={"TempName"}
-                        // isChecked={true}
-                        // getProfileList={getProfileList}
+
                     />
 
                 </TouchableOpacity>

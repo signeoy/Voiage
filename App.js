@@ -232,7 +232,7 @@ function MyStack() {
 
         <Stack.Screen name="TempMenu" component={TempMenu} options={{ headerLeft: null, headerShown: false }} />
 
-        <Stack.Screen name="Home" component={HomeScreen} options={{ headerLeft: null, headerShown: false }} />
+        <Stack.Screen name="Home" component={HomeScreen}/>
         <Stack.Screen name="My Favourites" component={FavouriteScreen} options={{ headerLeft: null, headerShown: false }}/>
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="My Profile" component={MyProfileScreen} />

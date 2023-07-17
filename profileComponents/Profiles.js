@@ -19,12 +19,15 @@ import {useRoute} from "@react-navigation/native";
 // scripts
 import ProfileComp from "./ProfileComp";
 
-const Profile = ({navigation, userId}) => {
+const Profile = ({navigation}) => {
 
     const [profileList, setProfileList] = useState([]);
     //const navigation = useNavigation();
     const [username,setUsername] = useState("");
-    const [isChecked, setIsChecked] = useState(false);
+
+    const route = useRoute();
+    const { id } = route.params;
+    const { userId } = route.params;
 
     const getProfileList = async () => {
 
@@ -54,12 +57,11 @@ const Profile = ({navigation, userId}) => {
                 <TouchableOpacity onPress={() => navigation.navigate('Profile', { id: item.id, username: item.username, userId })}>
 
                     <ProfileComp
-
+                        myUserId ={userId}
                         userId={item.id}
                         username={item.username}
                         setUsername={item.setUsername}
-                        isChecked={isChecked}
-                        getProfileList={item.getProfileList}
+                        getProfileList={getProfileList}
 
                         // profileId={123}
                         // profileName={"TempName"}

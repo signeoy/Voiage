@@ -2,75 +2,66 @@ import {Button, Pressable, StyleSheet, Text, View, TextInput} from "react-native
 import React, { useState, useEffect} from "react";
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { db } from "../firebaseConfig"
-import {doc, updateDoc, deleteDoc, addDoc, collection, getDocs, query} from "firebase/firestore"
+import {doc, updateDoc, deleteDoc, addDoc, collection, getDocs, query, where} from "firebase/firestore"
 import {useRoute} from "@react-navigation/native";
 
 
 const ProfileComp = (props) => {
-    const [isChecked, setIsChecked] = useState(props.isChecked);
-    const [profileList, setProfileList] = useState([]);
+    const [isChecked, setIsChecked] = useState(false);
+    const [username, setUsername] = useState(props.username);
 
     const route = useRoute();
     const { userId } = route.params;
 
-
     //const [isEditing, setIsEditing] = useState(false);
     //const [updated_profileName, setUpdated_profileName] = useState(props.profileName);
 
+
+    const addFavourite = async (username) => {
+
+        try {
+            const querySnapshot = await getDocs(query(collection(db, "users", userId, "favourites"), where("username", "==", username)));
+            if (querySnapshot.empty) {
+                const docRef = await addDoc(collection(db,"users", userId, "favourites"), {
+                    username: username
+                });
+
+                console.log("Document written with ID: ", docRef.id);
+                setUsername("");
+                await props.getProfileList();
+            }
+
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+
+    };
+
+    const deleteFavourite = async (username) => {
+        try {
+            const querySnapshot = await getDocs(query(collection(db, "users", userId, "favourites"), where("username", "==", username)));
+            if (!querySnapshot.empty) {
+                const docToDelete = querySnapshot.docs[0];
+                await deleteDoc(docToDelete.ref);
+                console.log("Document deleted with username: ", username);
+            }
+        } catch (e) {
+            console.error("Error deleting document: ", e);
+        }
+        await props.getProfileList();
+    };
+
     const updateIsChecked = async () => {
-        //const taskRef = doc(db,"TodoLists", userId, "todo", props.id);
-
-// Set the "capital" field of the city 'DC'
-//         await updateDoc(taskRef, {
-//             isChecked: isChecked,
-//         });
-
-        if (isChecked){
-            addFavourite()
+        if (isChecked) {
+            await addFavourite(props.username);
+        } else if (!isChecked) {
+            await deleteFavourite(props.username);
         }
     };
 
     useEffect(() => {
         updateIsChecked();
     },[isChecked]);
-
-
-
-
-
-    const getProfileList = async () => {
-
-        try {
-
-            const querySnapshot = await getDocs(query(collection(db,"users")));
-            const profiles = querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
-            console.log("profiles:", profiles); // log the todo items to check if they are being fetched correctly
-            setProfileList(profiles);
-        } catch (error) {
-            console.error("Error getting todo list: ", error);
-        }
-    };
-
-
-    const addFavourite = async () => {
-
-        try {
-            const docRef = await addDoc(collection(db,"users", userId, "favourites"), {
-                username: props.username
-            });
-
-            console.log("Document written with ID: ", docRef.id);
-            props.setUsername("");
-        } catch (e) {
-            console.error("Error adding document: ", e);
-        }
-        getProfileList();
-    };
-
-
-    useEffect(() => {
-        getProfileList();
-    }, []);
 
     return (
         <View style={styles.container}>

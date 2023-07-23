@@ -12,7 +12,7 @@ import {
 import React, { useState, useEffect} from "react";
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { db } from "../firebaseConfig"
-import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc} from "firebase/firestore"
+import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where} from "firebase/firestore"
 
 import {useRoute} from "@react-navigation/native";
 
@@ -22,7 +22,7 @@ import ProfileComp from "./ProfileComp";
 const Profile = ({navigation}) => {
 
     const [profileList, setProfileList] = useState([]);
-    const [isChecked, setIsChecked] = useState(false);
+    const [search, setSearch] = useState("");
     //const navigation = useNavigation();
     const [username,setUsername] = useState("");
 
@@ -32,23 +32,45 @@ const Profile = ({navigation}) => {
 
     const getProfileList = async () => {
 
-        try {
+        if (search == null || search === ""){
+            try {
 
-            const querySnapshot = await getDocs(query(collection(db,"users")));
-            const profiles = querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
-            console.log("profiles:", profiles); // log the todo items to check if they are being fetched correctly
-            setProfileList(profiles);
-        } catch (error) {
-            console.error("Error getting todo list: ", error);
+                const querySnapshot = await getDocs(query(collection(db,"users")));
+                const profiles = querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
+                console.log("profiles:", profiles); // log the todo items to check if they are being fetched correctly
+                setProfileList(profiles);
+            } catch (error) {
+                console.error("Error getting todo list: ", error);
+            }
+        }
+
+        else {
+            console.log("search used: ", search);
+            try {
+                const querySnapshot = await getDocs(
+                    query(collection(db, "users"), where("username", ">=", search))
+                );
+                const profiles = querySnapshot.docs.map((doc) => ({
+                    ...doc.data(),
+                    id: doc.id,
+                }));
+                setProfileList(profiles);
+            } catch (error) {
+                console.error("Error getting todo list: ", error);
+            }
         }
     };
 
-
     useEffect(() => {
         getProfileList();
-    }, []);
+    }, [search]);
     return (
         <View style={styles.container}>
+            <TextInput
+                style={styles.input}
+                onChangeText={setSearch}
+                placeholder="search"
+            />
             {/* Flatlist */}
             {profileList.length > 0 ? (
             <FlatList
@@ -83,16 +105,24 @@ export default Profile
 
 
 const styles = StyleSheet.create({
-    todoItem: {
-        backgroundColor: '#FFFFFF',
-        padding: 10,
-        marginVertical: 5,
-        borderRadius: 10,
-    },
     container: {
         flex: 1,
         // backgroundColor: '#fff',
-
-
+    },
+    input: {
+        color: "#030303",
+        fontSize: 25,
+        backgroundColor: "#FFFFFF",
+        padding: 7,
+        width: "80%",
+        alignSelf: "center",
+        borderRadius: 10,
+        //automatically sticks to the bottom
+        flexDirection: "row",
+        borderStyle: "solid",
+        margin: 1,
+        borderWidth: 2,
+        borderColor: "#9DBBB5",
+        marginTop:20
     },
 });

@@ -45,7 +45,7 @@ const Profile = ({navigation}) => {
         }
 
         else {
-            console.log("search used: ", search);
+            //console.log("search used: ", search);
             try {
                 const querySnapshot = await getDocs(
                     query(collection(db, "users"), where("username", ">=", search))

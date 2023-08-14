@@ -1,21 +1,23 @@
 import { StyleSheet, Text, View, ScrollView, SafeAreaView, Pressable } from 'react-native';
 import React, {useState} from 'react';
 
+// navigation
 import {NavigationContainer, useRoute} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+// icons
+import {AntDesign, MaterialIcons, Entypo} from "@expo/vector-icons";
 
 // Import our userComponents. See the userComponents directory
 import Login from "./userComponents/Login";
 import Logout from "./userComponents/Logout";
 import Register from "./userComponents/Register";
-
-
 import Profile from "./profileComponents/Profiles";
+import BottomTab from "./tabComponents/BottomTab";
 
 const Stack = createStackNavigator();
-
 
 function TempMenu({ navigation }) {
 
@@ -91,11 +93,13 @@ function HomeScreen({ navigation }) {
             </Pressable>
 
             <Profile navigation={navigation} userId={userId}/>
+
+            <BottomTab navigation={navigation} userId={userId}/>
+
         </View>
 
     );
 }
-
 
 function FavouriteScreen({ navigation }) {
 
@@ -115,21 +119,29 @@ function FavouriteScreen({ navigation }) {
   );
 }
 function ProfileScreen({ navigation }) {
+
+    const route = useRoute();
+    const { userId, userEmail } = route.params;
     return (
-        <View>
+        <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
             <Pressable onPress={() => navigation.navigate('Journal')}>
                 <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
                     <Text style={styles.nav_button_text}>a journal</Text>
                 </View>
             </Pressable>
+            <BottomTab navigation={navigation} userId={userId}/>
+
         </View>
     );
 }
 
 function MyProfileScreen({ navigation }) {
 
+    const route = useRoute();
+    const { userId, userEmail } = route.params;
+
     return (
-        <View>
+        <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
             <Pressable onPress={() => navigation.navigate('Add Journal')}>
                 <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
                     <Text style={styles.nav_button_text}>add journal</Text>
@@ -145,28 +157,40 @@ function MyProfileScreen({ navigation }) {
                     <Text style={styles.nav_button_text}>a journal</Text>
                 </View>
             </Pressable>
+
+            <BottomTab navigation={navigation} userId={userId}/>
         </View>
     );
 }
 function JournalScreen({ navigation }) {
+    const route = useRoute();
+    const { userId, userEmail } = route.params;
 
   return (
       <View>
         <Text>Journal</Text>
+
+        <BottomTab navigation={navigation} userId={userId}/>
+
+
       </View>
   );
 }
 
 function SettingsScreen({ navigation }) {
+    const route = useRoute();
+    const { userId, userEmail } = route.params;
 
     return (
-        <View>
+        <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
             <Pressable onPress={() => navigation.navigate('Privacy')}>
                 <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
                     <Text style={styles.nav_button_text}>Privacy policy</Text>
                 </View>
             </Pressable>
             <Logout navigation={navigation}/>
+
+            <BottomTab navigation={navigation} userId={userId}/>
         </View>
     );
 }
@@ -195,22 +219,30 @@ function PrivacyScreen({ navigation }) {
   );
 }
 function AddJournalScreen({ navigation }) {
+    const route = useRoute();
+    const { userId, userEmail } = route.params;
 
   return (
       <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+          <BottomTab navigation={navigation} userId={userId}/>
 
       </View>
   );
 }
 function AddEntryScreen({ navigation }) {
+    const route = useRoute();
+    const { userId, userEmail } = route.params;
 
   return (
       <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+          <BottomTab navigation={navigation} userId={userId}/>
 
       </View>
   );
 }
 function JournalEditorScreen({ navigation }) {
+    const route = useRoute();
+    const { userId, userEmail } = route.params;
 
   return (
       <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
@@ -219,6 +251,8 @@ function JournalEditorScreen({ navigation }) {
                   <Text style={styles.nav_button_text}>add entry</Text>
               </View>
           </Pressable>
+          <BottomTab navigation={navigation} userId={userId}/>
+
       </View>
   );
 }
@@ -249,12 +283,14 @@ function MyStack() {
   );
 }
 
+
 export default function App() {
 
   return (
 
       <NavigationContainer>
-        <MyStack />
+          <MyStack />
+
       </NavigationContainer>
 
   );

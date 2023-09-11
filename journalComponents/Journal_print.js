@@ -35,7 +35,7 @@ const Journal_print = ({navigation}) => {
             //console.log("journal:", journals); // log the todo items to check if they are being fetched correctly
             setJournalList(journals);
         } catch (error) {
-            console.error("Error getting todo list: ", error);
+            console.error("Error getting journal list: ", error);
         }
 
 
@@ -43,8 +43,8 @@ const Journal_print = ({navigation}) => {
     };
 
     useEffect(() => {
-        getJournalList();
-    },);
+        getJournalList(); // Call the function once when the component mounts
+    }, []);
 
 
 

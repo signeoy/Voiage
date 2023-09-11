@@ -14,7 +14,13 @@ import {AntDesign, MaterialIcons, Entypo} from "@expo/vector-icons";
 import Login from "./userComponents/Login";
 import Logout from "./userComponents/Logout";
 import Register from "./userComponents/Register";
+
 import Profile from "./profileComponents/Profiles";
+
+import Journal_create from "./journalComponents/Journal_create";
+import Journal_print from "./journalComponents/Journal_print";
+
+
 import BottomTab from "./tabComponents/BottomTab";
 
 const Stack = createStackNavigator();
@@ -142,21 +148,31 @@ function MyProfileScreen({ navigation }) {
 
     return (
         <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
-            <Pressable onPress={() => navigation.navigate('Add Journal')}>
-                <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
-                    <Text style={styles.nav_button_text}>add journal</Text>
+            <ScrollView>
+                <View style={{}}>
+                    <Pressable onPress={() => navigation.navigate('Add Journal', { userId: userId })}>
+                        <View style={{ ...styles.profile_btn, backgroundColor: "#FCF6BE" }}>
+                            <Text style={styles.profile_btn_txt}>add journal</Text>
+                        </View>
+                    </Pressable>
+                    <Pressable onPress={() => navigation.navigate('Journal Editor', { userId: userId })}>
+                        <View style={{ ...styles.profile_btn, backgroundColor: "#FCF6BE" }}>
+                            <Text style={styles.profile_btn_txt}>edit journal</Text>
+                        </View>
+                    </Pressable>
+                    <Pressable onPress={() => navigation.navigate('Journal', { userId: userId })}>
+                        <View style={{ ...styles.profile_btn, backgroundColor: "#FCF6BE" }}>
+                            <Text style={styles.profile_btn_txt}>delete journal</Text>
+                        </View>
+                    </Pressable>
                 </View>
-            </Pressable>
-            <Pressable onPress={() => navigation.navigate('Journal Editor')}>
-                <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
-                    <Text style={styles.nav_button_text}>edit journal</Text>
+
+                <View style={{marginBottom: 80}}>
+                    <Journal_print navigation={navigation} userId={userId}/>
                 </View>
-            </Pressable>
-            <Pressable onPress={() => navigation.navigate('Journal')}>
-                <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
-                    <Text style={styles.nav_button_text}>a journal</Text>
-                </View>
-            </Pressable>
+
+            </ScrollView>
+
 
             <BottomTab navigation={navigation} userId={userId}/>
         </View>
@@ -167,7 +183,7 @@ function JournalScreen({ navigation }) {
     const { userId, userEmail } = route.params;
 
   return (
-      <View>
+      <View style ={{...styles.container, backgroundColor: "#CAFFCC"}}>
         <Text>Journal</Text>
 
         <BottomTab navigation={navigation} userId={userId}/>
@@ -223,7 +239,8 @@ function AddJournalScreen({ navigation }) {
     const { userId, userEmail } = route.params;
 
   return (
-      <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+      <View style={{flex: 1, backgroundColor: "#CAFFCC"}}>
+          <Journal_create navigation={navigation} userId={userId}/>
           <BottomTab navigation={navigation} userId={userId}/>
 
       </View>
@@ -301,9 +318,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   nav_button: {
     flexDirection: "row",
@@ -320,12 +334,27 @@ const styles = StyleSheet.create({
     //boarder
     borderWidth: 2,
     borderColor: 'rgba(0, 0, 0, 0.2)',
-
   },
   nav_button_text:{
     fontSize: 30,
     marginLeft: 20,
     color: 'rgba(0, 0, 0, 0.7)'
+  },
+  profile_btn:{
+      justifyContent: "space-between",
+      padding: 8,
+      alignSelf: "center",
+      marginVertical: 0,
+      marginBottom: 0,
+      elevation: 30,
+      width: "30%",
+      //boarder
+      borderWidth: 2,
+      borderColor: 'rgba(0, 0, 0, 0.2)',
+  },
+  profile_btn_txt:{
+      fontSize: 15,
+      color: 'rgba(0, 0, 0, 0.7)'
   },
   scroll_container: {
     // backgroundColor: "#BEFCE0",

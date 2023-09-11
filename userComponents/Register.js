@@ -20,12 +20,10 @@ const Register = ({navigation, setUser}) => {
         if (agree) {
             registerUser()
 
-
         } else {
             // Show an error message if the checkbox is not checked
             Alert.alert('Error', 'Please agree to the Privacy Policy');
         }
-
     };
     const registerUser = () => {
         createUserWithEmailAndPassword(auth, email, password)

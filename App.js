@@ -97,14 +97,15 @@ function HomeScreen({ navigation }) {
 
     return (
         <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+
             <Pressable onPress={() => navigation.navigate('My Favourites')}>
                 <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
                     <Text style={styles.nav_button_text}>Favourites</Text>
                 </View>
             </Pressable>
-
-            <Profile navigation={navigation} userId={userId}/>
-
+            <ScrollView >
+                <Profile navigation={navigation} userId={userId}/>
+            </ScrollView>
             <BottomTab navigation={navigation} userId={userId}/>
 
         </View>
@@ -140,7 +141,7 @@ function ProfileScreen({ navigation }) {
                 navigation={navigation}
             />
 
-            <View style={{marginBottom: 80}}>
+            <View>
                 <Journal_print navigation={navigation} userId={id}/>
             </View>
 
@@ -165,7 +166,7 @@ function MyProfileScreen({ navigation }) {
 
                 <MyProfilePage navigation={navigation} userId={userId}/>
 
-                <View style={{marginBottom: 80}}>
+                <View>
                     <Journal_print navigation={navigation} userId={userId}/>
                 </View>
 
@@ -317,6 +318,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingBottom: 70
   },
   nav_button: {
     flexDirection: "row",

@@ -26,14 +26,13 @@ const Journal_create = ({navigation}) => {
     const [description,setDescription] = useState("test desc");
 
     const route = useRoute();
-    const { id } = route.params;
     const { userId } = route.params;
 
     const uploadImage = () => {
 
     }
     const handleCreateJournal = () => {
-        createJournal(title, date, description).then(r => navigation.navigate('My Profile', {userId}))
+        createJournal(title, date, description).then(r => navigation.navigate('My Profile', {userId}));
     }
 
     const createJournal = async (title, date, desc) => {

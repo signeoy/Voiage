@@ -76,6 +76,7 @@ const Journal_print = ({navigation, userId}) => {
 
 }
 
+
 export default Journal_print
 
 

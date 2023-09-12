@@ -19,10 +19,10 @@ import {useRoute} from "@react-navigation/native";
 
 // scripts
 
-const Journal_print = ({navigation}) => {
+const Journal_print = ({navigation, userId}) => {
 
     const route = useRoute();
-    const { userId } = route.params;
+    //const { userId } = route.params;
 
     const [journalList, setJournalList] = useState([]);
 
@@ -46,8 +46,7 @@ const Journal_print = ({navigation}) => {
         getJournalList(); // Call the function once when the component mounts
     }, []);
 
-
-
+    
     return (
         <View contentContainerStyle={styles.container}>
             {journalList.length > 0 ? (
@@ -68,7 +67,8 @@ const Journal_print = ({navigation}) => {
                     keyExtractor={(item) => item.id}
                 />
             ) : (
-                <ActivityIndicator />
+                <Text>No posts</Text>
+                //<ActivityIndicator />
             )}
 
         </View>

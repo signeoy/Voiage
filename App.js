@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View, ScrollView, SafeAreaView, Pressable } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 // navigation
 import {NavigationContainer, useRoute} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
+import {doc, getDoc} from "firebase/firestore";
+import {db} from "./firebaseConfig";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // icons
@@ -16,12 +18,15 @@ import Logout from "./userComponents/Logout";
 import Register from "./userComponents/Register";
 
 import Profile from "./profileComponents/Profiles";
+import MyProfilePage from "./profileComponents/MyProfilePage";
+import ProfilePage from "./profileComponents/ProfilePage";
 
 import Journal_create from "./journalComponents/Journal_create";
 import Journal_print from "./journalComponents/Journal_print";
 
 
 import BottomTab from "./tabComponents/BottomTab";
+
 
 const Stack = createStackNavigator();
 
@@ -127,16 +132,21 @@ function FavouriteScreen({ navigation }) {
 function ProfileScreen({ navigation }) {
 
     const route = useRoute();
-    const { userId, userEmail } = route.params;
+    const { id, username, userId, } = route.params;
     return (
         <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
-            <Pressable onPress={() => navigation.navigate('Journal')}>
-                <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
-                    <Text style={styles.nav_button_text}>a journal</Text>
-                </View>
-            </Pressable>
-            <BottomTab navigation={navigation} userId={userId}/>
+            <ScrollView style={{ marginVertical: 10, flexDirection: "column"}}>
+            <ProfilePage
+                navigation={navigation}
+            />
 
+            <View style={{marginBottom: 80}}>
+                <Journal_print navigation={navigation} userId={id}/>
+            </View>
+
+
+            </ScrollView>
+            <BottomTab navigation={navigation} userId={userId}/>
         </View>
     );
 }
@@ -146,26 +156,14 @@ function MyProfileScreen({ navigation }) {
     const route = useRoute();
     const { userId, userEmail } = route.params;
 
+
+
+
     return (
         <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
-            <ScrollView>
-                <View style={{}}>
-                    <Pressable onPress={() => navigation.navigate('Add Journal', { userId: userId })}>
-                        <View style={{ ...styles.profile_btn, backgroundColor: "#FCF6BE" }}>
-                            <Text style={styles.profile_btn_txt}>add journal</Text>
-                        </View>
-                    </Pressable>
-                    <Pressable onPress={() => navigation.navigate('Journal Editor', { userId: userId })}>
-                        <View style={{ ...styles.profile_btn, backgroundColor: "#FCF6BE" }}>
-                            <Text style={styles.profile_btn_txt}>edit journal</Text>
-                        </View>
-                    </Pressable>
-                    <Pressable onPress={() => navigation.navigate('Journal', { userId: userId })}>
-                        <View style={{ ...styles.profile_btn, backgroundColor: "#FCF6BE" }}>
-                            <Text style={styles.profile_btn_txt}>delete journal</Text>
-                        </View>
-                    </Pressable>
-                </View>
+            <ScrollView style={{ marginVertical: 10, flexDirection: "column"}}>
+
+                <MyProfilePage navigation={navigation} userId={userId}/>
 
                 <View style={{marginBottom: 80}}>
                     <Journal_print navigation={navigation} userId={userId}/>
@@ -185,6 +183,7 @@ function JournalScreen({ navigation }) {
   return (
       <View style ={{...styles.container, backgroundColor: "#CAFFCC"}}>
         <Text>Journal</Text>
+
 
         <BottomTab navigation={navigation} userId={userId}/>
 
@@ -340,22 +339,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     color: 'rgba(0, 0, 0, 0.7)'
   },
-  profile_btn:{
-      justifyContent: "space-between",
-      padding: 8,
-      alignSelf: "center",
-      marginVertical: 0,
-      marginBottom: 0,
-      elevation: 30,
-      width: "30%",
-      //boarder
-      borderWidth: 2,
-      borderColor: 'rgba(0, 0, 0, 0.2)',
-  },
-  profile_btn_txt:{
-      fontSize: 15,
-      color: 'rgba(0, 0, 0, 0.7)'
-  },
+
   scroll_container: {
     // backgroundColor: "#BEFCE0",
     paddingTop: 60,

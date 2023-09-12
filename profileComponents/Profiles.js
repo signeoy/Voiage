@@ -85,7 +85,6 @@ const Profile = ({navigation}) => {
                         setUsername={item.setUsername}
                         getProfileList={getProfileList}
 
-
                     />
 
                 </TouchableOpacity>

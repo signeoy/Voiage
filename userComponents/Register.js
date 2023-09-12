@@ -20,12 +20,10 @@ const Register = ({navigation, setUser}) => {
         if (agree) {
             registerUser()
 
-
         } else {
             // Show an error message if the checkbox is not checked
             Alert.alert('Error', 'Please agree to the Privacy Policy');
         }
-
     };
     const registerUser = () => {
         createUserWithEmailAndPassword(auth, email, password)
@@ -67,7 +65,7 @@ const Register = ({navigation, setUser}) => {
 
                 // Call the setter passed to us as a prop
                 setUser(user);
-                navigation.navigate('TempMenu', { userId, userEmail });
+                navigation.navigate('Home', { userId, userEmail });
             })
             .catch((error) => {
                 console.log(`login error: ${error.code} ${error.message}`);

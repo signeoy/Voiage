@@ -24,6 +24,7 @@ import ProfilePage from "./profileComponents/ProfilePage";
 import Journal_create from "./journalComponents/Journal_create";
 import Journal_editor from "./journalComponents/Journal_editor";
 import Journal_entry_create from "./journalComponents/Journal_entry_create";
+import Journal_entry_page from "./journalComponents/Journal_entry_page";
 
 
 import BottomTab from "./tabComponents/BottomTab";
@@ -141,9 +142,6 @@ function ProfileScreen({ navigation }) {
             <ProfilePage
                 navigation={navigation}
             />
-
-
-
             </ScrollView>
             <BottomTab navigation={navigation} userId={userId}/>
         </View>
@@ -177,10 +175,7 @@ function JournalScreen({ navigation }) {
 
   return (
       <View style ={{...styles.container, backgroundColor: "#CAFFCC"}}>
-        <Text>Journal</Text>
-
-
-
+        <Journal_entry_page navigation={navigation} userId={userId}/>
         <BottomTab navigation={navigation} userId={userId}/>
 
 

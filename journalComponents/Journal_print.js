@@ -27,7 +27,6 @@ const Journal_print = ({navigation, profileId}) => {
     const [journalList, setJournalList] = useState([]);
 
 
-
     const getJournalList = async () => {
         try {
             const querySnapshot = await getDocs(query(collection(db,"users",profileId, "Journal")));
@@ -38,38 +37,66 @@ const Journal_print = ({navigation, profileId}) => {
             console.error("Error getting journal list: ", error);
         }
 
-
-
     };
+
 
     useEffect(() => {
         getJournalList(); // Call the function once when the component mounts
     }, []);
 
-    
+
     return (
         <View contentContainerStyle={styles.container}>
-            {journalList.length > 0 ? (
-                <FlatList
-                    data={journalList}
-                    renderItem={({ item }) => (
-                        <TouchableOpacity onPress={() => navigation.navigate('Journal Editor', {
-                            userId: profileId,
-                            journal: item
-                        })}>
-                            <Journal_comp
-                                title={item.title}
-                                date={item.date}
-                                desc={item.desc}
-                            />
-                        </TouchableOpacity>
-                    )}
-                    keyExtractor={(item) => item.id}
-                />
+            {userId === profileId ? (
+                journalList.length > 0 ? (
+                        <FlatList
+                            data={journalList}
+                            renderItem={({ item }) => (
+
+                                <TouchableOpacity onPress={() => navigation.navigate('Journal Editor', {
+                                    userId: userId,
+                                    journal: item
+                                })}>
+                                    <Journal_comp
+                                        title={item.title}
+                                        date={item.date}
+                                        desc={item.desc}
+                                    />
+                                </TouchableOpacity>
+                            )}
+                            keyExtractor={(item) => item.id}
+                        />
+                    ) : (
+                        <Text>No posts</Text>
+                        //<ActivityIndicator />
+                    )
             ) : (
-                <Text>No posts</Text>
-                //<ActivityIndicator />
-            )}
+                journalList.length > 0 ? (
+                        <FlatList
+                            data={journalList}
+                            renderItem={({ item }) => (
+
+                                <TouchableOpacity onPress={() => navigation.navigate('Journal', {
+                                    userId: profileId,
+                                    journal: item
+                                })}>
+                                    <Journal_comp
+                                        title={item.title}
+                                        date={item.date}
+                                        desc={item.desc}
+                                    />
+                                </TouchableOpacity>
+                            )}
+                            keyExtractor={(item) => item.id}
+                        />
+                    ) : (
+                        <Text>No posts</Text>
+                        //<ActivityIndicator />
+                    )
+            )
+
+            }
+
 
         </View>
     );

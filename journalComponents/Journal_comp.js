@@ -5,8 +5,8 @@ import {useRoute} from "@react-navigation/native";
 
 const Journal_comp = (props) => {
     const [title, setTitle] = useState(props.title);
-    const [date, setDate] = useState(props.title);
-    const [desc, setDesc] = useState(props.title);
+    const [date, setDate] = useState(props.date);
+    const [desc, setDesc] = useState(props.desc);
 
     const route = useRoute();
     const { userId } = route.params;

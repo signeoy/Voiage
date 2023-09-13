@@ -39,7 +39,7 @@ const Journal_entry_create = ({navigation}) => {
         try {
             const docRef = await addDoc(collection(db,"users",userId, "Journal", journal.id, "entry"), {
                 title: title,
-                date: text,
+                text: text,
             });
             //setJournalId(docRef.id);
             console.log("Document written with ID: ", docRef.id);
@@ -62,9 +62,9 @@ const Journal_entry_create = ({navigation}) => {
                     placeholder="Title"
                 />
                 <TextInput
-                    style={styles.input}
-                    onChangeText={text}
-                    placeholder="Description"
+                    style={{...styles.input, height: 200}}
+                    onChangeText={setText}
+                    placeholder="Text"
                 />
 
             </View>

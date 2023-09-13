@@ -22,7 +22,8 @@ import MyProfilePage from "./profileComponents/MyProfilePage";
 import ProfilePage from "./profileComponents/ProfilePage";
 
 import Journal_create from "./journalComponents/Journal_create";
-import Journal_print from "./journalComponents/Journal_print";
+import Journal_editor from "./journalComponents/Journal_editor";
+import Journal_entry_create from "./journalComponents/Journal_entry_create";
 
 
 import BottomTab from "./tabComponents/BottomTab";
@@ -141,9 +142,6 @@ function ProfileScreen({ navigation }) {
                 navigation={navigation}
             />
 
-            <View>
-                <Journal_print navigation={navigation} userId={id}/>
-            </View>
 
 
             </ScrollView>
@@ -166,10 +164,6 @@ function MyProfileScreen({ navigation }) {
 
                 <MyProfilePage navigation={navigation} userId={userId}/>
 
-                <View>
-                    <Journal_print navigation={navigation} userId={userId}/>
-                </View>
-
             </ScrollView>
 
 
@@ -184,6 +178,7 @@ function JournalScreen({ navigation }) {
   return (
       <View style ={{...styles.container, backgroundColor: "#CAFFCC"}}>
         <Text>Journal</Text>
+
 
 
         <BottomTab navigation={navigation} userId={userId}/>
@@ -252,6 +247,8 @@ function AddEntryScreen({ navigation }) {
 
   return (
       <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+
+          <Journal_entry_create navigation={navigation} userId={userId}/>
           <BottomTab navigation={navigation} userId={userId}/>
 
       </View>
@@ -263,11 +260,9 @@ function JournalEditorScreen({ navigation }) {
 
   return (
       <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
-          <Pressable onPress={() => navigation.navigate('Add Entry')}>
-              <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
-                  <Text style={styles.nav_button_text}>add entry</Text>
-              </View>
-          </Pressable>
+
+          <Journal_editor navigation={navigation} userId={userId}/>
+
           <BottomTab navigation={navigation} userId={userId}/>
 
       </View>

@@ -19,10 +19,10 @@ import {useRoute} from "@react-navigation/native";
 
 // scripts
 
-const Journal_print = ({navigation, userId}) => {
+const Journal_print = ({navigation, profileId}) => {
 
     const route = useRoute();
-    //const { userId } = route.params;
+    const { userId } = route.params;
 
     const [journalList, setJournalList] = useState([]);
 
@@ -30,7 +30,7 @@ const Journal_print = ({navigation, userId}) => {
 
     const getJournalList = async () => {
         try {
-            const querySnapshot = await getDocs(query(collection(db,"users",userId, "Journal")));
+            const querySnapshot = await getDocs(query(collection(db,"users",profileId, "Journal")));
             const journals = querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
             //console.log("journal:", journals); // log the todo items to check if they are being fetched correctly
             setJournalList(journals);
@@ -53,15 +53,15 @@ const Journal_print = ({navigation, userId}) => {
                 <FlatList
                     data={journalList}
                     renderItem={({ item }) => (
-                        <TouchableOpacity onPress={() => navigation.navigate('Journal', { userId })}>
-
+                        <TouchableOpacity onPress={() => navigation.navigate('Journal Editor', {
+                            userId: profileId,
+                            journal: item
+                        })}>
                             <Journal_comp
                                 title={item.title}
                                 date={item.date}
                                 desc={item.desc}
-
                             />
-
                         </TouchableOpacity>
                     )}
                     keyExtractor={(item) => item.id}

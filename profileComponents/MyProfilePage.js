@@ -17,7 +17,7 @@ import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, w
 import {useRoute} from "@react-navigation/native";
 
 // scripts
-import ProfileComp from "./ProfileComp";
+import Journal_print from "../journalComponents/Journal_print";
 
 const MyProfilePage = ({navigation}) => {
     const route = useRoute();
@@ -49,27 +49,34 @@ const MyProfilePage = ({navigation}) => {
     }, []);
 
     return (
-        <View style = {{flexDirection : "row", padding: 15}}>
-            <View style = {{flex:2, }}>
-                <Text style={styles.profile_name}
-                >{username}</Text>
+        <View >
+
+            <View style = {{flexDirection : "row", padding: 15}}>
+                <View style = {{flex:2, }}>
+                    <Text style={styles.profile_name}
+                    >{username}</Text>
+                </View>
+                <View style={{flex: 1,}}>
+                    <Pressable onPress={() => navigation.navigate('Add Journal', { userId: userId })}>
+                        <View style={{ ...styles.profile_btn, backgroundColor: "#FCF6BE" }}>
+                            <Text style={styles.profile_btn_txt}>Add Journal</Text>
+                        </View>
+                    </Pressable>
+                    <Pressable onPress={() => navigation.navigate('Journal Editor', { userId: userId })}>
+                        <View style={{ ...styles.profile_btn, backgroundColor: "#FCF6BE" }}>
+                            <Text style={styles.profile_btn_txt}>Edit journal</Text>
+                        </View>
+                    </Pressable>
+                    <Pressable onPress={() => navigation.navigate('Journal', { userId: userId })}>
+                        <View style={{ ...styles.profile_btn, backgroundColor: "#FCF6BE" }}>
+                            <Text style={styles.profile_btn_txt}>Delete journal</Text>
+                        </View>
+                    </Pressable>
+                </View>
             </View>
-            <View style={{flex: 1,}}>
-                <Pressable onPress={() => navigation.navigate('Add Journal', { userId: userId })}>
-                    <View style={{ ...styles.profile_btn, backgroundColor: "#FCF6BE" }}>
-                        <Text style={styles.profile_btn_txt}>Add Journal</Text>
-                    </View>
-                </Pressable>
-                <Pressable onPress={() => navigation.navigate('Journal Editor', { userId: userId })}>
-                    <View style={{ ...styles.profile_btn, backgroundColor: "#FCF6BE" }}>
-                        <Text style={styles.profile_btn_txt}>Edit journal</Text>
-                    </View>
-                </Pressable>
-                <Pressable onPress={() => navigation.navigate('Journal', { userId: userId })}>
-                    <View style={{ ...styles.profile_btn, backgroundColor: "#FCF6BE" }}>
-                        <Text style={styles.profile_btn_txt}>Delete journal</Text>
-                    </View>
-                </Pressable>
+
+            <View>
+                <Journal_print navigation={navigation} profileId={userId}/>
             </View>
         </View>
     );

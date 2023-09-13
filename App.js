@@ -171,11 +171,11 @@ function MyProfileScreen({ navigation }) {
 }
 function JournalScreen({ navigation }) {
     const route = useRoute();
-    const { userId, userEmail } = route.params;
+    const { profileId, userId } = route.params;
 
   return (
       <View style ={{...styles.container, backgroundColor: "#CAFFCC"}}>
-        <Journal_entry_page navigation={navigation} userId={userId}/>
+        <Journal_entry_page navigation={navigation} profileId={profileId}/>
         <BottomTab navigation={navigation} userId={userId}/>
 
 

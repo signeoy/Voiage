@@ -19,10 +19,11 @@ import {useRoute} from "@react-navigation/native";
 
 // scripts
 
-const Journal_entry_page = ({navigation, userId}) => {
+const Journal_entry_page = ({navigation, profileId}) => {
 
     const route = useRoute();
     const { journal } = route.params;
+    const { userId } = route.params;
 
 
 
@@ -42,7 +43,7 @@ const Journal_entry_page = ({navigation, userId}) => {
             <View>
                 <Journal_entry_print
                     navigation={navigation}
-                    profileId={userId}
+                    profileId={profileId}
                     journal={journal}
                 />
             </View>

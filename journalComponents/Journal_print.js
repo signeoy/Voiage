@@ -77,7 +77,7 @@ const Journal_print = ({navigation, profileId}) => {
                             renderItem={({ item }) => (
 
                                 <TouchableOpacity onPress={() => navigation.navigate('Journal', {
-                                    userId: profileId,
+                                    profileId: profileId,
                                     journal: item
                                 })}>
                                     <Journal_comp

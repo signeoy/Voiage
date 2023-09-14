@@ -18,6 +18,7 @@ import {useRoute} from "@react-navigation/native";
 
 // scripts
 import ProfileComp from "./ProfileComp";
+import Journal_print from "../journalComponents/Journal_print";
 
 const ProfilePage = ({navigation}) => {
     const route = useRoute();
@@ -28,12 +29,20 @@ const ProfilePage = ({navigation}) => {
 
 
     return (
-        <View style = {{flexDirection : "row", padding: 15}}>
-            <View style = {{flex:2, }}>
-                <Text style={styles.profile_name}>{username}</Text>
+
+        <View>
+            <View style = {{flexDirection : "row", padding: 15}}>
+                <View style = {{flex:2, }}>
+                    <Text style={styles.profile_name}>{username}</Text>
+                </View>
+                <View style={{flex: 1,}}>
+                    <Text>Star here, {username}</Text>
+                </View>
+
             </View>
-            <View style={{flex: 1,}}>
-                <Text>Star here, {username}</Text>
+
+            <View>
+                <Journal_print navigation={navigation} profileId={id}/>
             </View>
         </View>
     );

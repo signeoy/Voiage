@@ -22,7 +22,9 @@ import MyProfilePage from "./profileComponents/MyProfilePage";
 import ProfilePage from "./profileComponents/ProfilePage";
 
 import Journal_create from "./journalComponents/Journal_create";
-import Journal_print from "./journalComponents/Journal_print";
+import Journal_editor from "./journalComponents/Journal_editor";
+import Journal_entry_create from "./journalComponents/Journal_entry_create";
+import Journal_entry_page from "./journalComponents/Journal_entry_page";
 
 
 import BottomTab from "./tabComponents/BottomTab";
@@ -140,12 +142,6 @@ function ProfileScreen({ navigation }) {
             <ProfilePage
                 navigation={navigation}
             />
-
-            <View>
-                <Journal_print navigation={navigation} userId={id}/>
-            </View>
-
-
             </ScrollView>
             <BottomTab navigation={navigation} userId={userId}/>
         </View>
@@ -166,10 +162,6 @@ function MyProfileScreen({ navigation }) {
 
                 <MyProfilePage navigation={navigation} userId={userId}/>
 
-                <View>
-                    <Journal_print navigation={navigation} userId={userId}/>
-                </View>
-
             </ScrollView>
 
 
@@ -179,13 +171,11 @@ function MyProfileScreen({ navigation }) {
 }
 function JournalScreen({ navigation }) {
     const route = useRoute();
-    const { userId, userEmail } = route.params;
+    const { profileId, userId } = route.params;
 
   return (
       <View style ={{...styles.container, backgroundColor: "#CAFFCC"}}>
-        <Text>Journal</Text>
-
-
+        <Journal_entry_page navigation={navigation} profileId={profileId}/>
         <BottomTab navigation={navigation} userId={userId}/>
 
 
@@ -252,6 +242,8 @@ function AddEntryScreen({ navigation }) {
 
   return (
       <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+
+          <Journal_entry_create navigation={navigation} userId={userId}/>
           <BottomTab navigation={navigation} userId={userId}/>
 
       </View>
@@ -263,11 +255,9 @@ function JournalEditorScreen({ navigation }) {
 
   return (
       <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
-          <Pressable onPress={() => navigation.navigate('Add Entry')}>
-              <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
-                  <Text style={styles.nav_button_text}>add entry</Text>
-              </View>
-          </Pressable>
+
+          <Journal_editor navigation={navigation} userId={userId}/>
+
           <BottomTab navigation={navigation} userId={userId}/>
 
       </View>

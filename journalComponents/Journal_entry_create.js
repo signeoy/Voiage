@@ -18,36 +18,33 @@ import {useRoute} from "@react-navigation/native";
 
 // scripts
 
-const Journal_create = ({navigation}) => {
+const Journal_entry_create = ({navigation}) => {
 
-    const [journalId, setJournalId] = useState("Test");
     const [title, setTitle] = useState("Test");
-    const [date, setDate] = useState("test date");
+    const [text, setText] = useState("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium animi architecto aut blanditiis consequatur cumque delectus, dolore enim explicabo ipsa laboriosam nesciunt obcaecati possimus quod rerum sequi temporibus ut voluptatem!");
     //const navigation = useNavigation();
-    const [description,setDescription] = useState("test desc");
 
     const route = useRoute();
     const { userId } = route.params;
+    const { journal } = route.params;
 
     const uploadImage = () => {
 
     }
-    const handleCreateJournal = () => {
-        createJournal(title, date, description).then(r => navigation.navigate('My Profile', {userId}));
+    const handleCreateEntry = () => {
+        createEntry(title, text).then(r => navigation.navigate('Journal Editor', {userId, journal}));
     }
 
-    const createJournal = async (title, date, desc) => {
+    const createEntry = async (title, text) => {
         try {
-            const docRef = await addDoc(collection(db,"users", userId, "Journal"), {
+            const docRef = await addDoc(collection(db,"users",userId, "Journal", journal.id, "entry"), {
                 title: title,
-                date: date,
-                desc: desc
+                text: text,
             });
-            setJournalId(docRef.id);
-            console.log("Document written with ID: ", setJournalId);
+            //setJournalId(docRef.id);
+            console.log("Document written with ID: ", docRef.id);
             setTitle("");
-            setDate("");
-            setDescription("");
+            setText("");
 
             console.log('Document added successfully.');
         } catch (error) {
@@ -65,14 +62,9 @@ const Journal_create = ({navigation}) => {
                     placeholder="Title"
                 />
                 <TextInput
-                    style={styles.input}
-                    onChangeText={setDate}
-                    placeholder="Date"
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setDescription}
-                    placeholder="Description"
+                    style={{...styles.input, height: 200}}
+                    onChangeText={setText}
+                    placeholder="Text"
                 />
 
             </View>
@@ -87,19 +79,20 @@ const Journal_create = ({navigation}) => {
                 </Pressable>
 
                 <Pressable style={{marginTop: 40}}
-                           onPress={handleCreateJournal}>
+                           onPress={handleCreateEntry}>
                     <View style={{...styles.login_button, backgroundColor: "#fff"}}>
-                        <Text style={styles.login_button_text}>Crate Journal</Text>
+                        <Text style={styles.login_button_text}>Create entry</Text>
                     </View>
                 </Pressable>
             </View>
+
 
         </ScrollView>
     );
 
 }
 
-export default Journal_create
+export default Journal_entry_create
 
 
 const styles = StyleSheet.create({

@@ -52,27 +52,20 @@ const MyProfilePage = ({navigation}) => {
         <View >
 
             <View style = {{flexDirection : "row", padding: 15}}>
-                <View style = {{flex:2, }}>
-                    <Text style={styles.profile_name}
-                    >{username}</Text>
-                </View>
-                <View style={{flex: 1,}}>
+
+                <View style={{flex: 1, padding:20}}>
                     <Pressable onPress={() => navigation.navigate('Add Journal', { userId: userId })}>
                         <View style={{ ...styles.profile_btn, backgroundColor: "#FCF6BE" }}>
                             <Text style={styles.profile_btn_txt}>Add Journal</Text>
                         </View>
                     </Pressable>
-                    <Pressable onPress={() => navigation.navigate('Journal Editor', { userId: userId })}>
-                        <View style={{ ...styles.profile_btn, backgroundColor: "#FCF6BE" }}>
-                            <Text style={styles.profile_btn_txt}>Edit journal</Text>
-                        </View>
-                    </Pressable>
-                    <Pressable onPress={() => navigation.navigate('Journal', { userId: userId })}>
-                        <View style={{ ...styles.profile_btn, backgroundColor: "#FCF6BE" }}>
-                            <Text style={styles.profile_btn_txt}>Delete journal</Text>
-                        </View>
-                    </Pressable>
+
                 </View>
+                <View style = {{flex:2, }}>
+                    <Text style={styles.profile_name}
+                    >{username}</Text>
+                </View>
+
             </View>
 
             <View>

@@ -20,6 +20,18 @@ const Journal_comp = (props) => {
             <Text style={styles.title}>{props.date}</Text>
             <Text style={styles.title}>{props.desc}</Text>
 
+            <Pressable onPress={() => navigation.navigate('Journal Editor', { userId: userId })}>
+                <View style={{ ...styles.journal_btn, backgroundColor: "#FCF6BE" }}>
+                    <Text style={styles.profile_btn_txt}>Edit journal</Text>
+                </View>
+            </Pressable>
+
+            <Pressable onPress={() => navigation.navigate('Journal', { userId: userId })}>
+                <View style={{ ...styles.journal_btn, backgroundColor: "#FCF6BE" }}>
+                    <Text style={styles.profile_btn_txt}>Delete journal</Text>
+                </View>
+            </Pressable>
+
         </View>
     );
 
@@ -43,5 +55,9 @@ const styles = StyleSheet.create({
         margin: 10,
         fontSize: 17,
         fontWeight: "500",
+    },
+    journal_btn: {
+        width: "30%",
+
     },
 });

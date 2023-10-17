@@ -2,6 +2,7 @@ import {Button, Pressable, StyleSheet, Text, View, TextInput} from "react-native
 import React, { useState, useEffect} from "react";
 import {useRoute} from "@react-navigation/native";
 
+import deleteJournal from "../journalComponents/Journal_delete";
 
 const Journal_comp = (props) => {
     const [title, setTitle] = useState(props.title);
@@ -19,6 +20,18 @@ const Journal_comp = (props) => {
             <Text style={styles.title}>{props.title}</Text>
             <Text style={styles.title}>{props.date}</Text>
             <Text style={styles.title}>{props.desc}</Text>
+
+            <Pressable onPress={() => navigation.navigate('Journal Editor', { userId: userId })}>
+                <View style={{ ...styles.journal_btn, backgroundColor: "#FCF6BE" }}>
+                    <Text style={styles.profile_btn_txt}>Edit journal</Text>
+                </View>
+            </Pressable>
+
+            <Pressable onPress={() => deleteJournal(userId)}>
+                <View style={{ ...styles.journal_btn, backgroundColor: "#FCF6BE" }}>
+                    <Text style={styles.profile_btn_txt}>Delete journal</Text>
+                </View>
+            </Pressable>
 
         </View>
     );
@@ -43,5 +56,9 @@ const styles = StyleSheet.create({
         margin: 10,
         fontSize: 17,
         fontWeight: "500",
+    },
+    journal_btn: {
+        width: "30%",
+
     },
 });

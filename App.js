@@ -189,7 +189,7 @@ function SettingsScreen({ navigation }) {
 
     return (
         <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
-            <Pressable onPress={() => navigation.navigate('Privacy')}>
+            <Pressable onPress={() => navigation.navigate('Privacy Policy')}>
                 <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
                     <Text style={styles.nav_button_text}>Privacy policy</Text>
                 </View>
@@ -220,7 +220,7 @@ function PrivacyScreen({ navigation }) {
 
   return (
       <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
-
+            <Text>This is the privacy policy. You can read all the terms and conditions on this link:</Text>
       </View>
   );
 }

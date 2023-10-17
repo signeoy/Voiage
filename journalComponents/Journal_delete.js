@@ -6,9 +6,9 @@ import Journal_print from "../journalComponents/Journal_print";
 
 const db = getFirestore();
 
-const deleteJournal = async (journalId, profileId) => {
-    try {
-        const journalRef = doc(db, "users", profileId, "Journal", journalId);
+const deleteJournal = async (journalId, userId) => {
+    /*try {
+        const journalRef = doc(db, "users", userId, "Journal", journalId);
 
         // Delete the entire journal (document)
         await deleteDoc(journalRef);
@@ -17,7 +17,7 @@ const deleteJournal = async (journalId, profileId) => {
         // After deletion, you might want to update your journal list or perform any other necessary actions.
     } catch (error) {
         console.error('Error deleting journal:', error);
-    }
+    }*/
 };
 
 export default deleteJournal

@@ -16,6 +16,7 @@ import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, w
 
 import Journal_comp from "../journalComponents/Journal_comp";
 import {useRoute} from "@react-navigation/native";
+import deleteJournal from "./Journal_delete";
 
 // scripts
 
@@ -62,6 +63,17 @@ const Journal_print = ({navigation, profileId}) => {
                                         date={item.date}
                                         desc={item.desc}
                                     />
+                                    <Pressable >
+                                        <View style={{ ...styles.journal_btn, backgroundColor: "#FCF6BE" }}>
+                                            <Text style={styles.profile_btn_txt}>Edit journal</Text>
+                                        </View>
+                                    </Pressable>
+
+                                    <Pressable onPress={() => deleteJournal(userId)}>
+                                        <View style={{ ...styles.journal_btn, backgroundColor: "#FCF6BE" }}>
+                                            <Text style={styles.profile_btn_txt}>Delete journal</Text>
+                                        </View>
+                                    </Pressable>
                                 </TouchableOpacity>
                             )}
                             keyExtractor={(item) => item.id}

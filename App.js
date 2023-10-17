@@ -178,7 +178,6 @@ function JournalScreen({ navigation }) {
         <Journal_entry_page navigation={navigation} profileId={profileId}/>
         <BottomTab navigation={navigation} userId={userId}/>
 
-
       </View>
   );
 }

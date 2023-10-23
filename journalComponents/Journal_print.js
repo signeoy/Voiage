@@ -32,15 +32,13 @@ const Journal_print = ({navigation, profileId}) => {
         try {
             const querySnapshot = await getDocs(query(collection(db,"users",profileId, "Journal")));
             const journals = querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
-            //console.log("journal:", journals); // log the todo items to check if they are being fetched correctly
+            //console.log("journal:", journals);
             setJournalList(journals);
         } catch (error) {
             console.error("Error getting journal list: ", error);
         }
 
     };
-
-
 
 
 

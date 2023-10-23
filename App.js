@@ -23,8 +23,8 @@ import ProfilePage from "./profileComponents/ProfilePage";
 
 import Journal_create from "./journalComponents/Journal_create";
 import Journal_editor from "./journalComponents/Journal_editor";
-import Journal_entry_create from "./journalComponents/Journal_entry_create";
-import Journal_entry_page from "./journalComponents/Journal_entry_page";
+import Journal_entry_create from "./journalEntryComponent/Journal_entry_create";
+import Journal_entry_page from "./journalEntryComponent/Journal_entry_page";
 
 
 import BottomTab from "./tabComponents/BottomTab";

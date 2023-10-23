@@ -52,6 +52,8 @@ const Journal_comp = (props) => {
     }
 
 
+
+
     return (
         <View style={styles.container}>
             {userId === props.profileId ? (

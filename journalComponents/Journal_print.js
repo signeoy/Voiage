@@ -41,9 +41,13 @@ const Journal_print = ({navigation, profileId}) => {
     };
 
 
+
+
+
     useEffect(() => {
         getJournalList(); // Call the function once when the component mounts
     }, []);
+    console.log()
 
 
     return (
@@ -58,22 +62,17 @@ const Journal_print = ({navigation, profileId}) => {
                                     userId: userId,
                                     journal: item
                                 })}>
+
                                     <Journal_comp
                                         title={item.title}
                                         date={item.date}
                                         desc={item.desc}
+                                        id = {item.id}
+                                        profileId={profileId}
+                                        getJournalList={getJournalList}
                                     />
-                                    <Pressable >
-                                        <View style={{ ...styles.journal_btn, backgroundColor: "#FCF6BE" }}>
-                                            <Text style={styles.profile_btn_txt}>Edit journal</Text>
-                                        </View>
-                                    </Pressable>
 
-                                    <Pressable onPress={() => deleteJournal(userId)}>
-                                        <View style={{ ...styles.journal_btn, backgroundColor: "#FCF6BE" }}>
-                                            <Text style={styles.profile_btn_txt}>Delete journal</Text>
-                                        </View>
-                                    </Pressable>
+
                                 </TouchableOpacity>
                             )}
                             keyExtractor={(item) => item.id}

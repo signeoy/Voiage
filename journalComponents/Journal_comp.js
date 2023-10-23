@@ -43,11 +43,8 @@ const Journal_comp = (props) => {
     const handleCancelButton = () => {
         setIsEditing(false);
         setTitle(props.title);
-    };
-
-    const handleTextChange = (text) => {
-        console.log("edit text run")
-        setTitle(text);
+        setDate(props.date);
+        setDesc(props.desc);
     };
 
     const deleteFunction = () => {
@@ -64,17 +61,17 @@ const Journal_comp = (props) => {
                             <TextInput
                                 style={styles.title}
                                 value={title}
-                                onChangeText={handleTextChange}
+                                onChangeText={text => setTitle(text)}
                             />
                             <TextInput
                                 style={styles.title}
                                 value={date}
-                                onChangeText={handleTextChange}
+                                onChangeText={text => setDate(text)}
                             />
                             <TextInput
                                 style={styles.title}
                                 value={desc}
-                                onChangeText={handleTextChange}
+                                onChangeText={text => setDesc(text)}
                             />
                         </View>
 

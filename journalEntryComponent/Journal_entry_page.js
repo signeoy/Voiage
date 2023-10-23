@@ -14,7 +14,7 @@ import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { db } from "../firebaseConfig"
 import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where, setDoc} from "firebase/firestore"
 
-import Journal_entry_print from "../journalComponents/Journal_entry_print";
+import Journal_entry_print from "./Journal_entry_print";
 import {useRoute} from "@react-navigation/native";
 
 // scripts

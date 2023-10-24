@@ -16,6 +16,7 @@ import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, w
 
 import Journal_comp from "../journalComponents/Journal_comp";
 import {useRoute} from "@react-navigation/native";
+import deleteJournal from "./Journal_delete";
 
 // scripts
 
@@ -31,7 +32,7 @@ const Journal_print = ({navigation, profileId}) => {
         try {
             const querySnapshot = await getDocs(query(collection(db,"users",profileId, "Journal")));
             const journals = querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
-            //console.log("journal:", journals); // log the todo items to check if they are being fetched correctly
+            //console.log("journal:", journals);
             setJournalList(journals);
         } catch (error) {
             console.error("Error getting journal list: ", error);
@@ -40,9 +41,11 @@ const Journal_print = ({navigation, profileId}) => {
     };
 
 
+
     useEffect(() => {
         getJournalList(); // Call the function once when the component mounts
     }, []);
+    console.log()
 
 
     return (
@@ -57,11 +60,17 @@ const Journal_print = ({navigation, profileId}) => {
                                     userId: userId,
                                     journal: item
                                 })}>
+
                                     <Journal_comp
                                         title={item.title}
                                         date={item.date}
                                         desc={item.desc}
+                                        id = {item.id}
+                                        profileId={profileId}
+                                        getJournalList={getJournalList}
                                     />
+
+
                                 </TouchableOpacity>
                             )}
                             keyExtractor={(item) => item.id}

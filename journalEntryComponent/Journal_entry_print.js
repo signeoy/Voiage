@@ -24,19 +24,13 @@ const Journal_entry_print = ({navigation, profileId, journal}) => {
     const [entryList, setEntryList] = useState([]);
 
 
-    console.log("journal")
-    console.log(journal)
-    console.log(profileId)
-
-
-
     const getEntryList = async () => {
 
         try {
             const querySnapshot = await getDocs(query(collection(db,"users",profileId, "Journal", journal.id, "entry")));
-            const journals = querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
+            const entries = querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
             //console.log("journal:", journals); // log the items to check if they are being fetched correctly
-            setEntryList(journals);
+            setEntryList(entries);
         } catch (error) {
             console.error("Error getting journal entry list: ", error);
         }
@@ -58,13 +52,17 @@ const Journal_entry_print = ({navigation, profileId, journal}) => {
                                 <Journal_entry_comp
                                     title={item.title}
                                     text={item.text}
+                                    id={item.id}
+                                    journalId={journal.id}
+                                    profileId={profileId}
+                                    getEntryList={getEntryList}
                                 />
                             </View>
                         )}
                         keyExtractor={(item) => item.id}
                     />
                 ) : (
-                    <Text>No posts</Text>
+                    <Text>No Entries</Text>
                     //<ActivityIndicator />
                 )}
 

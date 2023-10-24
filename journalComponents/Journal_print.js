@@ -29,6 +29,7 @@ const Journal_print = ({navigation, profileId}) => {
 
 
     const getJournalList = async () => {
+        console.log("Getting list of journals")
         try {
             const querySnapshot = await getDocs(query(collection(db,"users",profileId, "Journal")));
             const journals = querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));

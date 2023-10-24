@@ -21,10 +21,15 @@ import Journal_entry_comp from "./Journal_entry_comp";
 
 const Journal_entry_print = ({navigation, profileId, journal}) => {
 
+    const route = useRoute();
+    const { userId } = route.params;
+
     const [entryList, setEntryList] = useState([]);
 
 
+
     const getEntryList = async () => {
+        console.log("Getting list of entries fir journal: ", journal)
 
         try {
             const querySnapshot = await getDocs(query(collection(db,"users",profileId, "Journal", journal.id, "entry")));

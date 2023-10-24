@@ -39,6 +39,7 @@ const Journal_entry_comp = (props) => {
                     // Add other fields to update as needed
                 });
                 setIsEditing(false);
+                props.getEntryList();
                 console.log("Save edit successful with id: ", props.id);
             } else {
                 console.log("Save edit failed - missing id");
@@ -53,8 +54,8 @@ const Journal_entry_comp = (props) => {
     const handleCancelButton = () => {
         console.log("action cancelled");
         setIsEditing(false);
-        setEntryTitle(entryTitle);
-        setEntryText(entryText);
+        setEntryTitle(props.title);
+        setEntryText(props.text);
     };
 
     const deleteFunction = () => {
@@ -73,7 +74,7 @@ const Journal_entry_comp = (props) => {
                                 onChangeText={text => setEntryTitle(text)}
                             />
                         ) : (
-                            <Text style={styles.title}>{entryTitle}</Text>
+                            <Text style={styles.title}>{props.title}</Text>
                         )}
 
                         <View style={{ flexDirection: "row" }}>
@@ -102,7 +103,7 @@ const Journal_entry_comp = (props) => {
                             numberOfLines={6}
                         />
                     ) : (
-                        <Text style={styles.title}>{entryText}</Text>
+                        <Text style={styles.title}>{props.text}</Text>
                     )}
                 </View>
             ) : (

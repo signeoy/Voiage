@@ -24,7 +24,6 @@ const Journal_editor = ({navigation, userId}) => {
 
     const route = useRoute();
     const { journal } = route.params;
-    const profileId = userId;
 
 
     return (
@@ -46,8 +45,7 @@ const Journal_editor = ({navigation, userId}) => {
                     <Text >add entry testing</Text>
                 </View>
             </Pressable>
-            <Pressable onPress={()=> {deleteFunction;
-                navigation.navigate('Journal')}}>
+            <Pressable>
                 <View style={styles.headerButton}>
                     <MaterialIcons name={"delete"}size={40} color="black"/>
                     <Text >Delete Journal</Text>

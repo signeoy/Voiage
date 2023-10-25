@@ -46,7 +46,9 @@ const Journal_editor = ({navigation, userId}) => {
                     <Text >add entry testing</Text>
                 </View>
             </Pressable>
-            <Pressable onPress={deleteFunction}>
+            <Pressable onPress={()=> {navigation.navigate('Journal');
+                deleteFunction(userId)
+                }}>
                 <View style={styles.headerButton}>
                     <MaterialIcons name={"delete"}size={40} color="black"/>
                     <Text >Delete Journal</Text>

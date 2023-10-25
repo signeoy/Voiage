@@ -89,7 +89,7 @@ const Journal_create = ({navigation}) => {
                 <Pressable style={{marginTop: 40}}
                            onPress={handleCreateJournal}>
                     <View style={{...styles.login_button, backgroundColor: "#fff"}}>
-                        <Text style={styles.login_button_text}>Crate Journal</Text>
+                        <Text style={styles.login_button_text}>Create Journal</Text>
                     </View>
                 </Pressable>
             </View>

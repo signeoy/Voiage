@@ -15,6 +15,7 @@ import { db } from "../firebaseConfig"
 import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where, setDoc} from "firebase/firestore"
 
 import Journal_entry_print from "../journalEntryComponent/Journal_entry_print";
+import deleteFunction from "./Journal_comp";
 import {useRoute} from "@react-navigation/native";
 
 // scripts
@@ -45,7 +46,7 @@ const Journal_editor = ({navigation, userId}) => {
                     <Text >add entry testing</Text>
                 </View>
             </Pressable>
-            <Pressable>
+            <Pressable onPress={deleteFunction}>
                 <View style={styles.headerButton}>
                     <MaterialIcons name={"delete"}size={40} color="black"/>
                     <Text >Delete Journal</Text>

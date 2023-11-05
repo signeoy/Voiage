@@ -7,6 +7,8 @@ import {db} from "../firebaseConfig";
 import {MaterialIcons} from "@expo/vector-icons";
 
 
+
+
 const Journal_comp = (props) => {
     const [title, setTitle] = useState(props.title);
     const [date, setDate] = useState(props.date);
@@ -48,17 +50,19 @@ const Journal_comp = (props) => {
     };
 
     const deleteFunction = async () => {
-
-        const querySnapshot = await getDocs(collection(db, "users", userId, "Journal"));
-        for (const docSnap of querySnapshot.docs) {
-            const querySnapshot2 = await getDocs(collection(db, "users", userId, "Journal", props.id, "entry"));
-            for (const docSnap2 of querySnapshot2.docs) {
-                await deleteDoc(doc(db, "users", userId, "Journal", props.id, "entry", docSnap2.id));
+        try{
+            const querySnapshot = await getDocs(collection(db, "users", userId, "Journal"));
+            for (const docSnap of querySnapshot.docs) {
+                const querySnapshot2 = await getDocs(collection(db, "users", userId, "Journal", props.id, "entry"));
+                for (const docSnap2 of querySnapshot2.docs) {
+                    await deleteDoc(doc(db, "users", userId, "Journal", props.id, "entry", docSnap2.id));
+                }
+                await deleteDoc(doc(db, "users", userId, "Journal", props.id));
             }
-            await deleteDoc(doc(db, "users", userId, "Journal", props.id));
+            props.getJournalList();
+        } catch (e) {
+            console.log("error trying to delete: ", e)
         }
-        props.getJournalList();
-
     }
 
 
@@ -123,6 +127,7 @@ const Journal_comp = (props) => {
 }
 
 export default Journal_comp
+
 
 const styles = StyleSheet.create({
     container: {

@@ -26,7 +26,6 @@ const Journal_editor = ({navigation, userId}) => {
     const { journal } = route.params;
 
 
-
     const deleteFunction = async () => {
         try{
             console.log("deletefunction running", journal.id)
@@ -44,6 +43,7 @@ const Journal_editor = ({navigation, userId}) => {
             console.log("error trying to delete: ", e)
         }
     }
+
 
 
 

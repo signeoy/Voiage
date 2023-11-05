@@ -5,8 +5,7 @@ import {useRoute} from "@react-navigation/native";
 import {collection, deleteDoc, doc, getDocs, updateDoc} from "firebase/firestore";
 import {db} from "../firebaseConfig";
 import {MaterialIcons} from "@expo/vector-icons";
-import Journal_print from "./Journal_print";
-import getJournalList from "./Journal_print";
+
 
 
 

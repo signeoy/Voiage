@@ -62,10 +62,10 @@ const Journal_entry_comp = (props) => {
 
     const deleteEntry = async () => {
         try {
-            console.log("delete triggered")
-            const querySnapshot = await getDocs(collection(db,"users", userId, "journal", props.id, "entry"));
+            console.log("delete triggered", props.id)
+            const querySnapshot = await getDocs(collection(db,"users", userId, "Journal", props.journalId, "entry"));
             for (const docSnap of querySnapshot.docs) {
-                await deleteDoc(doc(db,"users", userId, "journal", props.id, "entry", docSnap2.id));
+                await deleteDoc(doc(db,"users", userId, "Journal", props.journalId, "entry", props.id));
             }
             props.getEntryList();
         } catch (error) {

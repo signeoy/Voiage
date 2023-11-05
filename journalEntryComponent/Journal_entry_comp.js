@@ -5,6 +5,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import {collection, deleteDoc, doc, getDocs, updateDoc} from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
+
 const Journal_entry_comp = (props) => {
     const [entryTitle, setEntryTitle] = useState(props.title);
     const [entryText, setEntryText] = useState(props.text);
@@ -60,16 +61,16 @@ const Journal_entry_comp = (props) => {
 
 
     const deleteEntry = async () => {
-        console.log("delete function run");
-        const querySnapshot = await getDocs(collection(db, "users", userId, "Journal"));
-        for (const docSnap of querySnapshot.docs) {
-            const querySnapshot2 = await getDocs(collection(db, "users", userId, "Journal", props.id, "entry"));
-            for (const docSnap2 of querySnapshot2.docs) {
-                await deleteDoc(doc(db, "users", userId, "Journal", props.id, "entry", docSnap2.id));
+        try {
+            console.log("delete triggered")
+            const querySnapshot = await getDocs(collection(db,"users", userId, "journal", props.id, "entry"));
+            for (const docSnap of querySnapshot.docs) {
+                await deleteDoc(doc(db,"users", userId, "journal", props.id, "entry", docSnap2.id));
             }
-            await deleteDoc(doc(db, "users", userId, "Journal", props.id));
+            props.getEntryList();
+        } catch (error) {
+            console.error("Error deleting entry list: ", error);
         }
-        props.getEntryList();
     };
 
     return (

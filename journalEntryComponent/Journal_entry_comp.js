@@ -2,8 +2,9 @@ import { Button, Pressable, StyleSheet, Text, View, TextInput } from "react-nati
 import React, { useState, useEffect } from "react";
 import { useRoute } from "@react-navigation/native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { collection, doc, updateDoc } from "firebase/firestore";
+import {collection, deleteDoc, doc, getDocs, updateDoc} from "firebase/firestore";
 import { db } from "../firebaseConfig";
+
 
 const Journal_entry_comp = (props) => {
     const [entryTitle, setEntryTitle] = useState(props.title);
@@ -58,8 +59,19 @@ const Journal_entry_comp = (props) => {
         setEntryText(props.text);
     };
 
-    const deleteFunction = () => {
-        console.log("delete function run");
+
+
+    const deleteEntry = async () => {
+        try {
+            console.log("delete triggered", props.id)
+            const querySnapshot = await getDocs(collection(db,"users", userId, "Journal", props.journalId, "entry"));
+            for (const docSnap of querySnapshot.docs) {
+                await deleteDoc(doc(db,"users", userId, "Journal", props.journalId, "entry", props.id));
+            }
+            props.getEntryList();
+        } catch (error) {
+            console.error("Error deleting entry list: ", error);
+        }
     };
 
     return (
@@ -88,7 +100,7 @@ const Journal_entry_comp = (props) => {
                                 </Pressable>
                             )}
 
-                            <Pressable onPress={deleteFunction}>
+                            <Pressable onPress={deleteEntry}>
                                 <MaterialIcons name="delete" size={24} color="black" />
                             </Pressable>
                         </View>

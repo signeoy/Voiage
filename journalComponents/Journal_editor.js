@@ -15,6 +15,7 @@ import { db } from "../firebaseConfig"
 import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where, setDoc} from "firebase/firestore"
 
 import Journal_entry_print from "../journalEntryComponent/Journal_entry_print";
+import getJournalList from "./Journal_print";
 import {useRoute} from "@react-navigation/native";
 
 // scripts
@@ -23,6 +24,26 @@ const Journal_editor = ({navigation, userId}) => {
 
     const route = useRoute();
     const { journal } = route.params;
+
+
+    const deleteFunction = async () => {
+        try{
+            console.log("deletefunction running", journal.id)
+            const querySnapshot = await getDocs(collection(db, "users", userId, "Journal"));
+            for (const docSnap of querySnapshot.docs) {
+                const querySnapshot2 = await getDocs(collection(db, "users", userId, "Journal", journal.id, "entry"));
+                for (const docSnap2 of querySnapshot2.docs) {
+                    await deleteDoc(doc(db, "users", userId, "Journal", journal.id, "entry", docSnap2.id));
+                }
+                await deleteDoc(doc(db, "users", userId, "Journal", journal.id));
+            }
+            getJournalList
+            navigation.navigate('My Profile',{ userId:userId})
+        } catch (e) {
+            console.log("error trying to delete: ", e)
+        }
+    }
+
 
 
 
@@ -45,7 +66,7 @@ const Journal_editor = ({navigation, userId}) => {
                     <Text >add entry testing</Text>
                 </View>
             </Pressable>
-            <Pressable>
+            <Pressable onPress={deleteFunction}>
                 <View style={styles.headerButton}>
                     <MaterialIcons name={"delete"}size={40} color="black"/>
                     <Text >Delete Journal</Text>

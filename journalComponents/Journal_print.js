@@ -16,7 +16,6 @@ import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, w
 
 import Journal_comp from "../journalComponents/Journal_comp";
 import {useRoute} from "@react-navigation/native";
-import deleteJournal from "./Journal_delete";
 
 // scripts
 
@@ -40,8 +39,6 @@ const Journal_print = ({navigation, profileId}) => {
         }
 
     };
-
-
 
     useEffect(() => {
         getJournalList(); // Call the function once when the component mounts

@@ -2,10 +2,12 @@ import {Button, Pressable, StyleSheet, Text, View, TextInput} from "react-native
 import React, { useState, useEffect} from "react";
 import {useRoute} from "@react-navigation/native";
 
-import deleteJournal from "../journalComponents/Journal_delete";
-import {doc, updateDoc} from "firebase/firestore";
+import {collection, deleteDoc, doc, getDocs, updateDoc} from "firebase/firestore";
 import {db} from "../firebaseConfig";
 import {MaterialIcons} from "@expo/vector-icons";
+
+
+
 
 const Journal_comp = (props) => {
     const [title, setTitle] = useState(props.title);
@@ -47,11 +49,21 @@ const Journal_comp = (props) => {
         setDesc(props.desc);
     };
 
-    const deleteFunction = () => {
-        console.log("delete function run")
+    const deleteFunction = async () => {
+        try{
+            const querySnapshot = await getDocs(collection(db, "users", userId, "Journal"));
+            for (const docSnap of querySnapshot.docs) {
+                const querySnapshot2 = await getDocs(collection(db, "users", userId, "Journal", props.id, "entry"));
+                for (const docSnap2 of querySnapshot2.docs) {
+                    await deleteDoc(doc(db, "users", userId, "Journal", props.id, "entry", docSnap2.id));
+                }
+                await deleteDoc(doc(db, "users", userId, "Journal", props.id));
+            }
+            props.getJournalList();
+        } catch (e) {
+            console.log("error trying to delete: ", e)
+        }
     }
-
-
 
 
     return (
@@ -115,6 +127,7 @@ const Journal_comp = (props) => {
 }
 
 export default Journal_comp
+
 
 const styles = StyleSheet.create({
     container: {

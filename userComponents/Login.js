@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View, ScrollView, Text, StyleSheet, TextInput, Pressable} from 'react-native';
+import {View, ScrollView, Text, StyleSheet, TextInput, Image, Pressable} from 'react-native';
 
 //Firebase
 import {auth} from "../firebaseConfig";
@@ -31,6 +31,9 @@ const Login = ({navigation, setUser}) => {
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <View>
+                <Image
+                    style={{...styles.logo}}
+                    source={require('../assets/Headerlogo_text.png')} />
                 <TextInput
                     style={{...styles.input, marginTop: 80}}
                     onChangeText={setEmail}
@@ -118,6 +121,12 @@ const styles = StyleSheet.create({
         fontSize: 16,
         alignItems: "center",
         alignSelf: "center"
+    },
+    logo:{
+        alignItems: "center",
+        alignSelf: "center",
+        height: 100,
+        width: 300,
     },
 });
 

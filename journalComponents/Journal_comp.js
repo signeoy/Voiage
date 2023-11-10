@@ -1,8 +1,8 @@
-import {Button, Pressable, StyleSheet, Text, View, TextInput} from "react-native";
+import {Button, Pressable, StyleSheet, Text, View, TextInput, Image} from "react-native";
 import React, { useState, useEffect} from "react";
 import {useRoute} from "@react-navigation/native";
 
-import {collection, deleteDoc, doc, getDocs, updateDoc} from "firebase/firestore";
+import {collection, deleteDoc, doc, getDocs, updateDoc, getDoc} from "firebase/firestore";
 import {db} from "../firebaseConfig";
 import {MaterialIcons} from "@expo/vector-icons";
 
@@ -66,35 +66,62 @@ const Journal_comp = (props) => {
     }
 
 
+
     return (
         <View style={styles.container}>
             {userId === props.profileId ? (
                 <View>
                     {isEditing ? (
                         <View>
-                            <TextInput
-                                style={styles.title}
-                                value={title}
-                                onChangeText={text => setTitle(text)}
-                            />
-                            <TextInput
-                                style={styles.title}
-                                value={date}
-                                onChangeText={text => setDate(text)}
-                            />
-                            <TextInput
-                                style={styles.title}
-                                value={desc}
-                                onChangeText={text => setDesc(text)}
-                            />
+                            <View>
+                                <TextInput
+                                    style={styles.title}
+                                    value={title}
+                                    onChangeText={text => setTitle(text)}
+                                />
+                                <TextInput
+                                    style={styles.title}
+                                    value={date}
+                                    onChangeText={text => setDate(text)}
+                                />
+                                <TextInput
+                                    style={styles.title}
+                                    value={desc}
+                                    onChangeText={text => setDesc(text)}
+                                />
+                            </View>
+                            {props.img !== "" ? (
+                                <View>
+                                    <Image
+                                        source={{uri: props.img}}
+                                        style={{width: 200, height: 200}}
+                                        onError={(error) => console.log("Error loading image")}
+                                    />
+                                </View>
+                            ): null}
                         </View>
 
                     ) : (
-                        <View>
-                            <Text style={styles.title}>{props.title}</Text>
-                            <Text style={styles.title}>{props.date}</Text>
-                            <Text style={styles.title}>{props.desc}</Text>
-                        </View>
+
+                            <View style={styles.container_with_img}>
+                                <View>
+                                    <Text style={styles.title}>{props.title}</Text>
+                                    <Text style={styles.title}>{props.date}</Text>
+                                    <Text style={styles.title}>{props.desc}</Text>
+                                </View>
+                                {props.img !== "" ? (
+                                    <View>
+                                        <Image
+                                            source={{uri: props.img}}
+                                            style={{width: 200, height: 200}}
+                                            onError={(error) => console.log("Error loading image")}
+                                        />
+                                    </View>
+                                ): null}
+                            </View>
+
+
+
                     )}
 
 
@@ -116,11 +143,29 @@ const Journal_comp = (props) => {
 
                 </View>
             ) : (
-                <View>
-                    <Text style={styles.title}>{props.title}</Text>
-                    <Text style={styles.title}>{props.date}</Text>
-                    <Text style={styles.title}>{props.desc}</Text>
-                </View>
+                props.img !== "" ? (
+                    <View>
+                        <View>
+                            <Image
+                                source={{ uri: props.img }}
+                                style={{ width: 200, height: 200 }}
+                                onError={(error) => console.log("Error loading image")}
+                            />
+                        </View>
+                        <View>
+                            <Text style={styles.title}>{props.title}</Text>
+                            <Text style={styles.title}>{props.date}</Text>
+                            <Text style={styles.title}>{props.desc}</Text>
+                        </View>
+                    </View>
+                ) : (
+                    <View>
+                        <Text style={styles.title}>{props.title}</Text>
+                        <Text style={styles.title}>{props.date}</Text>
+                        <Text style={styles.title}>{props.desc}</Text>
+                    </View>
+                )
+
             )}
         </View>
     );
@@ -150,4 +195,9 @@ const styles = StyleSheet.create({
         width: "30%",
 
     },
+    container_with_img:{
+        flexDirection:"row",
+        width:"100%",
+        alignContent:"space-between"
+    }
 });

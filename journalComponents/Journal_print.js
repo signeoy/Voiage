@@ -63,6 +63,7 @@ const Journal_print = ({navigation, profileId}) => {
                                         title={item.title}
                                         date={item.date}
                                         desc={item.desc}
+                                        img={item.img}
                                         id = {item.id}
                                         profileId={profileId}
                                         getJournalList={getJournalList}
@@ -91,6 +92,7 @@ const Journal_print = ({navigation, profileId}) => {
                                         title={item.title}
                                         date={item.date}
                                         desc={item.desc}
+                                        img={item.img}
                                     />
                                 </TouchableOpacity>
                             )}

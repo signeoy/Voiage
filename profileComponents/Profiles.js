@@ -11,7 +11,7 @@ import {
 
 import React, { useState, useEffect} from "react";
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
-import { db } from "../firebaseConfig"
+import { db, auth } from "../firebaseConfig"
 import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where} from "firebase/firestore"
 
 import {useRoute} from "@react-navigation/native";
@@ -26,9 +26,8 @@ const Profile = ({navigation}) => {
     //const navigation = useNavigation();
     const [username,setUsername] = useState("");
 
-    const route = useRoute();
-    const { id } = route.params;
-    const { userId } = route.params;
+    const user = auth.currentUser;
+    const userId = user.uid; // Retrieve the user ID
 
     const getProfileList = async () => {
 

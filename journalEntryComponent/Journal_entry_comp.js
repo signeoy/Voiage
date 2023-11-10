@@ -3,15 +3,15 @@ import React, { useState, useEffect } from "react";
 import { useRoute } from "@react-navigation/native";
 import { MaterialIcons } from "@expo/vector-icons";
 import {collection, deleteDoc, doc, getDocs, updateDoc} from "firebase/firestore";
-import { db } from "../firebaseConfig";
+import {auth, db} from "../firebaseConfig";
 
 
 const Journal_entry_comp = (props) => {
     const [entryTitle, setEntryTitle] = useState(props.title);
     const [entryText, setEntryText] = useState(props.text);
 
-    const route = useRoute();
-    const { userId } = route.params;
+    const user = auth.currentUser;
+    const userId = user.uid; // Retrieve the user ID
 
     const [isEditing, setIsEditing] = useState(false);
 

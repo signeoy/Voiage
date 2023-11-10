@@ -13,9 +13,11 @@ import {
 
 import React, { useState, useEffect} from "react";
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
-import { db } from "../firebaseConfig"
+import {auth, db} from "../firebaseConfig"
 import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where, setDoc} from "firebase/firestore"
 import * as ImagePicker from 'expo-image-picker';
+
+import getJournalList from "./Journal_print";
 
 import { uploadImageToFirebase } from "../uploadImageComponents/uploadToStorage"
 
@@ -30,15 +32,17 @@ const Journal_create = ({navigation}) => {
     const [date, setDate] = useState("test date");
     const [img, setImg] = useState("");
 
-    //const navigation = useNavigation();
     const [description,setDescription] = useState("test desc");
 
-    const route = useRoute();
-    const { userId } = route.params;
+    const user = auth.currentUser;
+    const userId = user.uid; // Retrieve the user ID
 
     const [image, setImage] = useState(null);
+    const [imageExists, setImageExists] = useState(null);
+
 
     const pickImage = async () => {
+
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
             allowsEditing: true,
@@ -48,6 +52,7 @@ const Journal_create = ({navigation}) => {
         const source = { uri: result.assets[0].uri };
         console.log(source);
         setImage(source);
+        setImage(true)
     };
 
     useEffect(() => {
@@ -67,10 +72,18 @@ const Journal_create = ({navigation}) => {
         }
     };
 
-    const handleCreateJournal = () => {
-        //uploadImage().then(r => createJournal(title, date, description, img).then(r => navigation.navigate('My Profile', {userId})));
-        uploadImage()
-    }
+    const handleCreateJournal = async () => {
+        if (imageExists) {
+            await uploadImage();
+            // Call getJournalList after the image is uploaded
+            getJournalList();
+        } else {
+            await createJournal(title, date, description, img);
+            // Call getJournalList after creating the journal
+            getJournalList();
+            navigation.navigate('My Profile', { userId });
+        }
+    };
 
     const createJournal = async (title, date, desc, img) => {
         try {
@@ -85,7 +98,6 @@ const Journal_create = ({navigation}) => {
             setTitle("");
             setDate("");
             setDescription("");
-
             console.log('Document added successfully.');
         } catch (error) {
             console.error('Error adding document: ', error);

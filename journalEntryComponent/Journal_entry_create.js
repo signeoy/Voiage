@@ -11,7 +11,7 @@ import {
 
 import React, { useState, useEffect} from "react";
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
-import { db } from "../firebaseConfig"
+import {auth, db} from "../firebaseConfig"
 import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where, setDoc} from "firebase/firestore"
 
 import {useRoute} from "@react-navigation/native";
@@ -25,8 +25,10 @@ const Journal_entry_create = ({navigation}) => {
     //const navigation = useNavigation();
 
     const route = useRoute();
-    const { userId } = route.params;
     const { journal } = route.params;
+
+    const user = auth.currentUser;
+    const userId = user.uid; // Retrieve the user ID
 
     const uploadImage = () => {
 

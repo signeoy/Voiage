@@ -3,9 +3,10 @@ import React, { useState, useEffect} from "react";
 import {useRoute} from "@react-navigation/native";
 
 import {collection, deleteDoc, doc, getDocs, updateDoc, getDoc} from "firebase/firestore";
-import {db} from "../firebaseConfig";
+import {db, auth} from "../firebaseConfig";
 import {MaterialIcons} from "@expo/vector-icons";
 
+import getJournalList from "./Journal_print";
 
 
 
@@ -13,9 +14,9 @@ const Journal_comp = (props) => {
     const [title, setTitle] = useState(props.title);
     const [date, setDate] = useState(props.date);
     const [desc, setDesc] = useState(props.desc);
+    const user = auth.currentUser;
+    const userId = user.uid; // Retrieve the user ID
 
-    const route = useRoute();
-    const {userId} = route.params;
 
     const [isEditing, setIsEditing] = useState(false);
 
@@ -51,6 +52,7 @@ const Journal_comp = (props) => {
 
     const deleteFunction = async () => {
         try{
+            console.log("delete running")
             const querySnapshot = await getDocs(collection(db, "users", userId, "Journal"));
             for (const docSnap of querySnapshot.docs) {
                 const querySnapshot2 = await getDocs(collection(db, "users", userId, "Journal", props.id, "entry"));
@@ -59,7 +61,8 @@ const Journal_comp = (props) => {
                 }
                 await deleteDoc(doc(db, "users", userId, "Journal", props.id));
             }
-            props.getJournalList();
+            //props.getJournalList();
+            getJournalList
         } catch (e) {
             console.log("error trying to delete: ", e)
         }

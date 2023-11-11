@@ -59,27 +59,41 @@ const Journal_entry_create = ({navigation}) => {
     const uploadImage = async () => {
         try {
             const downloadURL = await uploadImageToFirebase(image.uri);
-            setImg(downloadURL);
-            setImage(null);
             console.log('Download URL:', downloadURL);
-            createEntry(title, text, img).then(r => navigation.navigate('Journal Editor', {userId, journal}));
+
+            setImg(downloadURL);
+            setImage(null); // Reset image state
+
+            // Use a setTimeout to wait for the state update to complete
+            setTimeout(() => {
+                createEntry(title, text, downloadURL).then(r => navigation.navigate('Journal Editor', {userId, journal}));
+            }, 0);
         } catch (e) {
             console.error("Error uploading image", e);
         }
     };
-    const handleCreateEntry = async() => {
-        if (imageExists) {
-            await uploadImage();
-            // Call getJournalList after the image is uploaded
 
-        } else {
-            await createEntry(title, text, img).then(r => navigation.navigate('Journal Editor', {userId, journal}));
+
+    const handleCreateEntry = async () => {
+        try {
+            if (imageExists) {
+                console.log("image exists")
+                await uploadImage();
+                navigation.navigate('Journal Editor', { userId, journal });
+            } else {
+                console.log("image does NOT exist")
+                await createEntry(title, text, img);
+                navigation.navigate('Journal Editor', { userId, journal });
+            }
+        } catch (error) {
+            console.error('Error handling entry creation:', error);
         }
     }
 
+
     const createEntry = async (title, text, img) => {
         try {
-            console.log("image url, img:: ", img);
+            console.log("image url, img: ", img);
             const docRef = await addDoc(collection(db,"users",userId, "Journal", journal.id, "entry"), {
                 title: title,
                 text: text,

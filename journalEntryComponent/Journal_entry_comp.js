@@ -139,7 +139,7 @@ const Journal_entry_comp = (props) => {
                         <View>
                             <Image
                                 source={{uri: props.img}}
-                                style={{width: 200, height: 200}}
+                                style={{width: 320, height: 160}}
                                 onError={(error) => console.log("Error loading image")}
                             />
                         </View>

@@ -6,17 +6,13 @@ import {collection, deleteDoc, doc, getDocs, updateDoc, getDoc} from "firebase/f
 import {db, auth} from "../firebaseConfig";
 import {MaterialIcons} from "@expo/vector-icons";
 
-import getJournalList from "./Journal_print";
-
-
-
 const Journal_comp = (props) => {
     const [title, setTitle] = useState(props.title);
     const [date, setDate] = useState(props.date);
     const [desc, setDesc] = useState(props.desc);
+
     const user = auth.currentUser;
     const userId = user.uid; // Retrieve the user ID
-
 
     const [isEditing, setIsEditing] = useState(false);
 
@@ -61,13 +57,11 @@ const Journal_comp = (props) => {
                 }
                 await deleteDoc(doc(db, "users", userId, "Journal", props.id));
             }
-            //props.getJournalList();
-            getJournalList
+            props.getJournalList();
         } catch (e) {
             console.log("error trying to delete: ", e)
         }
     }
-
 
 
     return (

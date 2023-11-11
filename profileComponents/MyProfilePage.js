@@ -23,6 +23,9 @@ const MyProfilePage = ({navigation}) => {
     const user = auth.currentUser;
     const userId = user.uid; // Retrieve the user ID
 
+    const route = useRoute();
+    const { journals } = route.params;
+
     const [username, setUsername] = useState("");
     const docRef = doc(db, 'users', userId);
 

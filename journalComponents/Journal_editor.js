@@ -40,7 +40,7 @@ const Journal_editor = ({navigation}) => {
                 }
                 await deleteDoc(doc(db, "users", userId, "Journal", journal.id));
             }
-            getJournalList
+            getJournalList()
             navigation.navigate('My Profile',{ userId:userId})
         } catch (e) {
             console.log("error trying to delete: ", e)

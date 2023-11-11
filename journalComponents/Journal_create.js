@@ -17,11 +17,9 @@ import {auth, db} from "../firebaseConfig"
 import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where, setDoc} from "firebase/firestore"
 import * as ImagePicker from 'expo-image-picker';
 
-import getJournalList from "./Journal_print";
-
 import { uploadImageToFirebase } from "../uploadImageComponents/uploadToStorage"
 
-import {useRoute} from "@react-navigation/native";
+import {getJournalList} from "./getJournalList";
 
 // scripts
 
@@ -66,6 +64,7 @@ const Journal_create = ({navigation}) => {
             setImg(downloadURL);
             setImage(null);
             console.log('Download URL:', downloadURL);
+            //let journals = getJournalList(userId);
             createJournal(title, date, description, downloadURL).then(r => navigation.navigate('My Profile', {userId}))
         } catch (e) {
             console.error("Error uploading image", e);
@@ -76,11 +75,11 @@ const Journal_create = ({navigation}) => {
         if (imageExists) {
             await uploadImage();
             // Call getJournalList after the image is uploaded
-            getJournalList();
+
         } else {
             await createJournal(title, date, description, img);
             // Call getJournalList after creating the journal
-            getJournalList();
+            //let journals = getJournalList(userId);
             navigation.navigate('My Profile', { userId });
         }
     };

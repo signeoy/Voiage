@@ -19,7 +19,6 @@ import * as ImagePicker from 'expo-image-picker';
 
 import { uploadImageToFirebase } from "../uploadImageComponents/uploadToStorage"
 
-import {getJournalList} from "./getJournalList";
 
 // scripts
 
@@ -50,7 +49,7 @@ const Journal_create = ({navigation}) => {
         const source = { uri: result.assets[0].uri };
         console.log(source);
         setImage(source);
-        setImage(true)
+        setImageExists(true)
     };
 
     useEffect(() => {
@@ -97,6 +96,7 @@ const Journal_create = ({navigation}) => {
             setTitle("");
             setDate("");
             setDescription("");
+            setImg("");
             console.log('Document added successfully.');
         } catch (error) {
             console.error('Error adding document: ', error);

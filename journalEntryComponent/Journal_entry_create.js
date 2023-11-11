@@ -6,15 +6,17 @@ import {
     View,
     TextInput,
     TouchableOpacity,
-    FlatList, ActivityIndicator, ScrollView
+    FlatList, ActivityIndicator, ScrollView, Image
 } from "react-native";
 
 import React, { useState, useEffect} from "react";
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import {auth, db} from "../firebaseConfig"
 import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where, setDoc} from "firebase/firestore"
+import * as ImagePicker from 'expo-image-picker';
 
 import {useRoute} from "@react-navigation/native";
+import { uploadImageToFirebase } from "../uploadImageComponents/uploadToStorage"
 
 // scripts
 
@@ -30,23 +32,64 @@ const Journal_entry_create = ({navigation}) => {
     const user = auth.currentUser;
     const userId = user.uid; // Retrieve the user ID
 
-    const uploadImage = () => {
+    const [image, setImage] = useState(null);
+    const [img, setImg] = useState("");
+    const [imageExists, setImageExists] = useState(null);
 
-    }
-    const handleCreateEntry = () => {
-        createEntry(title, text).then(r => navigation.navigate('Journal Editor', {userId, journal}));
-    }
 
-    const createEntry = async (title, text) => {
+    const pickImage = async () => {
+
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [5, 3],
+            quality: 1
+        });
+        const source = { uri: result.assets[0].uri };
+        console.log(source);
+        setImage(source);
+        setImageExists(true)
+    };
+
+    useEffect(() => {
+        // This useEffect will trigger whenever the 'img' state changes
+        console.log('Updated img:', img);
+    }, [img]);
+
+    const uploadImage = async () => {
         try {
+            const downloadURL = await uploadImageToFirebase(image.uri);
+            setImg(downloadURL);
+            setImage(null);
+            console.log('Download URL:', downloadURL);
+            createEntry(title, text, img).then(r => navigation.navigate('Journal Editor', {userId, journal}));
+        } catch (e) {
+            console.error("Error uploading image", e);
+        }
+    };
+    const handleCreateEntry = async() => {
+        if (imageExists) {
+            await uploadImage();
+            // Call getJournalList after the image is uploaded
+
+        } else {
+            await createEntry(title, text, img).then(r => navigation.navigate('Journal Editor', {userId, journal}));
+        }
+    }
+
+    const createEntry = async (title, text, img) => {
+        try {
+            console.log("image url, img:: ", img);
             const docRef = await addDoc(collection(db,"users",userId, "Journal", journal.id, "entry"), {
                 title: title,
                 text: text,
+                img: img
             });
             //setJournalId(docRef.id);
             console.log("Document written with ID: ", docRef.id);
             setTitle("");
             setText("");
+            setImg("");
 
             console.log('Document added successfully.');
         } catch (error) {
@@ -70,11 +113,14 @@ const Journal_entry_create = ({navigation}) => {
                 />
 
             </View>
+            <View style={{alignItems: "center", paddingVertical: 15}}>
+                {image && <Image source={{ uri: image.uri }} style={{ width: 320, height: 160 }} />}
+            </View>
 
 
             <View>
                 <Pressable
-                    onPress={uploadImage}>
+                    onPress={pickImage}>
                     <View style={{...styles.login_button, backgroundColor: "#69B9AA"}}>
                         <Text style={styles.login_button_text}>Upload image</Text>
                     </View>

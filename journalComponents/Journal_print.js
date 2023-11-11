@@ -43,8 +43,6 @@ const Journal_print = ({navigation, profileId}) => {
     useEffect(() => {
         getJournalList(); // Call the function once when the component mounts
     }, []);
-    console.log()
-
 
     return (
         <View contentContainerStyle={styles.container}>

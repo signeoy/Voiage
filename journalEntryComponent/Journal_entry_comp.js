@@ -118,7 +118,7 @@ const Journal_entry_comp = (props) => {
                         <View>
                             <Text style={styles.title}>{props.text}</Text>
                             {props.img !== "" ? (
-                                <View>
+                                <View  style={{alignItems:"center"}}>
                                     <Image
                                         source={{uri: props.img}}
                                         style={{width: 320, height: 160}}
@@ -136,7 +136,7 @@ const Journal_entry_comp = (props) => {
                     <Text style={styles.title}>{entryTitle}</Text>
                     <Text style={styles.title}>{entryText}</Text>
                     {props.img !== "" ? (
-                        <View>
+                        <View style={{alignItems:"center"}}>
                             <Image
                                 source={{uri: props.img}}
                                 style={{width: 320, height: 160}}

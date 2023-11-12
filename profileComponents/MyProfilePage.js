@@ -11,7 +11,7 @@ import {
 
 import React, { useState, useEffect} from "react";
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
-import { db } from "../firebaseConfig"
+import {auth, db} from "../firebaseConfig"
 import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where} from "firebase/firestore"
 
 import {useRoute} from "@react-navigation/native";
@@ -20,8 +20,11 @@ import {useRoute} from "@react-navigation/native";
 import Journal_print from "../journalComponents/Journal_print";
 
 const MyProfilePage = ({navigation}) => {
+    const user = auth.currentUser;
+    const userId = user.uid; // Retrieve the user ID
+
     const route = useRoute();
-    const { userId } = route.params;
+    const { journals } = route.params;
 
     const [username, setUsername] = useState("");
     const docRef = doc(db, 'users', userId);
@@ -54,11 +57,12 @@ const MyProfilePage = ({navigation}) => {
             <View style = {{flexDirection : "row", padding: 15}}>
 
                 <View style={{flex: 1, padding:20}}>
-                    <Pressable onPress={() => navigation.navigate('Add Journal', { userId: userId })}>
+                    <Pressable onPress={() => navigation.navigate('Add Journal', { userId })}>
                         <View style={{ ...styles.profile_btn, backgroundColor: "#FCF6BE" }}>
                             <Text style={styles.profile_btn_txt}>Add Journal</Text>
                         </View>
                     </Pressable>
+
 
                 </View>
                 <View style = {{flex:2, }}>

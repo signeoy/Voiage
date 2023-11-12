@@ -6,7 +6,7 @@ import {NavigationContainer, useRoute} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 import {doc, getDoc} from "firebase/firestore";
-import {db} from "./firebaseConfig";
+import {auth} from "./firebaseConfig";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // icons
@@ -92,10 +92,6 @@ function TempMenu({ navigation }) {
 }
 function HomeScreen({ navigation }) {
 
-    const [user, setUser] = useState(null);
-    const route = useRoute();
-    const { userId, userEmail } = route.params;
-
 
     return (
         <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
@@ -106,9 +102,9 @@ function HomeScreen({ navigation }) {
                 </View>
             </Pressable>
             <ScrollView >
-                <Profile navigation={navigation} userId={userId}/>
+                <Profile navigation={navigation}/>
             </ScrollView>
-            <BottomTab navigation={navigation} userId={userId}/>
+            <BottomTab navigation={navigation}/>
 
         </View>
 
@@ -134,8 +130,6 @@ function FavouriteScreen({ navigation }) {
 }
 function ProfileScreen({ navigation }) {
 
-    const route = useRoute();
-    const { id, username, userId, } = route.params;
     return (
         <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
             <ScrollView style={{ marginVertical: 10, flexDirection: "column"}}>
@@ -143,48 +137,40 @@ function ProfileScreen({ navigation }) {
                 navigation={navigation}
             />
             </ScrollView>
-            <BottomTab navigation={navigation} userId={userId}/>
+            <BottomTab navigation={navigation}/>
         </View>
     );
 }
 
 function MyProfileScreen({ navigation }) {
 
-    const route = useRoute();
-    const { userId, userEmail } = route.params;
-
-
-
-
     return (
         <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
             <ScrollView style={{ marginVertical: 10, flexDirection: "column"}}>
 
-                <MyProfilePage navigation={navigation} userId={userId}/>
+                <MyProfilePage navigation={navigation}/>
 
             </ScrollView>
 
 
-            <BottomTab navigation={navigation} userId={userId}/>
+            <BottomTab navigation={navigation}/>
         </View>
     );
 }
 function JournalScreen({ navigation }) {
     const route = useRoute();
-    const { profileId, userId } = route.params;
+    const { profileId } = route.params;
 
   return (
       <View style ={{...styles.container, backgroundColor: "#CAFFCC"}}>
         <Journal_entry_page navigation={navigation} profileId={profileId}/>
-        <BottomTab navigation={navigation} userId={userId}/>
+        <BottomTab navigation={navigation}/>
 
       </View>
   );
 }
 
 function SettingsScreen({ navigation }) {
-    const route = useRoute();
-    const { userId, userEmail } = route.params;
 
     return (
         <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
@@ -195,7 +181,7 @@ function SettingsScreen({ navigation }) {
             </Pressable>
             <Logout navigation={navigation}/>
 
-            <BottomTab navigation={navigation} userId={userId}/>
+            <BottomTab navigation={navigation} />
         </View>
     );
 }
@@ -224,40 +210,34 @@ function PrivacyScreen({ navigation }) {
   );
 }
 function AddJournalScreen({ navigation }) {
-    const route = useRoute();
-    const { userId, userEmail } = route.params;
 
   return (
       <View style={{flex: 1, backgroundColor: "#CAFFCC"}}>
-          <Journal_create navigation={navigation} userId={userId}/>
-          <BottomTab navigation={navigation} userId={userId}/>
+          <Journal_create navigation={navigation}/>
+          <BottomTab navigation={navigation}/>
 
       </View>
   );
 }
 function AddEntryScreen({ navigation }) {
-    const route = useRoute();
-    const { userId, userEmail } = route.params;
 
   return (
       <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
 
-          <Journal_entry_create navigation={navigation} userId={userId}/>
-          <BottomTab navigation={navigation} userId={userId}/>
+          <Journal_entry_create navigation={navigation}/>
+          <BottomTab navigation={navigation}/>
 
       </View>
   );
 }
 function JournalEditorScreen({ navigation }) {
-    const route = useRoute();
-    const { userId, userEmail } = route.params;
 
   return (
       <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
 
-          <Journal_editor navigation={navigation} userId={userId}/>
+          <Journal_editor navigation={navigation}/>
 
-          <BottomTab navigation={navigation} userId={userId}/>
+          <BottomTab navigation={navigation}/>
 
       </View>
   );

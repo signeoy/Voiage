@@ -11,7 +11,7 @@ import {
 
 import React, { useState, useEffect} from "react";
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
-import { db } from "../firebaseConfig"
+import {auth, db} from "../firebaseConfig"
 import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where, setDoc} from "firebase/firestore"
 
 import {useRoute} from "@react-navigation/native";
@@ -21,15 +21,15 @@ import Journal_entry_comp from "./Journal_entry_comp";
 
 const Journal_entry_print = ({navigation, profileId, journal}) => {
 
-    const route = useRoute();
-    const { userId } = route.params;
+    const user = auth.currentUser;
+    const userId = user.uid; // Retrieve the user ID
 
     const [entryList, setEntryList] = useState([]);
 
 
 
     const getEntryList = async () => {
-        console.log("Getting list of entries fir journal: ", journal)
+        console.log("Getting list of entries for journal: ", journal)
 
         try {
             const querySnapshot = await getDocs(query(collection(db,"users",profileId, "Journal", journal.id, "entry")));
@@ -57,6 +57,7 @@ const Journal_entry_print = ({navigation, profileId, journal}) => {
                                 <Journal_entry_comp
                                     title={item.title}
                                     text={item.text}
+                                    img={item.img}
                                     id={item.id}
                                     journalId={journal.id}
                                     profileId={profileId}

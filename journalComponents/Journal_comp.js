@@ -3,19 +3,16 @@ import React, { useState, useEffect} from "react";
 import {useRoute} from "@react-navigation/native";
 
 import {collection, deleteDoc, doc, getDocs, updateDoc, getDoc} from "firebase/firestore";
-import {db} from "../firebaseConfig";
+import {db, auth} from "../firebaseConfig";
 import {MaterialIcons} from "@expo/vector-icons";
-
-
-
 
 const Journal_comp = (props) => {
     const [title, setTitle] = useState(props.title);
     const [date, setDate] = useState(props.date);
     const [desc, setDesc] = useState(props.desc);
 
-    const route = useRoute();
-    const {userId} = route.params;
+    const user = auth.currentUser;
+    const userId = user.uid; // Retrieve the user ID
 
     const [isEditing, setIsEditing] = useState(false);
 
@@ -51,6 +48,7 @@ const Journal_comp = (props) => {
 
     const deleteFunction = async () => {
         try{
+            console.log("delete running")
             const querySnapshot = await getDocs(collection(db, "users", userId, "Journal"));
             for (const docSnap of querySnapshot.docs) {
                 const querySnapshot2 = await getDocs(collection(db, "users", userId, "Journal", props.id, "entry"));
@@ -64,7 +62,6 @@ const Journal_comp = (props) => {
             console.log("error trying to delete: ", e)
         }
     }
-
 
 
     return (

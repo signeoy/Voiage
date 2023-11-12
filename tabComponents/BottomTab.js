@@ -3,11 +3,12 @@ import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
 import {useRoute} from "@react-navigation/native";
+import {auth} from "../firebaseConfig";
 
 const BottomTab = ({navigation}) => {
 
-    const route = useRoute();
-    const { userId } = route.params;
+    const user = auth.currentUser;
+    const userId = user.uid; // Retrieve the user ID
 
     return (
         <View style={styles.bottomTabContainer}>
@@ -45,6 +46,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingVertical: 10,
         width: '100%',
+
         position: 'absolute',
         bottom: 0,
     },

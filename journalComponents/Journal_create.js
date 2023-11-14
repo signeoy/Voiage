@@ -26,10 +26,10 @@ const Journal_create = ({navigation}) => {
 
     const [journalId, setJournalId] = useState("Test");
     const [title, setTitle] = useState("Test");
-    const [date, setDate] = useState("test date");
+    const [date, setDate] = useState("__tests__ date");
     const [img, setImg] = useState("");
 
-    const [description,setDescription] = useState("test desc");
+    const [description,setDescription] = useState("__tests__ desc");
 
     const user = auth.currentUser;
     const userId = user.uid; // Retrieve the user ID

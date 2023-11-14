@@ -7,7 +7,7 @@ import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "fireba
 import {doc, setDoc} from "firebase/firestore";
 
 const Register = ({navigation, setUser}) => {
-    const [email, setEmail] = useState("test@uia.no");
+    const [email, setEmail] = useState("__tests__@uia.no");
     const [username, setUsername] = useState("testuser");
     const [password, setPassword] = useState("qwerty");
 

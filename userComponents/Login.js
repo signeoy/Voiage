@@ -6,7 +6,7 @@ import {auth} from "../firebaseConfig";
 import {signInWithEmailAndPassword} from "firebase/auth";
 
 const Login = ({navigation, setUser}) => {
-    const [email, setEmail] = useState("test@uia.no");
+    const [email, setEmail] = useState("__tests__@uia.no");
     const [password, setPassword] = useState("qwerty");
 
     const loginUser = () => {
@@ -36,7 +36,7 @@ const Login = ({navigation, setUser}) => {
                     onChangeText={setEmail}
                     keyboardType="email-address"
                     placeholder="example@email.com"
-                    //value="test@uia.no"
+                    //value="__tests__@uia.no"
                 />
                 <TextInput
                     style={styles.input}

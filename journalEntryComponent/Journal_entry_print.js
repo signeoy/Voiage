@@ -14,7 +14,7 @@ import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import {auth, db} from "../firebaseConfig"
 import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where, setDoc} from "firebase/firestore"
 
-import {useRoute} from "@react-navigation/native";
+import {useIsFocused, useRoute} from "@react-navigation/native";
 import Journal_entry_comp from "./Journal_entry_comp";
 
 // scripts
@@ -41,10 +41,13 @@ const Journal_entry_print = ({navigation, profileId, journal}) => {
         }
     };
 
-    useEffect(() => {
-        getEntryList(); // Call the function once when the component mounts
-    });
+    const isFocused = useIsFocused();
 
+    useEffect(() => {
+        if (isFocused) {
+            getEntryList(); // Call the function once when the component mounts
+        }
+    }, [isFocused]);
 
     return (
         <View>

@@ -25,7 +25,6 @@ const ProfilePage = ({navigation}) => {
     const { id } = route.params;
     const { username } = route.params;
 
-
     return (
 
         <View>

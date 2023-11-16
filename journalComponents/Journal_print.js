@@ -15,7 +15,7 @@ import {auth, db} from "../firebaseConfig"
 import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where, setDoc} from "firebase/firestore"
 
 import Journal_comp from "../journalComponents/Journal_comp";
-import {useRoute} from "@react-navigation/native";
+import {useIsFocused, useRoute} from "@react-navigation/native";
 
 // scripts
 
@@ -40,9 +40,13 @@ const Journal_print = ({navigation, profileId}) => {
 
     };
 
+    const isFocused = useIsFocused();
+
     useEffect(() => {
-        getJournalList(); // Call the function every time the component renders
-    });
+        if (isFocused) {
+            getJournalList();
+        }
+    }, [isFocused]);
 
 
     return (

@@ -51,6 +51,10 @@ const MyProfilePage = ({navigation}) => {
         getUsername();
     }, []);
 
+    useEffect(() => {
+        console.log("Test My profile")
+    });
+
     return (
         <View >
 

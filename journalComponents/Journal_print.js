@@ -41,9 +41,9 @@ const Journal_print = ({navigation, profileId}) => {
     };
 
     useEffect(() => {
-        getJournalList(); // Call the function once when the component mounts
-    }, []);
-    console.log()
+        getJournalList(); // Call the function every time the component renders
+    });
+
 
 
     return (

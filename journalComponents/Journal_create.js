@@ -19,8 +19,6 @@ import * as ImagePicker from 'expo-image-picker';
 
 import { uploadImageToFirebase } from "../uploadImageComponents/uploadToStorage"
 
-import {getJournalList} from "./getJournalList";
-
 // scripts
 
 const Journal_create = ({navigation}) => {

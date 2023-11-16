@@ -43,7 +43,7 @@ const Journal_entry_print = ({navigation, profileId, journal}) => {
 
     useEffect(() => {
         getEntryList(); // Call the function once when the component mounts
-    }, []);
+    });
 
 
     return (

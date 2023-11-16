@@ -20,8 +20,6 @@ import * as ImagePicker from 'expo-image-picker';
 import { uploadImageToFirebase } from "../uploadImageComponents/uploadToStorage"
 
 
-// scripts
-
 const Journal_create = ({navigation}) => {
 
     const [journalId, setJournalId] = useState("Test");

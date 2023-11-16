@@ -2,7 +2,7 @@ import {Button, Pressable, StyleSheet, Text, View, TextInput, Image} from "react
 import React, { useState, useEffect} from "react";
 import {useRoute} from "@react-navigation/native";
 
-import {collection, deleteDoc, doc, getDocs, updateDoc, getDoc} from "firebase/firestore";
+import {collection, deleteDoc, doc, getDocs, updateDoc, getDoc, query} from "firebase/firestore";
 import {db, auth} from "../firebaseConfig";
 import {MaterialIcons} from "@expo/vector-icons";
 
@@ -48,21 +48,27 @@ const Journal_comp = (props) => {
 
     const deleteFunction = async () => {
         try{
-            console.log("delete running")
-            const querySnapshot = await getDocs(collection(db, "users", userId, "Journal"));
-            for (const docSnap of querySnapshot.docs) {
-                const querySnapshot2 = await getDocs(collection(db, "users", userId, "Journal", props.id, "entry"));
-                for (const docSnap2 of querySnapshot2.docs) {
-                    await deleteDoc(doc(db, "users", userId, "Journal", props.id, "entry", docSnap2.id));
-                }
-                await deleteDoc(doc(db, "users", userId, "Journal", props.id));
-            }
-            props.getJournalList();
+            console.log("deletefunction running", props.id)
+            await deleteCollection();
+            await deleteDoc(doc(db, "users", userId, "Journal", props.id));
+            props.getJournalList()
         } catch (e) {
             console.log("error trying to delete: ", e)
         }
     }
 
+    async function deleteCollection() {
+        const q = query(collection(db, "users", userId, "Journal", props.id, "entry"));
+        const querySnapshot = await getDocs(q);
+
+        const deleteOps = [];
+
+        querySnapshot.forEach((doc) => {
+            deleteOps.push(deleteDoc(doc.ref));
+        });
+
+        Promise.all(deleteOps).then(() => console.log('documents deleted'))
+    }
 
     return (
         <View style={styles.container}>

@@ -45,7 +45,6 @@ const Journal_print = ({navigation, profileId}) => {
     });
 
 
-
     return (
         <View contentContainerStyle={styles.container}>
             {userId === profileId ? (

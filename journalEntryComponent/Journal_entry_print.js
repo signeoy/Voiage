@@ -29,7 +29,7 @@ const Journal_entry_print = ({navigation, profileId, journal}) => {
 
 
     const getEntryList = async () => {
-        console.log("Getting list of entries fir journal: ", journal)
+        console.log("Getting list of entries for journal: ", journal)
 
         try {
             const querySnapshot = await getDocs(query(collection(db,"users",profileId, "Journal", journal.id, "entry")));
@@ -57,6 +57,7 @@ const Journal_entry_print = ({navigation, profileId, journal}) => {
                                 <Journal_entry_comp
                                     title={item.title}
                                     text={item.text}
+                                    img={item.img}
                                     id={item.id}
                                     journalId={journal.id}
                                     profileId={profileId}

@@ -6,7 +6,7 @@ import {
     View,
     TextInput,
     TouchableOpacity,
-    FlatList, ActivityIndicator, ScrollView
+    FlatList, ActivityIndicator, ScrollView, Image
 } from "react-native";
 
 import React, { useState, useEffect} from "react";
@@ -25,6 +25,7 @@ const Journal_entry_page = ({navigation, profileId}) => {
     const { journal } = route.params;
     const user = auth.currentUser;
     const userId = user.uid; // Retrieve the user ID
+
 
 
 

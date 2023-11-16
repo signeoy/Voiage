@@ -1,4 +1,4 @@
-import { Button, Pressable, StyleSheet, Text, View, TextInput } from "react-native";
+import {Button, Pressable, StyleSheet, Text, View, TextInput, Image} from "react-native";
 import React, { useState, useEffect } from "react";
 import { useRoute } from "@react-navigation/native";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -115,13 +115,35 @@ const Journal_entry_comp = (props) => {
                             numberOfLines={6}
                         />
                     ) : (
-                        <Text style={styles.title}>{props.text}</Text>
+                        <View>
+                            <Text style={styles.title}>{props.text}</Text>
+                            {props.img !== "" ? (
+                                <View  style={{alignItems:"center"}}>
+                                    <Image
+                                        source={{uri: props.img}}
+                                        style={{width: 320, height: 160}}
+                                        onError={(error) => console.log("Error loading image",error)}
+                                    />
+                                </View>
+                            ): null}
+                        </View>
+
+
                     )}
                 </View>
             ) : (
                 <View>
                     <Text style={styles.title}>{entryTitle}</Text>
                     <Text style={styles.title}>{entryText}</Text>
+                    {props.img !== "" ? (
+                        <View style={{alignItems:"center"}}>
+                            <Image
+                                source={{uri: props.img}}
+                                style={{width: 320, height: 160}}
+                                onError={(error) => console.log("Error loading image")}
+                            />
+                        </View>
+                    ): null}
                 </View>
             )}
         </View>

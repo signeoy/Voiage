@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView, SafeAreaView, Pressable } from 'react-native';
+import {StyleSheet, Text, View, ScrollView, SafeAreaView, Pressable, Image} from 'react-native';
 import React, {useEffect, useState} from 'react';
 
 // navigation
@@ -188,6 +188,9 @@ function SettingsScreen({ navigation }) {
 
     return (
         <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+            <Image
+                style={{...styles.logo}}
+                source={require('./assets/Headerlogo_text.png')} />
             <Pressable onPress={() => navigation.navigate('Privacy Policy')}>
                 <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
                     <Text style={styles.nav_button_text}>Privacy policy</Text>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import {View, ScrollView, Text, StyleSheet, TouchableOpacity, Alert, TextInput, Pressable} from 'react-native';
-
+import {View, ScrollView, Text, StyleSheet, TouchableOpacity, Alert, TextInput, Pressable, Image} from 'react-native';
+import globalStyles from '../style';
 //Firebase
 import {auth, db} from "../firebaseConfig";
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
@@ -77,6 +77,9 @@ const Register = ({navigation, setUser}) => {
     return(
         <ScrollView>
             <View style={{marginTop:50}}>
+                <Image
+                    style={globalStyles.logo}
+                    source={require('../assets/Headerlogo_text.png')} />
                 <TextInput
                     style={styles.input}
                     onChangeText={setEmail}

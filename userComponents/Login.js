@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import {View, ScrollView, Text, StyleSheet, TextInput, Pressable} from 'react-native';
-
+import {View, ScrollView, Text, StyleSheet, TextInput, Image, Pressable} from 'react-native';
+import globalStyles from '../style';
 //Firebase
 import {auth} from "../firebaseConfig";
 import {signInWithEmailAndPassword} from "firebase/auth";
+import {LinearGradient} from "expo-linear-gradient";
 
 const Login = ({navigation, setUser}) => {
     const [email, setEmail] = useState("test@uia.no");
@@ -29,41 +30,47 @@ const Login = ({navigation, setUser}) => {
 
 
     return (
-        <ScrollView contentContainerStyle={styles.container}>
-            <View>
-                <TextInput
-                    style={{...styles.input, marginTop: 80}}
-                    onChangeText={setEmail}
-                    keyboardType="email-address"
-                    placeholder="example@email.com"
-                    //value="test@uia.no"
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setPassword}
-                    secureTextEntry={true}
-                    placeholder="password"
-                    //value="Password1."
-                />
-
-            </View>
-
-            <Pressable
-                onPress={loginUser}>
-                <View style={{...styles.login_button, backgroundColor: "#69B9AA"}}>
-                    <Text style={styles.login_button_text}>Log in!</Text>
-                </View>
-            </Pressable>
-
-            <Pressable style={{marginTop: 40}}
-                onPress={() => navigation.navigate('Register')}>
+        <LinearGradient
+            colors={['#CAE6E0', '#F5F5F5']}
+            style={globalStyles.gradient}>
+            <ScrollView contentContainerStyle={styles.container}>
                 <View>
-                    <Text style={styles.text}>Dont have an account?</Text>
-                    <Text style={{...styles.text, ...styles.linkText, marginTop:10}}>Sign up here!</Text>
-                </View>
-            </Pressable>
+                    <Image
+                        style={globalStyles.logo}
+                        source={require('../assets/Headerlogo_text.png')} />
+                    <TextInput
+                        style={[globalStyles.input, { marginTop: 80 }]}
+                        onChangeText={setEmail}
+                        keyboardType="email-address"
+                        placeholder="Email"
+                        //value="test@uia.no"
+                    />
+                    <TextInput
+                        style={globalStyles.input}
+                        onChangeText={setPassword}
+                        secureTextEntry={true}
+                        placeholder="Password"
+                        //value="Password1."
+                    />
 
-        </ScrollView>
+                </View>
+
+                <Pressable
+                    onPress={loginUser}>
+                    <View style={styles.login_button}>
+                        <Text style={styles.login_button_text}>Log in!</Text>
+                    </View>
+                </Pressable>
+
+                <Pressable style={{marginTop: 80}}
+                    onPress={() => navigation.navigate('Register')}>
+                    <View>
+                        <Text style={styles.text}>Dont have an account?</Text>
+                        <Text style={{...styles.text, ...styles.linkText, marginTop:10}}>Sign up here!</Text>
+                    </View>
+                </Pressable>
+            </ScrollView>
+        </LinearGradient>
     );
 };
 
@@ -72,47 +79,39 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         paddingHorizontal: 16,
     },
-    input: {
-        color: "#030303",
-        fontSize: 25,
-        backgroundColor: "#FFFFFF",
-        padding: 7,
-        width: "70%",
-        alignSelf: "center",
-        borderRadius: 10,
-        //automatically sticks to the bottom
-        flexDirection: "row",
-        borderStyle: "solid",
-        margin: 1,
-        borderWidth: 2,
-        borderColor: "#9DBBB5",
-        marginTop:20
-    },
     login_button: {
         flexDirection: "row",
-        //backgroundColor: "lightblue",
-        justifyContent: "space-between",
-        padding: 7,
-        //alignItems: "center",
-        width: "70%",
         alignSelf: "center",
-        borderRadius: 10,
-        marginVertical: 25,
-        marginBottom: 0,
-        //elevation: 30,
-        //boarder
-        borderWidth: 2,
-        borderColor: 'rgba(0, 0, 0, 0.2)',
+        justifyContent: "space-between",
+        width: 238, // Width
+        height: 43.88, // Height
+        flexShrink: 0, // Flex shrink: 0 (prevents shrinking)
+        borderRadius: 13, // Border radius
+        borderWidth: 1, // Border width
+        borderColor: 'rgba(0, 0, 0, 0.30)', // Border color
+        backgroundColor: '#F79967', // Background color
+        marginTop: 12,
     },
     login_button_text:{
-        fontSize: 30,
-        marginLeft: 20,
-        color: "#304D47",
+        color: '#FFF', // Text color
+        textAlign: 'center', // Text alignment
+        fontFamily: 'Roboto', // Font family
+        fontSize: 24, // Font size
+        fontStyle: 'normal', // Font style
+        fontWeight: '400', // Font weight
+        lineHeight: 24 * 1.5, // Line height based on font size (adjust as needed)
+        display: 'flex', // Not required in React Native, as it's the default behavior
+        flexDirection: 'column', // Flex direction: column
+        justifyContent: 'center', // Align items vertically in the center
+        width: 238, // Width
+        height: 43.88, // Height
+        flexShrink: 0, // Flex shrink: 0 (prevents shrinking)
+        // Other styles
     },
     linkText: {
-        color: 'blue',
+        color: '#21AC8B',
         borderBottomWidth: 1,
-        borderBottomColor: 'blue',
+        borderBottomColor: '#21AC8B',
     },
     text:{
         fontSize: 16,

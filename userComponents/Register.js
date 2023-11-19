@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import {View, ScrollView, Text, StyleSheet, TouchableOpacity, Alert, TextInput, Pressable} from 'react-native';
-
+import {View, ScrollView, Text, StyleSheet, TouchableOpacity, Alert, TextInput, Pressable, Image} from 'react-native';
+import globalStyles from '../style';
 //Firebase
 import {auth, db} from "../firebaseConfig";
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 import {doc, setDoc} from "firebase/firestore";
+import {LinearGradient} from "expo-linear-gradient";
 
 const Register = ({navigation, setUser}) => {
     const [email, setEmail] = useState("test@uia.no");
@@ -75,63 +76,69 @@ const Register = ({navigation, setUser}) => {
 
 
     return(
-        <ScrollView>
-            <View style={{marginTop:50}}>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setEmail}
-                    keyboardType="email-address"
-                    placeholder="Email"
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setUsername}
-                    placeholder="Username"
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setPassword}
-                    secureTextEntry={true}
-                    placeholder="Password"
-                />
-                {/*<Privacy/>*/}
-                <View style={{marginTop: 40}}>
-                    <Pressable onPress={() => navigation.navigate('Privacy')}>
-                        <Text style={styles.text}>Please read and accept our</Text>
-                        <Text style={{...styles.linkText, ...styles.text}}>Privacy Policy</Text>
-                    </Pressable>
-                    <View style={styles.checkboxContainer}>
-                        <TouchableOpacity style={styles.checkbox} onPress={toggleAgree}>
-                            {agree ? <Text style={styles.checkmark}>✓</Text> : null}
-                        </TouchableOpacity>
-                        <Text style={styles.text}>I accept the Privacy Policy</Text>
+        <LinearGradient
+            colors={['#CAE6E0', '#F5F5F5']}
+            style={globalStyles.gradient}>
+            <ScrollView>
+                <View>
+                    <Image
+                        style={globalStyles.logo}
+                        source={require('../assets/Headerlogo_text.png')} />
+                    <TextInput
+                        style={[globalStyles.input, { marginTop: 80 }]}
+                        onChangeText={setEmail}
+                        keyboardType="email-address"
+                        placeholder="Email"
+                    />
+                    <TextInput
+                        style={globalStyles.input}
+                        onChangeText={setUsername}
+                        placeholder="Username"
+                    />
+                    <TextInput
+                        style={globalStyles.input}
+                        onChangeText={setPassword}
+                        secureTextEntry={true}
+                        placeholder="Password"
+                    />
+                    {/*<Privacy/>*/}
+                    <View style={{marginTop: 20}}>
+                        <View style={{...styles.checkboxContainer, marginLeft: 35, marginTop:10}}>
+                            <TouchableOpacity style={styles.checkbox} onPress={toggleAgree}>
+                                {agree ? <Text style={styles.checkmark}>✓</Text> : null}
+                            </TouchableOpacity>
+                            <Text style={{...styles.text, fontSize:15}}>I accept the </Text>
+                            <Pressable onPress={() => navigation.navigate('Privacy')}>
+                                <Text style={{...styles.linkText, fontSize:15}}>Privacy Policy</Text>
+                            </Pressable>
+                        </View>
                     </View>
-                </View>
-                {!agree ? (
-                    <Pressable
-                        onPress={handleRegister} disabled={!agree}>
-                        <View style={{...styles.reg_button, backgroundColor: "#9fd2c5",}}>
-                            <Text style={{...styles.reg_button_text, color: "#487968"}}>Register!</Text>
+                    {!agree ? (
+                        <Pressable
+                            onPress={handleRegister} disabled={!agree}>
+                            <View style={{...styles.reg_button, backgroundColor: "#fabe9d",}}>
+                                <Text style={{...styles.reg_button_text}}>Register!</Text>
+                            </View>
+                        </Pressable>
+                    ) : (
+                        <Pressable
+                            onPress={handleRegister} disabled={!agree}>
+                            <View style={styles.reg_button}>
+                                <Text style={styles.reg_button_text}>Register!</Text>
+                            </View>
+                        </Pressable>
+                    )}
+                    <Pressable style={{marginTop: 50}}
+                               onPress={() => navigation.navigate('Login')}>
+                        <View>
+                            <Text style={styles.text}>Already have an account?</Text>
+                            <Text style={{...styles.text, ...styles.linkText, marginTop:10}}>Log in here!</Text>
                         </View>
                     </Pressable>
-                ) : (
-                    <Pressable
-                        onPress={handleRegister} disabled={!agree}>
-                        <View style={{...styles.reg_button, backgroundColor: "#69B9AA",}}>
-                            <Text style={styles.reg_button_text}>Register</Text>
-                        </View>
-                    </Pressable>
-                )}
-                <Pressable style={{marginTop: 40}}
-                           onPress={() => navigation.navigate('Login')}>
-                    <View>
-                        <Text style={styles.text}>Already have an account?</Text>
-                        <Text style={{...styles.text, ...styles.linkText, marginTop:10}}>Log in here!</Text>
-                    </View>
-                </Pressable>
 
-            </View>
-        </ScrollView>
+                </View>
+            </ScrollView>
+        </LinearGradient>
     );
 }
 
@@ -164,22 +171,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         alignItems: "center"
     },
-    input: {
-        color: "#030303",
-        fontSize: 25,
-        backgroundColor: "#FFFFFF",
-        padding: 7,
-        width: "70%",
-        alignSelf: "center",
-        borderRadius: 10,
-        //automatically sticks to the bottom
-        flexDirection: "row",
-        borderStyle: "solid",
-        margin: 1,
-        borderWidth: 2,
-        borderColor: "#9DBBB5",
-        marginTop:20
-    },
     fixToText: {
         flexDirection: 'row',
         justifyContent: 'center',
@@ -201,31 +192,44 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline',
     },
     linkText: {
-        color: 'blue',
+        color: '#21AC8B',
         borderBottomWidth: 1,
-        borderBottomColor: 'blue',
+        borderBottomColor: '#21AC8B',
     },
     text:{
         fontSize: 16,
         alignItems: "center",
-        alignSelf: "center"
+        alignSelf: "center",
+
     },
     reg_button: {
         flexDirection: "row",
-        justifyContent: "space-between",
-        padding: 7,
-        width: "70%",
         alignSelf: "center",
-        borderRadius: 10,
-        marginVertical: 25,
-        marginBottom: 0,
-        borderWidth: 2,
-        borderColor: 'rgba(0, 0, 0, 0.2)',
-    },
+        justifyContent: "space-between",
+        width: 238, // Width
+        height: 43.88, // Height
+        flexShrink: 0, // Flex shrink: 0 (prevents shrinking)
+        borderRadius: 13, // Border radius
+        borderWidth: 1, // Border width
+        borderColor: 'rgba(0, 0, 0, 0.30)', // Border color
+        backgroundColor: '#F79967', // Background color
+        marginTop: 30,
+        },
     reg_button_text:{
-        fontSize: 30,
-        marginLeft: 20,
-        color: "#304D47",
+        color: '#FFF', // Text color
+        textAlign: 'center', // Text alignment
+        fontFamily: 'Roboto', // Font family
+        fontSize: 24, // Font size
+        fontStyle: 'normal', // Font style
+        fontWeight: '400', // Font weight
+        lineHeight: 24 * 1.5, // Line height based on font size (adjust as needed)
+        display: 'flex', // Not required in React Native, as it's the default behavior
+        flexDirection: 'column', // Flex direction: column
+        justifyContent: 'center', // Align items vertically in the center
+        width: 238, // Width
+        height: 43.88, // Height
+        flexShrink: 0, // Flex shrink: 0 (prevents shrinking)
+        // Other styles
     },
 });
 

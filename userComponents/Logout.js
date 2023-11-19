@@ -2,7 +2,7 @@ import {signOut, deleteUser} from "firebase/auth";
 import {auth} from "../firebaseConfig";
 
 import React, { useState } from 'react';
-import {View, Text, StyleSheet, SafeAreaView, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, SafeAreaView, TouchableOpacity, Image} from 'react-native';
 
 
 const Logout = ({navigation, setUser}) => {

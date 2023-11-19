@@ -28,6 +28,7 @@ import Journal_entry_page from "./journalEntryComponent/Journal_entry_page";
 
 
 import BottomTab from "./tabComponents/BottomTab";
+import globalStyles from "./style";
 
 
 const Stack = createStackNavigator();
@@ -173,13 +174,14 @@ function JournalScreen({ navigation }) {
 function SettingsScreen({ navigation }) {
 
     return (
-        <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+        <View style={globalStyles.screen}>
             <Image
-                style={{...styles.logo}}
+                style={globalStyles.logo}
                 source={require('./assets/Headerlogo_text.png')} />
             <Pressable onPress={() => navigation.navigate('Privacy Policy')}>
-                <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
-                    <Text style={styles.nav_button_text}>Privacy policy</Text>
+                <View style={[globalStyles.settingButton, {marginTop: 100, marginBottom:30}]}>
+                    <AntDesign name="Safety" size={24} color="black" />
+                    <Text style={globalStyles.settingButton_text}>Privacy policy</Text>
                 </View>
             </Pressable>
             <Logout navigation={navigation}/>
@@ -255,13 +257,13 @@ function MyStack() {
 
         <Stack.Screen name="TempMenu" component={TempMenu} options={{ headerLeft: null, headerShown: false }} />
 
-        <Stack.Screen name="Home" component={HomeScreen}/>
+        <Stack.Screen name="Home" component={HomeScreen} options={{ headerLeft: null}} />
         <Stack.Screen name="My Favourites" component={FavouriteScreen} options={{ headerLeft: null, headerShown: false }}/>
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="My Profile" component={MyProfileScreen} />
         <Stack.Screen name="Journal" component={JournalScreen} />
 
-        <Stack.Screen name="Settings" component={SettingsScreen} />
+        <Stack.Screen name="Settings" component={SettingsScreen} options={{ headerLeft: null, headerShown: false }} />
 
 
         <Stack.Screen name="Add Journal" component={AddJournalScreen} />

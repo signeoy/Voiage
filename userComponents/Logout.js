@@ -3,7 +3,9 @@ import {auth} from "../firebaseConfig";
 
 import React, { useState } from 'react';
 import {View, Text, StyleSheet, SafeAreaView, TouchableOpacity, Image} from 'react-native';
-
+import globalStyles from "../style";
+import { Entypo } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 const Logout = ({navigation, setUser}) => {
     const user = auth.currentUser;
@@ -32,13 +34,15 @@ const Logout = ({navigation, setUser}) => {
 
 
     return(
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={deleteAccount}>
-                    <Text style={styles.buttonText}>Delete User</Text>
+                <TouchableOpacity style={[globalStyles.settingButton]} onPress={deleteAccount}>
+                    <AntDesign name="delete" size={24} color="black" />
+                    <Text style={globalStyles.settingButton_text}>Delete User</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={logoutUser}>
-                    <Text style={styles.buttonText}>Log Out</Text>
+                <TouchableOpacity style={globalStyles.settingButton } onPress={logoutUser}>
+                    <Entypo name="log-out" size={24} color="black" />
+                    <Text style={globalStyles.settingButton_text}>Log Out</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
@@ -63,7 +67,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        width: "90%",
+        width: "100%",
 
     },
     button: {

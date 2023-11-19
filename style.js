@@ -16,7 +16,7 @@ const globalStyles = StyleSheet.create({
         width: 238,
         height: 43.88,
         flexShrink: 0,
-        fontSize: 20,
+        fontSize: 18,
         borderRadius: 8,
         flexDirection: "row",
         margin: 1,
@@ -27,6 +27,7 @@ const globalStyles = StyleSheet.create({
         backgroundColor: "#F1F1F1",
         fontFamily: "Roboto",
         paddingHorizontal: 10,
+        marginTop: 11,
     },
     logo: {
         marginTop: 74,

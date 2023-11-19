@@ -42,14 +42,14 @@ const Login = ({navigation, setUser}) => {
                         style={[globalStyles.input, { marginTop: 80 }]}
                         onChangeText={setEmail}
                         keyboardType="email-address"
-                        placeholder="example@email.com"
+                        placeholder="Email"
                         //value="test@uia.no"
                     />
                     <TextInput
-                        style={[globalStyles.input, { marginTop: 20 }]}
+                        style={globalStyles.input}
                         onChangeText={setPassword}
                         secureTextEntry={true}
-                        placeholder="password"
+                        placeholder="Password"
                         //value="Password1."
                     />
 
@@ -57,12 +57,12 @@ const Login = ({navigation, setUser}) => {
 
                 <Pressable
                     onPress={loginUser}>
-                    <View style={{...styles.login_button, backgroundColor: "#69B9AA"}}>
+                    <View style={styles.login_button}>
                         <Text style={styles.login_button_text}>Log in!</Text>
                     </View>
                 </Pressable>
 
-                <Pressable style={{marginTop: 40}}
+                <Pressable style={{marginTop: 80}}
                     onPress={() => navigation.navigate('Register')}>
                     <View>
                         <Text style={styles.text}>Dont have an account?</Text>
@@ -81,29 +81,37 @@ const styles = StyleSheet.create({
     },
     login_button: {
         flexDirection: "row",
-        //backgroundColor: "lightblue",
-        justifyContent: "space-between",
-        padding: 7,
-        //alignItems: "center",
-        width: "70%",
         alignSelf: "center",
-        borderRadius: 10,
-        marginVertical: 25,
-        marginBottom: 0,
-        //elevation: 30,
-        //boarder
-        borderWidth: 2,
-        borderColor: 'rgba(0, 0, 0, 0.2)',
+        justifyContent: "space-between",
+        width: 238, // Width
+        height: 43.88, // Height
+        flexShrink: 0, // Flex shrink: 0 (prevents shrinking)
+        borderRadius: 13, // Border radius
+        borderWidth: 1, // Border width
+        borderColor: 'rgba(0, 0, 0, 0.30)', // Border color
+        backgroundColor: '#F79967', // Background color
+        marginTop: 12,
     },
     login_button_text:{
-        fontSize: 30,
-        marginLeft: 20,
-        color: "#304D47",
+        color: '#FFF', // Text color
+        textAlign: 'center', // Text alignment
+        fontFamily: 'Roboto', // Font family
+        fontSize: 24, // Font size
+        fontStyle: 'normal', // Font style
+        fontWeight: '400', // Font weight
+        lineHeight: 24 * 1.5, // Line height based on font size (adjust as needed)
+        display: 'flex', // Not required in React Native, as it's the default behavior
+        flexDirection: 'column', // Flex direction: column
+        justifyContent: 'center', // Align items vertically in the center
+        width: 238, // Width
+        height: 43.88, // Height
+        flexShrink: 0, // Flex shrink: 0 (prevents shrinking)
+        // Other styles
     },
     linkText: {
-        color: 'blue',
+        color: '#21AC8B',
         borderBottomWidth: 1,
-        borderBottomColor: 'blue',
+        borderBottomColor: '#21AC8B',
     },
     text:{
         fontSize: 16,

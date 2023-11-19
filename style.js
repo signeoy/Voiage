@@ -13,27 +13,33 @@ const globalStyles = StyleSheet.create({
         backgroundColor: '#F1F1F1', // background color in React Native
     },
     input: {
-        width: 108.182,
-        height: 18.806,
-        color: '#858585',
-        fontFamily: 'Imprima',
-        fontSize: 16,
-        fontStyle: 'normal',
-        fontWeight: '400',
-        lineHeight: 16, // Adjust line height as per requirements
-        borderWidth: 1,
-        borderColor: 'rgba(0, 0, 0, 0.16)',
+        width: 238,
+        height: 43.88,
+        flexShrink: 0,
+        fontSize: 20,
         borderRadius: 8,
-        paddingHorizontal: 8,
-        paddingVertical: 4,
+        flexDirection: "row",
+        margin: 1,
+        borderStyle: "solid",
+        alignSelf: "center",
+        borderColor: "#00000029",
+        borderWidth: 1,
+        backgroundColor: "#F1F1F1",
+        fontFamily: "Roboto",
+        paddingHorizontal: 10,
     },
     logo: {
         marginTop: 74,
         alignItems: "center",
         alignSelf: "center",
         width: 241.588,
-        height: 81,
+        height: 87,
+
     },
+    gradient: {
+        flex: 0,
+    },
+
     // Add more global styles as needed
 });
 

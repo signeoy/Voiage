@@ -4,6 +4,7 @@ import globalStyles from '../style';
 //Firebase
 import {auth} from "../firebaseConfig";
 import {signInWithEmailAndPassword} from "firebase/auth";
+import {LinearGradient} from "expo-linear-gradient";
 
 const Login = ({navigation, setUser}) => {
     const [email, setEmail] = useState("test@uia.no");
@@ -29,44 +30,47 @@ const Login = ({navigation, setUser}) => {
 
 
     return (
-        <ScrollView contentContainerStyle={styles.container}>
-            <View>
-                <Image
-                    style={globalStyles.logo}
-                    source={require('../assets/Headerlogo_text.png')} />
-                <TextInput
-                    style={{...styles.input, marginTop: 80}}
-                    onChangeText={setEmail}
-                    keyboardType="email-address"
-                    placeholder="example@email.com"
-                    //value="test@uia.no"
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setPassword}
-                    secureTextEntry={true}
-                    placeholder="password"
-                    //value="Password1."
-                />
-
-            </View>
-
-            <Pressable
-                onPress={loginUser}>
-                <View style={{...styles.login_button, backgroundColor: "#69B9AA"}}>
-                    <Text style={styles.login_button_text}>Log in!</Text>
-                </View>
-            </Pressable>
-
-            <Pressable style={{marginTop: 40}}
-                onPress={() => navigation.navigate('Register')}>
+        <LinearGradient
+            colors={['#CAE6E0', '#F5F5F5']}
+            style={globalStyles.gradient}>
+            <ScrollView contentContainerStyle={styles.container}>
                 <View>
-                    <Text style={styles.text}>Dont have an account?</Text>
-                    <Text style={{...styles.text, ...styles.linkText, marginTop:10}}>Sign up here!</Text>
-                </View>
-            </Pressable>
+                    <Image
+                        style={globalStyles.logo}
+                        source={require('../assets/Headerlogo_text.png')} />
+                    <TextInput
+                        style={[globalStyles.input, { marginTop: 80 }]}
+                        onChangeText={setEmail}
+                        keyboardType="email-address"
+                        placeholder="example@email.com"
+                        //value="test@uia.no"
+                    />
+                    <TextInput
+                        style={[globalStyles.input, { marginTop: 20 }]}
+                        onChangeText={setPassword}
+                        secureTextEntry={true}
+                        placeholder="password"
+                        //value="Password1."
+                    />
 
-        </ScrollView>
+                </View>
+
+                <Pressable
+                    onPress={loginUser}>
+                    <View style={{...styles.login_button, backgroundColor: "#69B9AA"}}>
+                        <Text style={styles.login_button_text}>Log in!</Text>
+                    </View>
+                </Pressable>
+
+                <Pressable style={{marginTop: 40}}
+                    onPress={() => navigation.navigate('Register')}>
+                    <View>
+                        <Text style={styles.text}>Dont have an account?</Text>
+                        <Text style={{...styles.text, ...styles.linkText, marginTop:10}}>Sign up here!</Text>
+                    </View>
+                </Pressable>
+            </ScrollView>
+        </LinearGradient>
     );
 };
 
@@ -74,22 +78,6 @@ const styles = StyleSheet.create({
     container: {
         paddingVertical: 20,
         paddingHorizontal: 16,
-    },
-    input: {
-        color: "#030303",
-        fontSize: 25,
-        backgroundColor: "#FFFFFF",
-        padding: 7,
-        width: "70%",
-        alignSelf: "center",
-        borderRadius: 10,
-        //automatically sticks to the bottom
-        flexDirection: "row",
-        borderStyle: "solid",
-        margin: 1,
-        borderWidth: 2,
-        borderColor: "#9DBBB5",
-        marginTop:20
     },
     login_button: {
         flexDirection: "row",

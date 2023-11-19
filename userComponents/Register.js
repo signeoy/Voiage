@@ -5,6 +5,7 @@ import globalStyles from '../style';
 import {auth, db} from "../firebaseConfig";
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 import {doc, setDoc} from "firebase/firestore";
+import {LinearGradient} from "expo-linear-gradient";
 
 const Register = ({navigation, setUser}) => {
     const [email, setEmail] = useState("test@uia.no");
@@ -75,66 +76,70 @@ const Register = ({navigation, setUser}) => {
 
 
     return(
-        <ScrollView>
-            <View style={{marginTop:50}}>
-                <Image
-                    style={globalStyles.logo}
-                    source={require('../assets/Headerlogo_text.png')} />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setEmail}
-                    keyboardType="email-address"
-                    placeholder="Email"
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setUsername}
-                    placeholder="Username"
-                />
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setPassword}
-                    secureTextEntry={true}
-                    placeholder="Password"
-                />
-                {/*<Privacy/>*/}
-                <View style={{marginTop: 40}}>
-                    <Pressable onPress={() => navigation.navigate('Privacy')}>
-                        <Text style={styles.text}>Please read and accept our</Text>
-                        <Text style={{...styles.linkText, ...styles.text}}>Privacy Policy</Text>
-                    </Pressable>
-                    <View style={styles.checkboxContainer}>
-                        <TouchableOpacity style={styles.checkbox} onPress={toggleAgree}>
-                            {agree ? <Text style={styles.checkmark}>✓</Text> : null}
-                        </TouchableOpacity>
-                        <Text style={styles.text}>I accept the Privacy Policy</Text>
+        <LinearGradient
+            colors={['#CAE6E0', '#F5F5F5']}
+            style={globalStyles.gradient}>
+            <ScrollView>
+                <View>
+                    <Image
+                        style={globalStyles.logo}
+                        source={require('../assets/Headerlogo_text.png')} />
+                    <TextInput
+                        style={globalStyles.input}
+                        onChangeText={setEmail}
+                        keyboardType="email-address"
+                        placeholder="Email"
+                    />
+                    <TextInput
+                        style={globalStyles.input}
+                        onChangeText={setUsername}
+                        placeholder="Username"
+                    />
+                    <TextInput
+                        style={globalStyles.input}
+                        onChangeText={setPassword}
+                        secureTextEntry={true}
+                        placeholder="Password"
+                    />
+                    {/*<Privacy/>*/}
+                    <View style={{marginTop: 40}}>
+                        <Pressable onPress={() => navigation.navigate('Privacy')}>
+                            <Text style={styles.text}>Please read and accept our</Text>
+                            <Text style={{...styles.linkText, ...styles.text}}>Privacy Policy</Text>
+                        </Pressable>
+                        <View style={styles.checkboxContainer}>
+                            <TouchableOpacity style={styles.checkbox} onPress={toggleAgree}>
+                                {agree ? <Text style={styles.checkmark}>✓</Text> : null}
+                            </TouchableOpacity>
+                            <Text style={styles.text}>I accept the Privacy Policy</Text>
+                        </View>
                     </View>
-                </View>
-                {!agree ? (
-                    <Pressable
-                        onPress={handleRegister} disabled={!agree}>
-                        <View style={{...styles.reg_button, backgroundColor: "#9fd2c5",}}>
-                            <Text style={{...styles.reg_button_text, color: "#487968"}}>Register!</Text>
+                    {!agree ? (
+                        <Pressable
+                            onPress={handleRegister} disabled={!agree}>
+                            <View style={{...styles.reg_button, backgroundColor: "#9fd2c5",}}>
+                                <Text style={{...styles.reg_button_text, color: "#487968"}}>Register!</Text>
+                            </View>
+                        </Pressable>
+                    ) : (
+                        <Pressable
+                            onPress={handleRegister} disabled={!agree}>
+                            <View style={{...styles.reg_button, backgroundColor: "#69B9AA",}}>
+                                <Text style={styles.reg_button_text}>Register</Text>
+                            </View>
+                        </Pressable>
+                    )}
+                    <Pressable style={{marginTop: 40}}
+                               onPress={() => navigation.navigate('Login')}>
+                        <View>
+                            <Text style={styles.text}>Already have an account?</Text>
+                            <Text style={{...styles.text, ...styles.linkText, marginTop:10}}>Log in here!</Text>
                         </View>
                     </Pressable>
-                ) : (
-                    <Pressable
-                        onPress={handleRegister} disabled={!agree}>
-                        <View style={{...styles.reg_button, backgroundColor: "#69B9AA",}}>
-                            <Text style={styles.reg_button_text}>Register</Text>
-                        </View>
-                    </Pressable>
-                )}
-                <Pressable style={{marginTop: 40}}
-                           onPress={() => navigation.navigate('Login')}>
-                    <View>
-                        <Text style={styles.text}>Already have an account?</Text>
-                        <Text style={{...styles.text, ...styles.linkText, marginTop:10}}>Log in here!</Text>
-                    </View>
-                </Pressable>
 
-            </View>
-        </ScrollView>
+                </View>
+            </ScrollView>
+        </LinearGradient>
     );
 }
 
@@ -166,22 +171,6 @@ const styles = StyleSheet.create({
     agreeText: {
         fontSize: 16,
         alignItems: "center"
-    },
-    input: {
-        color: "#030303",
-        fontSize: 25,
-        backgroundColor: "#FFFFFF",
-        padding: 7,
-        width: "70%",
-        alignSelf: "center",
-        borderRadius: 10,
-        //automatically sticks to the bottom
-        flexDirection: "row",
-        borderStyle: "solid",
-        margin: 1,
-        borderWidth: 2,
-        borderColor: "#9DBBB5",
-        marginTop:20
     },
     fixToText: {
         flexDirection: 'row',

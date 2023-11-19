@@ -11,18 +11,18 @@ import {
 
 import React, { useState, useEffect} from "react";
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
-import { db } from "../firebaseConfig"
+import {auth, db} from "../firebaseConfig"
 import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where, setDoc} from "firebase/firestore"
 
 import Journal_comp from "../journalComponents/Journal_comp";
-import {useRoute} from "@react-navigation/native";
+import {useIsFocused, useRoute} from "@react-navigation/native";
 
 // scripts
 
 const Journal_print = ({navigation, profileId}) => {
 
-    const route = useRoute();
-    const { userId } = route.params;
+    const user = auth.currentUser;
+    const userId = user.uid; // Retrieve the user ID
 
     const [journalList, setJournalList] = useState([]);
 
@@ -40,10 +40,13 @@ const Journal_print = ({navigation, profileId}) => {
 
     };
 
+    const isFocused = useIsFocused();
+
     useEffect(() => {
-        getJournalList(); // Call the function once when the component mounts
-    }, []);
-    console.log()
+        if (isFocused) {
+            getJournalList();
+        }
+    }, [isFocused]);
 
 
     return (
@@ -63,6 +66,7 @@ const Journal_print = ({navigation, profileId}) => {
                                         title={item.title}
                                         date={item.date}
                                         desc={item.desc}
+                                        img={item.img}
                                         id = {item.id}
                                         profileId={profileId}
                                         getJournalList={getJournalList}
@@ -91,6 +95,7 @@ const Journal_print = ({navigation, profileId}) => {
                                         title={item.title}
                                         date={item.date}
                                         desc={item.desc}
+                                        img={item.img}
                                     />
                                 </TouchableOpacity>
                             )}

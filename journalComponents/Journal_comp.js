@@ -1,21 +1,18 @@
-import {Button, Pressable, StyleSheet, Text, View, TextInput} from "react-native";
+import {Button, Pressable, StyleSheet, Text, View, TextInput, Image} from "react-native";
 import React, { useState, useEffect} from "react";
 import {useRoute} from "@react-navigation/native";
 
-import {collection, deleteDoc, doc, getDocs, updateDoc} from "firebase/firestore";
-import {db} from "../firebaseConfig";
+import {collection, deleteDoc, doc, getDocs, updateDoc, getDoc, query} from "firebase/firestore";
+import {db, auth} from "../firebaseConfig";
 import {MaterialIcons} from "@expo/vector-icons";
-
-
-
 
 const Journal_comp = (props) => {
     const [title, setTitle] = useState(props.title);
     const [date, setDate] = useState(props.date);
     const [desc, setDesc] = useState(props.desc);
 
-    const route = useRoute();
-    const {userId} = route.params;
+    const user = auth.currentUser;
+    const userId = user.uid; // Retrieve the user ID
 
     const [isEditing, setIsEditing] = useState(false);
 
@@ -51,20 +48,27 @@ const Journal_comp = (props) => {
 
     const deleteFunction = async () => {
         try{
-            const querySnapshot = await getDocs(collection(db, "users", userId, "Journal"));
-            for (const docSnap of querySnapshot.docs) {
-                const querySnapshot2 = await getDocs(collection(db, "users", userId, "Journal", props.id, "entry"));
-                for (const docSnap2 of querySnapshot2.docs) {
-                    await deleteDoc(doc(db, "users", userId, "Journal", props.id, "entry", docSnap2.id));
-                }
-                await deleteDoc(doc(db, "users", userId, "Journal", props.id));
-            }
-            props.getJournalList();
+            console.log("deletefunction running", props.id)
+            await deleteCollection();
+            await deleteDoc(doc(db, "users", userId, "Journal", props.id));
+            props.getJournalList()
         } catch (e) {
             console.log("error trying to delete: ", e)
         }
     }
 
+    async function deleteCollection() {
+        const q = query(collection(db, "users", userId, "Journal", props.id, "entry"));
+        const querySnapshot = await getDocs(q);
+
+        const deleteOps = [];
+
+        querySnapshot.forEach((doc) => {
+            deleteOps.push(deleteDoc(doc.ref));
+        });
+
+        Promise.all(deleteOps).then(() => console.log('documents deleted'))
+    }
 
     return (
         <View style={styles.container}>
@@ -72,29 +76,55 @@ const Journal_comp = (props) => {
                 <View>
                     {isEditing ? (
                         <View>
-                            <TextInput
-                                style={styles.title}
-                                value={title}
-                                onChangeText={text => setTitle(text)}
-                            />
-                            <TextInput
-                                style={styles.title}
-                                value={date}
-                                onChangeText={text => setDate(text)}
-                            />
-                            <TextInput
-                                style={styles.title}
-                                value={desc}
-                                onChangeText={text => setDesc(text)}
-                            />
+                            <View>
+                                <TextInput
+                                    style={styles.title}
+                                    value={title}
+                                    onChangeText={text => setTitle(text)}
+                                />
+                                <TextInput
+                                    style={styles.title}
+                                    value={date}
+                                    onChangeText={text => setDate(text)}
+                                />
+                                <TextInput
+                                    style={styles.title}
+                                    value={desc}
+                                    onChangeText={text => setDesc(text)}
+                                />
+                            </View>
+                            {props.img !== "" ? (
+                                <View>
+                                    <Image
+                                        source={{uri: props.img}}
+                                        style={{width: 200, height: 200}}
+                                        onError={(error) => console.log("Error loading image")}
+                                    />
+                                </View>
+                            ): null}
                         </View>
 
                     ) : (
-                        <View>
-                            <Text style={styles.title}>{props.title}</Text>
-                            <Text style={styles.title}>{props.date}</Text>
-                            <Text style={styles.title}>{props.desc}</Text>
-                        </View>
+
+                            <View style={styles.container_with_img}>
+                                <View>
+                                    <Text style={styles.title}>{props.title}</Text>
+                                    <Text style={styles.title}>{props.date}</Text>
+                                    <Text style={styles.title}>{props.desc}</Text>
+                                </View>
+                                {props.img !== "" ? (
+                                    <View>
+                                        <Image
+                                            source={{uri: props.img}}
+                                            style={{width: 200, height: 200}}
+                                            onError={(error) => console.log("Error loading image")}
+                                        />
+                                    </View>
+                                ): null}
+                            </View>
+
+
+
                     )}
 
 
@@ -116,11 +146,29 @@ const Journal_comp = (props) => {
 
                 </View>
             ) : (
-                <View>
-                    <Text style={styles.title}>{props.title}</Text>
-                    <Text style={styles.title}>{props.date}</Text>
-                    <Text style={styles.title}>{props.desc}</Text>
-                </View>
+                props.img !== "" ? (
+                    <View>
+                        <View>
+                            <Image
+                                source={{ uri: props.img }}
+                                style={{ width: 200, height: 200 }}
+                                onError={(error) => console.log("Error loading image")}
+                            />
+                        </View>
+                        <View>
+                            <Text style={styles.title}>{props.title}</Text>
+                            <Text style={styles.title}>{props.date}</Text>
+                            <Text style={styles.title}>{props.desc}</Text>
+                        </View>
+                    </View>
+                ) : (
+                    <View>
+                        <Text style={styles.title}>{props.title}</Text>
+                        <Text style={styles.title}>{props.date}</Text>
+                        <Text style={styles.title}>{props.desc}</Text>
+                    </View>
+                )
+
             )}
         </View>
     );
@@ -150,4 +198,9 @@ const styles = StyleSheet.create({
         width: "30%",
 
     },
+    container_with_img:{
+        flexDirection:"row",
+        width:"100%",
+        alignContent:"space-between"
+    }
 });

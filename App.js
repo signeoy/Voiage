@@ -33,64 +33,6 @@ import globalStyles from "./style";
 
 const Stack = createStackNavigator();
 
-function TempMenu({ navigation }) {
-
-  return (
-      <SafeAreaView>
-        <ScrollView contentContainerStyle={{...styles.scroll_container} }>
-          <View style = {styles.header}>
-            <Text style = {{...styles.heading, textAlign:"center"}}>This is a temparary menu</Text>
-          </View>
-          <View style={{...styles.container}}>
-
-            <Pressable onPress={() => navigation.navigate('My Favourites')}>
-              <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
-                <Text style={styles.nav_button_text}>My Favourites</Text>
-              </View>
-            </Pressable>
-
-            <Pressable onPress={() => navigation.navigate('Home')}>
-              <View style={{ ...styles.nav_button, backgroundColor: "#FCBEBE" }}>
-                <Text style={styles.nav_button_text}>Home</Text>
-              </View>
-            </Pressable>
-
-            <Pressable onPress={() => navigation.navigate('My Profile')}>
-              <View style={{ ...styles.nav_button, backgroundColor: "#FCBEBE" }}>
-                <Text style={styles.nav_button_text}>My Profile</Text>
-              </View>
-            </Pressable>
-
-            <Pressable
-                onPress={() => navigation.navigate('Privacy Policy',)}>
-              <View style={{...styles.nav_button, backgroundColor: "#F8DAC4",}}>
-                <Text style={styles.nav_button_text}>Privacy Policy</Text>
-              </View>
-            </Pressable>
-            <Pressable
-                onPress={() => navigation.navigate('Settings')}>
-              <View style={{...styles.nav_button, backgroundColor: "#CAFFCC",}}>
-                <Text style={styles.nav_button_text}>Settings</Text>
-              </View>
-            </Pressable>
-            <Pressable
-                onPress={() => navigation.navigate('Register')}>
-              <View style={{...styles.nav_button, backgroundColor: "#CAFFCC",}}>
-                <Text style={styles.nav_button_text}>Register</Text>
-              </View>
-            </Pressable>
-            <Pressable
-                onPress={() => navigation.navigate('Login')}>
-              <View style={{...styles.nav_button, backgroundColor: "#CAFFCC",}}>
-                <Text style={styles.nav_button_text}>Login</Text>
-              </View>
-            </Pressable>
-
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-  );
-}
 function HomeScreen({ navigation }) {
 
 

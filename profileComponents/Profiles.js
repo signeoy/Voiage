@@ -38,7 +38,7 @@ const Profile = ({navigation}) => {
                 console.log("profiles:", profiles); // log the todo items to check if they are being fetched correctly
                 setProfileList(profiles);
             } catch (error) {
-                console.error("Error getting todo list: ", error);
+                console.error("Error getting Profile list: ", error);
             }
         }
 
@@ -49,13 +49,16 @@ const Profile = ({navigation}) => {
                 const querySnapshot = await getDocs(
                     query(collection(db, "users"), where("usernameLowerCase", ">=", searchLowerCase))
                 );
+                if (querySnapshot.size == null){
+                    console.log("query is empty")
+                }
                 const profiles = querySnapshot.docs.map((doc) => ({
                     ...doc.data(),
                     id: doc.id,
                 }));
                 setProfileList(profiles);
             } catch (error) {
-                console.error("Error getting todo list: ", error);
+                console.error("Error getting Profile list: ", error);
             }
         }
     };

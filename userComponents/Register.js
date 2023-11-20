@@ -9,7 +9,7 @@ import {LinearGradient} from "expo-linear-gradient";
 
 const Register = ({navigation, setUser}) => {
     const [email, setEmail] = useState("test@uia.no");
-    const [username, setUsername] = useState("testuser");
+    const [username, setUsername] = useState("testUser");
     const [password, setPassword] = useState("qwerty");
 
     const [agree, setAgree] = useState(false);

@@ -27,29 +27,34 @@ const Register = ({navigation, setUser}) => {
         }
     };
     const registerUser = () => {
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in
-                const user = userCredential.user;
-                const userId = user.uid; // Retrieve the user ID
-                Alert.alert('Registration successful');
-                console.log(`User has been registered: ${user.email}`);
-                loginUser()
+        try {
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Signed in
+                    const user = userCredential.user;
+                    const userId = user.uid; // Retrieve the user ID
+                    Alert.alert('Registration successful');
+                    console.log(`User has been registered: ${user.email}`);
+                    loginUser()
 
-
-
-                addUser(userId, username)
-            })
-            .catch((error) => {
-                console.log(`registration error: ${error.code} ${error.message}`);
-            });
+                    addUser(userId, username)
+                })
+                .catch((error) => {
+                    Alert.alert(`registration error: ${error.message}`);
+                    console.log(`registration error: ${error.code} ${error.message}`);
+                });
+        } catch (error) {
+            Alert.alert(`Error creating user: ${error.message}`);
+            console.log(`Error creating user: ${error.code} ${error.message}`);
+        }
 
     }
 
     const addUser = async (userId, username) => {
         try {
             const userRef = doc(db, 'users', userId); // Reference to the document with the userId
-            await setDoc(userRef, { username }); // Set the 'username' field under the user document
+            const usernameLowerCase = username.toLowerCase();
+            await setDoc(userRef, { username: username, usernameLowerCase: usernameLowerCase }); // Set the 'username' field under the user document
 
             console.log('Document added successfully.');
         } catch (error) {

@@ -24,7 +24,6 @@ const Profile = ({navigation}) => {
     const [profileList, setProfileList] = useState([]);
     const [search, setSearch] = useState("");
     //const navigation = useNavigation();
-    const [username,setUsername] = useState("");
 
     const user = auth.currentUser;
     const userId = user.uid; // Retrieve the user ID
@@ -46,8 +45,9 @@ const Profile = ({navigation}) => {
         else {
             //console.log("search used: ", search);
             try {
+                const searchLowerCase = search.toLowerCase()
                 const querySnapshot = await getDocs(
-                    query(collection(db, "users"), where("username", ">=", search))
+                    query(collection(db, "users"), where("usernameLowerCase", ">=", searchLowerCase))
                 );
                 const profiles = querySnapshot.docs.map((doc) => ({
                     ...doc.data(),

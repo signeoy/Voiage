@@ -45,21 +45,33 @@ const Profile = ({navigation}) => {
         else {
             //console.log("search used: ", search);
             try {
-                const searchLowerCase = search.toLowerCase()
+                const searchLowerCase = search.toLowerCase();
+                const startAtValue = searchLowerCase;
+                const endAtValue = searchLowerCase + "\uf8ff";
+
                 const querySnapshot = await getDocs(
-                    query(collection(db, "users"), where("usernameLowerCase", ">=", searchLowerCase))
+                    query(
+                        collection(db, "users"),
+                        where("usernameLowerCase", ">=", startAtValue),
+                        where("usernameLowerCase", "<=", endAtValue)
+                    )
                 );
-                if (querySnapshot.size == null){
-                    console.log("query is empty")
+
+
+                if (querySnapshot.size === 0) {
+                    console.log("query is empty");
                 }
+
                 const profiles = querySnapshot.docs.map((doc) => ({
                     ...doc.data(),
                     id: doc.id,
                 }));
+
                 setProfileList(profiles);
             } catch (error) {
                 console.error("Error getting Profile list: ", error);
             }
+
         }
     };
 
@@ -94,7 +106,10 @@ const Profile = ({navigation}) => {
             keyExtractor={(item) => item.id}
             />
             ) : (
-                <ActivityIndicator />
+                <Text>
+                    No users found
+                </Text>
+                // <ActivityIndicator />
             )}
 
         </View>

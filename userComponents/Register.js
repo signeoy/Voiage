@@ -1,5 +1,16 @@
 import React, { useState } from 'react';
-import {View, ScrollView, Text, StyleSheet, TouchableOpacity, Alert, TextInput, Pressable, Image} from 'react-native';
+import {
+    View,
+    ScrollView,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    Alert,
+    TextInput,
+    Pressable,
+    Image,
+    Linking
+} from 'react-native';
 import globalStyles from '../style';
 //Firebase
 import {auth, db} from "../firebaseConfig";
@@ -72,8 +83,6 @@ const Register = ({navigation, setUser}) => {
                 console.log(`login error: ${error.code} ${error.message}`);
             });
     }
-
-
 
     return(
         <LinearGradient

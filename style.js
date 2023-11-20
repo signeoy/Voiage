@@ -44,6 +44,9 @@ const globalStyles = StyleSheet.create({
     },
     gradient: {
         flex: 0,
+        height: '100%',
+        width: '100%'
+
     },
     settingButton: {
         borderWidth: 1, // Border width

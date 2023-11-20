@@ -37,7 +37,7 @@ function HomeScreen({ navigation }) {
 
 
     return (
-        <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+        <View style={globalStyles.screen}>
 
             <Pressable onPress={() => navigation.navigate('My Favourites')}>
                 <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
@@ -57,7 +57,7 @@ function HomeScreen({ navigation }) {
 function FavouriteScreen({ navigation }) {
 
   return (
-      <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+      <View style={globalStyles.screen}>
           <Pressable onPress={() => navigation.navigate('Home')}>
               <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
                   <Text style={styles.nav_button_text}>All profiles</Text>
@@ -74,7 +74,7 @@ function FavouriteScreen({ navigation }) {
 function ProfileScreen({ navigation }) {
 
     return (
-        <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+        <View style={globalStyles.screen}>
             <ScrollView style={{ marginVertical: 10, flexDirection: "column"}}>
             <ProfilePage
                 navigation={navigation}
@@ -88,13 +88,10 @@ function ProfileScreen({ navigation }) {
 function MyProfileScreen({ navigation }) {
 
     return (
-        <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+        <View style={globalStyles.screen}>
             <ScrollView style={{ marginVertical: 10, flexDirection: "column"}}>
-
                 <MyProfilePage navigation={navigation}/>
-
             </ScrollView>
-
 
             <BottomTab navigation={navigation}/>
         </View>
@@ -105,7 +102,7 @@ function JournalScreen({ navigation }) {
     const { profileId } = route.params;
 
   return (
-      <View style ={{...styles.container, backgroundColor: "#CAFFCC"}}>
+      <View style={globalStyles.screen}>
         <Journal_entry_page navigation={navigation} profileId={profileId}/>
         <BottomTab navigation={navigation}/>
 
@@ -151,7 +148,7 @@ function RegisterScreen({ navigation }) {
 function PrivacyScreen({ navigation }) {
 
   return (
-      <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+      <View style={globalStyles.screen}>
             <Text>This is the privacy policy. You can read all the terms and conditions on this link:</Text>
       </View>
   );
@@ -159,7 +156,7 @@ function PrivacyScreen({ navigation }) {
 function AddJournalScreen({ navigation }) {
 
   return (
-      <View style={{flex: 1, backgroundColor: "#CAFFCC"}}>
+      <View style={[globalStyles.screen, {flex: 1}]}>
           <Journal_create navigation={navigation}/>
           <BottomTab navigation={navigation}/>
 
@@ -169,7 +166,7 @@ function AddJournalScreen({ navigation }) {
 function AddEntryScreen({ navigation }) {
 
   return (
-      <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+      <View style={globalStyles.screen}>
 
           <Journal_entry_create navigation={navigation}/>
           <BottomTab navigation={navigation}/>
@@ -180,7 +177,7 @@ function AddEntryScreen({ navigation }) {
 function JournalEditorScreen({ navigation }) {
 
   return (
-      <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+      <View style={globalStyles.screen}>
 
           <Journal_editor navigation={navigation}/>
 
@@ -196,13 +193,10 @@ function MyStack() {
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerLeft: null, headerShown: false }}/>
         <Stack.Screen name="Register" component={RegisterScreen} options={{ headerLeft: null, headerShown: false }}/>
         <Stack.Screen name="Privacy Policy" component={PrivacyScreen} />
-
-        <Stack.Screen name="TempMenu" component={TempMenu} options={{ headerLeft: null, headerShown: false }} />
-
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerLeft: null}} />
         <Stack.Screen name="My Favourites" component={FavouriteScreen} options={{ headerLeft: null, headerShown: false }}/>
         <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="My Profile" component={MyProfileScreen} />
+        <Stack.Screen name="My Profile" component={MyProfileScreen} options={{ headerLeft: null}}/>
         <Stack.Screen name="Journal" component={JournalScreen} />
 
         <Stack.Screen name="Settings" component={SettingsScreen} options={{ headerLeft: null, headerShown: false }} />
@@ -238,7 +232,6 @@ const styles = StyleSheet.create({
   },
   nav_button: {
     flexDirection: "row",
-    //backgroundColor: "lightblue",
     justifyContent: "space-between",
     padding: 10,
     //alignItems: "center",
@@ -259,7 +252,6 @@ const styles = StyleSheet.create({
   },
 
   scroll_container: {
-    // backgroundColor: "#BEFCE0",
     paddingTop: 60,
     justifyContent: 'space-between',
     minHeight: '100%',

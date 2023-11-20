@@ -10,7 +10,7 @@ import {
 } from "react-native";
 
 import React, { useState, useEffect} from "react";
-import { AntDesign, MaterialIcons } from '@expo/vector-icons';
+import { AntDesign, MaterialIcons, FontAwesome } from '@expo/vector-icons';
 import {auth, db} from "../firebaseConfig"
 import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where} from "firebase/firestore"
 
@@ -18,6 +18,7 @@ import {useRoute} from "@react-navigation/native";
 
 // scripts
 import Journal_print from "../journalComponents/Journal_print";
+import globalStyles from "../style";
 
 const MyProfilePage = ({navigation}) => {
     const user = auth.currentUser;
@@ -56,26 +57,30 @@ const MyProfilePage = ({navigation}) => {
     });
 
     return (
-        <View >
-
-            <View style = {{flexDirection : "row", padding: 15}}>
-
-                <View style={{flex: 1, padding:20}}>
-                    <Pressable onPress={() => navigation.navigate('Add Journal', { userId })}>
-                        <View style={{ ...styles.profile_btn, backgroundColor: "#FCF6BE" }}>
-                            <Text style={styles.profile_btn_txt}>Add Journal</Text>
-                        </View>
-                    </Pressable>
+        <View style={globalStyles.screen}>
+            <View style={{flexDirection: "row"}}>
+                <View style = {{flexDirection : "column", flex: 2, padding: 15}}>
+                    <View style = {{flex:1, }}>
+                        <Text style={styles.profile_name}
+                        >{username}</Text>
+                    </View>
+                    <View style={{flex: 1, marginLeft: 15}}>
+                        <Pressable onPress={() => navigation.navigate('Add Journal', { userId })}>
+                            <View style={{ ...styles.profile_btn, flexDirection: "row" }}>
+                                <FontAwesome name="plus" size={24} color="#6C6C6C" />
+                                <Text style={styles.profile_btn_txt}>Add Journal</Text>
+                            </View>
+                        </Pressable>
+                    </View>
 
 
                 </View>
-                <View style = {{flex:2, }}>
-                    <Text style={styles.profile_name}
-                    >{username}</Text>
+                <View style = {styles.profile_photo}>
+                    <Text>
+                        Profile{'\n'}photo here
+                    </Text>
                 </View>
-
             </View>
-
             <View>
                 <Journal_print navigation={navigation} profileId={userId}/>
             </View>
@@ -90,25 +95,33 @@ export default MyProfilePage
 const styles = StyleSheet.create({
 
     profile_btn:{
-        justifyContent: "space-between",
         padding: 8,
-        //flex: 1,
         alignSelf: "center",
-        marginVertical: 0,
-        marginBottom: 0,
         elevation: 30,
         width: "100%",
         //boarder
-        borderWidth: 2,
-        borderColor: 'rgba(0, 0, 0, 0.2)',
     },
     profile_btn_txt:{
         fontSize: 15,
-        color: 'rgba(0, 0, 0, 0.7)'
+        color: '#6C6C6C',
+        marginHorizontal: 5,
     },
     profile_name:{
-        fontSize: 40,
+        fontSize: 30,
         margin: 20,
-        flex: 3
+        flex: 3,
+        color: '#000000B2',
+        fontWeight: 400,
+        fontStyle: 'normal',
     },
+    profile_photo:{
+        margin:30,
+        padding: 10,
+        width:100,
+        height:100,
+        borderWidth:10,
+        borderColor:'#54BDA5',
+        borderRadius: 20,
+        backgroundColor: '#f3f3f3',
+    }
 });

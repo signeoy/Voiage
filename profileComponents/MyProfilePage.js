@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
         margin: 20,
         flex: 3,
         color: '#000000B2',
-        fontWeight: 400,
+        //fontWeight: 400,
         fontStyle: 'normal',
     },
     profile_photo:{

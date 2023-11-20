@@ -64,7 +64,6 @@ const globalStyles = StyleSheet.create({
         fontFamily: 'Roboto', // Font family
         fontSize: 20, // Font size
         fontStyle: 'normal', // Font style
-        fontWeight: '400', // Font weight
         lineHeight: 16 * 1.5,
         alignItems: 'center',
         marginLeft: 10

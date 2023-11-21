@@ -143,9 +143,12 @@ const Journal_comp = (props) => {
                                 <Pressable onPress={handleCancelButton}>
                                     <MaterialIcons name="cancel" size={24} color="black"/>
                                 </Pressable>
-                                <Pressable onPress={() => navigation.navigate('Edit Image', {  path: `users/${userId}/Journal/${props.id}`, previousURL: ""})}>
-                                    <Entypo name="image-inverted" size={24} color="black" />
-                                </Pressable>
+                                {props.img === "" && (
+                                    <Pressable onPress={() => navigation.navigate('Edit Image', {  path: `users/${userId}/Journal/${props.id}`, previousURL: ""})}>
+                                        <Entypo name="image-inverted" size={24} color="black" />
+                                    </Pressable>
+                                )}
+
                             </View>
 
                         )}

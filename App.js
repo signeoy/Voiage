@@ -28,10 +28,17 @@ import Journal_entry_page from "./journalEntryComponent/Journal_entry_page";
 
 
 import BottomTab from "./tabComponents/BottomTab";
+
 import globalStyles from "./style";
+import ExternalLink from "./userComponents/PrivacyPolicy";
+
 
 
 const Stack = createStackNavigator();
+
+
+const privacy = 'https://voiage-oso-soy.blogspot.com/2023/11/privacy-policy.html';
+
 
 function HomeScreen({ navigation }) {
 
@@ -117,12 +124,11 @@ function SettingsScreen({ navigation }) {
             <Image
                 style={globalStyles.logo}
                 source={require('./assets/Headerlogo_text.png')} />
-            <Pressable onPress={() => navigation.navigate('Privacy Policy')}>
-                <View style={[globalStyles.settingButton, {marginTop: 100, marginBottom:30}]}>
-                    <AntDesign name="Safety" size={24} color="black" />
-                    <Text style={globalStyles.settingButton_text}>Privacy policy</Text>
+                <View>
+                    <ExternalLink url={privacy}/>
+
                 </View>
-            </Pressable>
+
             <Logout navigation={navigation}/>
 
             <BottomTab navigation={navigation} />
@@ -145,14 +151,7 @@ function RegisterScreen({ navigation }) {
       </View>
   );
 }
-function PrivacyScreen({ navigation }) {
 
-  return (
-      <View style={globalStyles.screen}>
-            <Text>This is the privacy policy. You can read all the terms and conditions on this link:</Text>
-      </View>
-  );
-}
 function AddJournalScreen({ navigation }) {
 
   return (
@@ -192,8 +191,9 @@ function MyStack() {
       <Stack.Navigator /*screenOptions={{headerShown: false}}*/>
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerLeft: null, headerShown: false }}/>
         <Stack.Screen name="Register" component={RegisterScreen} options={{ headerLeft: null, headerShown: false }}/>
-        <Stack.Screen name="Privacy Policy" component={PrivacyScreen} />
+
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerLeft: null}} />
+
         <Stack.Screen name="My Favourites" component={FavouriteScreen} options={{ headerLeft: null, headerShown: false }}/>
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="My Profile" component={MyProfileScreen} options={{ headerLeft: null}}/>

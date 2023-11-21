@@ -24,39 +24,38 @@ const Profile = ({navigation}) => {
     const [profileList, setProfileList] = useState([]);
     const [search, setSearch] = useState("");
     //const navigation = useNavigation();
-    const [username,setUsername] = useState("");
 
     const user = auth.currentUser;
     const userId = user.uid; // Retrieve the user ID
 
     const getProfileList = async () => {
 
-        if (search == null || search === ""){
-            try {
-
-                const querySnapshot = await getDocs(query(collection(db,"users")));
-                const profiles = querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
-                console.log("profiles:", profiles); // log the todo items to check if they are being fetched correctly
-                setProfileList(profiles);
-            } catch (error) {
-                console.error("Error getting todo list: ", error);
+        try{
+            let querySnapshot;
+            if (search == null || search === "") {
+                querySnapshot = await getDocs(query(collection(db,"users")));
+                //const profiles = querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
             }
-        }
+            else {
+                const searchLowerCase = search.toLowerCase();
+                const startAtValue = searchLowerCase;
+                const endAtValue = searchLowerCase + "\uf8ff";
 
-        else {
-            //console.log("search used: ", search);
-            try {
-                const querySnapshot = await getDocs(
-                    query(collection(db, "users"), where("username", ">=", search))
+                querySnapshot = await getDocs(
+                    query(
+                        collection(db, "users"),
+                        where("usernameLowerCase", ">=", startAtValue),
+                        where("usernameLowerCase", "<=", endAtValue)
+                    )
                 );
-                const profiles = querySnapshot.docs.map((doc) => ({
-                    ...doc.data(),
-                    id: doc.id,
-                }));
-                setProfileList(profiles);
-            } catch (error) {
-                console.error("Error getting todo list: ", error);
             }
+            const profiles = querySnapshot.docs
+                .filter((doc) => doc.id !== userId) // Exclude the logged-in user
+                .map((doc) => ({ ...doc.data(), id: doc.id }));
+
+            setProfileList(profiles);
+        } catch (error) {
+            console.error("Error getting Profile list: ", error);
         }
     };
 
@@ -91,7 +90,10 @@ const Profile = ({navigation}) => {
             keyExtractor={(item) => item.id}
             />
             ) : (
-                <ActivityIndicator />
+                <Text>
+                    No users found
+                </Text>
+                // <ActivityIndicator />
             )}
 
         </View>

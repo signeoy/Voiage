@@ -46,7 +46,6 @@ const globalStyles = StyleSheet.create({
         flex: 0,
         height: '100%',
         width: '100%'
-
     },
     settingButton: {
         borderWidth: 1, // Border width
@@ -67,7 +66,18 @@ const globalStyles = StyleSheet.create({
         lineHeight: 16 * 1.5,
         alignItems: 'center',
         marginLeft: 10
-    }
+    },
+    linkText: {
+        color: '#21AC8B',
+        borderBottomWidth: 1,
+        borderBottomColor: '#21AC8B',
+    },
+    text:{
+        fontSize: 16,
+        alignItems: "center",
+        alignSelf: "center",
+    },
+
     // Add more global styles as needed
 });
 

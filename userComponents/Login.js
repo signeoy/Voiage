@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View, ScrollView, Text, StyleSheet, TextInput, Image, Pressable} from 'react-native';
+import {View, ScrollView, Text, StyleSheet, TextInput, Image, Pressable, Alert} from 'react-native';
 import globalStyles from '../style';
 //Firebase
 import {auth} from "../firebaseConfig";
@@ -23,6 +23,7 @@ const Login = ({navigation, setUser}) => {
                 navigation.navigate('Home', { userId: userId, userEmail });
             })
             .catch((error) => {
+                Alert.alert(`Incorrect email or password`);
                 console.log(`Error: ${error.code} ${error.message}`);
             });
     }

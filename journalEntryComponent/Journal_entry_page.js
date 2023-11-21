@@ -31,8 +31,9 @@ const Journal_entry_page = ({navigation, profileId}) => {
 
     return (
         <ScrollView>
+
             <View>
-                <View style={{...styles.container_title}}>
+                <View>
                     <Text style={{...styles.title}}>{journal.title}</Text>
                     <Text style={{...styles.date}}>{journal.date}</Text>
                 </View>

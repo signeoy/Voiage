@@ -6,7 +6,7 @@ import {
     View,
     TextInput,
     TouchableOpacity,
-    FlatList, ActivityIndicator, ScrollView
+    FlatList, ActivityIndicator, ScrollView, Image
 } from "react-native";
 
 import React, { useState, useEffect} from "react";
@@ -60,6 +60,15 @@ const Journal_editor = ({navigation}) => {
         <ScrollView>
             <View>
                 <View style={styles.headerContainer}>
+                    {journal.img !== "" ? (
+                        <View style={{alignItems:"center"}}>
+                            <Image
+                                source={{uri: journal.img}}
+                                style={{width: 200, height: 200}}
+                                onError={(error) => console.log("Error loading image")}
+                            />
+                        </View>
+                    ): null}
                     <View style={styles.titleContainer}>
                         <Text style={styles.title}>{journal.title}</Text>
                         <Text style={styles.date}>{journal.date}</Text>

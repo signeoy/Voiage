@@ -1,6 +1,19 @@
 import React, { useState } from 'react';
-import {View, ScrollView, Text, StyleSheet, TouchableOpacity, Alert, TextInput, Pressable, Image} from 'react-native';
+import {
+    View,
+    ScrollView,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    Alert,
+    TextInput,
+    Pressable,
+    Image,
+    Linking
+} from 'react-native';
+import ExternalLink from './PrivacyPolicy';
 import globalStyles from '../style';
+
 //Firebase
 import {auth, db} from "../firebaseConfig";
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
@@ -78,7 +91,7 @@ const Register = ({navigation, setUser}) => {
             });
     }
 
-
+    const privacy = 'https://voiage-oso-soy.blogspot.com/2023/11/privacy-policy.html';
 
     return(
         <LinearGradient
@@ -112,10 +125,8 @@ const Register = ({navigation, setUser}) => {
                             <TouchableOpacity style={styles.checkbox} onPress={toggleAgree}>
                                 {agree ? <Text style={styles.checkmark}>✓</Text> : null}
                             </TouchableOpacity>
-                            <Text style={{...styles.text, fontSize:15}}>I accept the </Text>
-                            <Pressable onPress={() => navigation.navigate('Privacy')}>
-                                <Text style={{...styles.linkText, fontSize:15}}>Privacy Policy</Text>
-                            </Pressable>
+                            <Text style={[globalStyles.text, {fontSize:15}]}>I accept the </Text>
+                            <ExternalLink style={[globalStyles.text, globalStyles.linkText]} url={privacy}/>
                         </View>
                     </View>
                     {!agree ? (
@@ -136,8 +147,8 @@ const Register = ({navigation, setUser}) => {
                     <Pressable style={{marginTop: 50}}
                                onPress={() => navigation.navigate('Login')}>
                         <View>
-                            <Text style={styles.text}>Already have an account?</Text>
-                            <Text style={{...styles.text, ...styles.linkText, marginTop:10}}>Log in here!</Text>
+                            <Text style={globalStyles.text}>Already have an account?</Text>
+                            <Text style={[globalStyles.text, globalStyles.linkText, {marginTop:10}]}>Log in here!</Text>
                         </View>
                     </Pressable>
 
@@ -195,17 +206,6 @@ const styles = StyleSheet.create({
     },
     underlineTextStyle: {
         textDecorationLine: 'underline',
-    },
-    linkText: {
-        color: '#21AC8B',
-        borderBottomWidth: 1,
-        borderBottomColor: '#21AC8B',
-    },
-    text:{
-        fontSize: 16,
-        alignItems: "center",
-        alignSelf: "center",
-
     },
     reg_button: {
         flexDirection: "row",

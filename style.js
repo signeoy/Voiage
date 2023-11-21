@@ -40,7 +40,16 @@ const globalStyles = StyleSheet.create({
     gradient: {
         flex: 0,
     },
-
+    linkText: {
+        color: '#21AC8B',
+        borderBottomWidth: 1,
+        borderBottomColor: '#21AC8B',
+    },
+    text:{
+        fontSize: 16,
+        alignItems: "center",
+        alignSelf: "center",
+    },
     // Add more global styles as needed
 });
 

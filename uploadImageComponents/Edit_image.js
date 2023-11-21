@@ -103,7 +103,8 @@ const Edit_image = () => {
     const handleRemove = () => {
         setImageExists(false);
         setImgURL("");
-        setImage(null);
+        editImage(path, imgURL);
+        navigation.goBack();
     }
 
     useEffect(() => {

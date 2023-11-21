@@ -14,20 +14,20 @@ import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import {auth, db} from "../firebaseConfig"
 import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where, setDoc} from "firebase/firestore"
 
-import Journal_entry_print from "./Journal_entry_print";
 import {useRoute} from "@react-navigation/native";
 import * as ImagePicker from "expo-image-picker";
 import {uploadImageToFirebase} from "./uploadToStorage";
+import { useNavigation } from '@react-navigation/native';
 
 // scripts
 
-const Edit_image = ({navigation}) => {
-
+const Edit_image = () => {
+    const navigation = useNavigation();
     const user = auth.currentUser;
     const userId = user.uid; // Retrieve the user ID
 
     const route = useRoute();
-    const { path } = route.params || {};
+    const { path, previousURL } = route.params || {};
 
 
     const [image, setImage] = useState(null);
@@ -75,7 +75,6 @@ const Edit_image = ({navigation}) => {
             if (imageExists) {
                 console.log("image exists")
                 await uploadImage();
-                navigation.navigate('Journal Editor', { userId });
             } else {
                 console.log("image does NOT exist")
                 await editImage(path, imgURL);
@@ -87,20 +86,32 @@ const Edit_image = ({navigation}) => {
     }
 
     const editImage = async (path, imgURL) => {
+        console.log("Edit image running with path", path);
         try {
             console.log("image url, img: ", imgURL);
-            const docRef = await addDoc(collection(path), {
+            const docRef = doc(db, ...path.split(','));  // Create a reference to the document
+            await updateDoc(docRef, {
                 img: imgURL
             });
-            //setJournalId(docRef.id);
-            console.log("Document written with ID: ", docRef.id);
+            console.log("Document updated successfully.");
             setImgURL("");
-            console.log('Document added successfully.');
         } catch (error) {
-            console.error('Error adding document: ', error);
+            console.error('Error updating document: ', error);
         }
     };
 
+    const handleRemove = () => {
+        setImageExists(false);
+        setImgURL("");
+        setImage(null);
+    }
+
+    useEffect(() => {
+        console.log("here is an image", previousURL)
+        if (previousURL !== "") {
+            setImgURL(previousURL);
+        }
+    }, []);
 
     return (
         <ScrollView>
@@ -114,7 +125,7 @@ const Edit_image = ({navigation}) => {
                     <Text >Upload New Image</Text>
                 </Pressable>
                 <Pressable style={{marginTop: 10}}
-                           onPress={() => navigation.navigate('Register')}>
+                           onPress={handleRemove}>
                     <Text >Remove Image</Text>
                 </Pressable>
                 <Pressable style={{marginTop: 10}}

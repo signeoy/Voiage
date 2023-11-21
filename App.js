@@ -26,6 +26,9 @@ import Journal_editor from "./journalComponents/Journal_editor";
 import Journal_entry_create from "./journalEntryComponent/Journal_entry_create";
 import Journal_entry_page from "./journalEntryComponent/Journal_entry_page";
 
+import Edit_image from "./uploadImageComponents/Edit_image";
+
+
 
 import BottomTab from "./tabComponents/BottomTab";
 

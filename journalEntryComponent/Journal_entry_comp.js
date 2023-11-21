@@ -37,7 +37,6 @@ const Journal_entry_comp = (props) => {
                 await updateDoc(todoRef, {
                     title: entryTitle,
                     text: entryText,
-                    // Add other fields to update as needed
                 });
                 setIsEditing(false);
                 props.getEntryList();

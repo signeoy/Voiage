@@ -94,13 +94,13 @@ const Journal_comp = (props) => {
                                 />
                             </View>
                             {props.img !== "" ? (
-                                <View>
+                                <Pressable onPress={navigation.navigate('Edit_image', { path: 'db,"users",userId, "Journal", journal.id, "entry"'})}>
                                     <Image
                                         source={{uri: props.img}}
                                         style={{width: 200, height: 200}}
                                         onError={(error) => console.log("Error loading image")}
                                     />
-                                </View>
+                                </Pressable>
                             ): null}
                         </View>
 

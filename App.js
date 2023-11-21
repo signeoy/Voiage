@@ -233,6 +233,18 @@ function AddEntryScreen({ navigation }) {
       </View>
   );
 }
+
+function EditImageScreen({ navigation }) {
+
+    return (
+        <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+
+            <Edit_image navigation={navigation}/>
+            <BottomTab navigation={navigation}/>
+
+        </View>
+    );
+}
 function JournalEditorScreen({ navigation }) {
 
   return (
@@ -266,6 +278,7 @@ function MyStack() {
 
         <Stack.Screen name="Add Journal" component={AddJournalScreen} />
         <Stack.Screen name="Add Entry" component={AddEntryScreen} />
+        <Stack.Screen name="Edit Image" component={EditImageScreen} />
 
         <Stack.Screen name="Journal Editor" component={JournalEditorScreen} />
       </Stack.Navigator>

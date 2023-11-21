@@ -121,11 +121,11 @@ const Register = ({navigation, setUser}) => {
                     />
                     {/*<Privacy/>*/}
                     <View style={{marginTop: 20}}>
-                        <View style={{...styles.checkboxContainer, marginLeft: 35, marginTop:10}}>
+                        <View style={{...styles.checkboxContainer, marginLeft: '3%', marginTop:10}}>
                             <TouchableOpacity style={styles.checkbox} onPress={toggleAgree}>
                                 {agree ? <Text style={styles.checkmark}>✓</Text> : null}
                             </TouchableOpacity>
-                            <Text style={[globalStyles.text, {fontSize:15}]}>I accept the </Text>
+                            <Text style={[globalStyles.text, {fontSize:20}]}>I accept the </Text>
                             <ExternalLink style={[globalStyles.text, globalStyles.linkText]} url={privacy}/>
                         </View>
                     </View>

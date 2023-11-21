@@ -124,7 +124,8 @@ function SettingsScreen({ navigation }) {
             <Image
                 style={globalStyles.logo}
                 source={require('./assets/Headerlogo_text.png')} />
-                <View>
+                <View style={[globalStyles.settingButton, {marginVertical:60}]}>
+                    <AntDesign name="Safety" size={24} color="black" style={{marginRight:10}}/>
                     <ExternalLink url={privacy}/>
 
                 </View>

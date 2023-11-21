@@ -26,9 +26,6 @@ const Journal_entry_page = ({navigation, profileId}) => {
     const user = auth.currentUser;
     const userId = user.uid; // Retrieve the user ID
 
-
-
-
     return (
         <ScrollView>
             {journal.img !== "" ? (
@@ -61,7 +58,6 @@ const Journal_entry_page = ({navigation, profileId}) => {
         </ScrollView>
 
     );
-
 }
 
 

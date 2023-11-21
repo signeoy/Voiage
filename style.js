@@ -73,7 +73,7 @@ const globalStyles = StyleSheet.create({
         borderBottomColor: '#21AC8B',
     },
     text:{
-        fontSize: 16,
+        fontSize: 20,
         alignItems: "center",
         alignSelf: "center",
     },

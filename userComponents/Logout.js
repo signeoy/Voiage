@@ -1,12 +1,14 @@
 import {signOut, deleteUser} from "firebase/auth";
-import {auth} from "../firebaseConfig";
+import {auth, db} from "../firebaseConfig";
 
 import React, { useState } from 'react';
-import {View, Text, StyleSheet, SafeAreaView, TouchableOpacity, Image} from 'react-native';
+import {View, Text, StyleSheet, SafeAreaView, TouchableOpacity, Image, Alert} from 'react-native';
+import {collection, deleteDoc, doc, getDoc, getDocs, query, where} from "firebase/firestore";
 
 
 const Logout = ({navigation, setUser}) => {
     const user = auth.currentUser;
+    const userId = user.uid;
     const logoutUser = () => {
         signOut(auth).then(() => {
             // Sign-out successful.
@@ -18,10 +20,25 @@ const Logout = ({navigation, setUser}) => {
         });
     }
 
+    const handleDelete = () => {
+        Alert.alert(
+            'You are trying to delete your user',
+            '',
+            [
+                {
+                    text: 'Cancel',
+                    onPress: () => console.log('User canceled'),
+                    style: 'cancel',
+                },
+                { text: 'Confirm', onPress: () => deleteUserSubcollections() },
+            ],
+            { cancelable: false }
+        );
+    }
 
     const deleteAccount = async () => {
-        deleteUser(user).then(() => {
-            // User deleted.
+        deleteUser(user).then(async () => {
+            //user deleted, navigate to login screen
             navigation.navigate('Login')
         }).catch((error) => {
             // An error ocurred
@@ -29,12 +46,56 @@ const Logout = ({navigation, setUser}) => {
         });
     };
 
+    async function deleteUserSubcollections() {
+        try {
+            const userDocRef = doc(db, "users", userId);
+            const userDocSnapshot = await getDoc(userDocRef);
+
+            if (userDocSnapshot.exists()) {
+                const journalsCollectionRef = collection(userDocRef, "Journal");
+                const journalsQuerySnapshot = await getDocs(journalsCollectionRef);
+
+                const deleteOps = [];
+
+                journalsQuerySnapshot.forEach((journalDoc) => {
+                    const entriesCollectionRef = collection(journalDoc.ref, "entries");
+                    deleteOps.push(deleteCollection(entriesCollectionRef));
+                    deleteOps.push(deleteDoc(journalDoc.ref));
+                });
+
+                await Promise.all(deleteOps);
+                console.log('All journals and entries deleted successfully');
+                await deleteDoc(doc(db, "users", userId));
+                console.log('user document deleted successfully');
+                await deleteAccount()
+            } else {
+                console.log('User document not found');
+            }
+        } catch (error) {
+            console.error('Error deleting journals and entries:', error);
+        }
+    }
+
+// Helper function to delete an entire collection
+    async function deleteCollection(collectionRef) {
+        const querySnapshot = await getDocs(collectionRef);
+
+        const deleteOps = [];
+
+        querySnapshot.forEach((doc) => {
+            deleteOps.push(deleteDoc(doc.ref));
+        });
+
+        await Promise.all(deleteOps);
+    }
+
+
 
 
     return(
         <SafeAreaView style={styles.container}>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={deleteAccount}>
+                <TouchableOpacity style={styles.button} onPress={handleDelete}>
                     <Text style={styles.buttonText}>Delete User</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={logoutUser}>

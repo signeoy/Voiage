@@ -167,12 +167,12 @@ const styles = StyleSheet.create({
         flex: 1,
         margin: 10,
         fontSize: 17,
-        fontWeight: "500",
+        fontWeight: '500',
     },
     titleInput: {
         flex: 1,
         margin: 10,
         fontSize: 17,
-        fontWeight: "500",
+        fontWeight: '500',
     },
 });

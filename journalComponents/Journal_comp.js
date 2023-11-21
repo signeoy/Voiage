@@ -192,7 +192,6 @@ const styles = StyleSheet.create({
         flex: 1,
         margin: 10,
         fontSize: 17,
-        fontWeight: "500",
     },
     journal_btn: {
         width: "30%",

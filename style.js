@@ -3,6 +3,11 @@
 import { StyleSheet } from 'react-native';
 
 const globalStyles = StyleSheet.create({
+    screen: {
+        backgroundColor: '#CBE6E0',
+        flex: 1,
+        paddingBottom: 70
+    },
     container: {
         width: 238,
         height: 43.88,
@@ -39,6 +44,28 @@ const globalStyles = StyleSheet.create({
     },
     gradient: {
         flex: 0,
+        height: '100%',
+        width: '100%'
+    },
+    settingButton: {
+        borderWidth: 1, // Border width
+        borderColor: '#DBDBDB', // Border color
+        backgroundColor: '#FFF', // Background color
+        width: '100%', // Width (100%)
+        height: 50, // Height
+        flexShrink: 0, // Flex
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingLeft:10,
+    },
+    settingButton_text: {
+        color: '#000', // Text color
+        fontFamily: 'Roboto', // Font family
+        fontSize: 20, // Font size
+        fontStyle: 'normal', // Font style
+        lineHeight: 16 * 1.5,
+        alignItems: 'center',
+        marginLeft: 10
     },
     linkText: {
         color: '#21AC8B',
@@ -50,6 +77,7 @@ const globalStyles = StyleSheet.create({
         alignItems: "center",
         alignSelf: "center",
     },
+
     // Add more global styles as needed
 });
 

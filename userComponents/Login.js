@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Roboto', // Font family
         fontSize: 24, // Font size
         fontStyle: 'normal', // Font style
-        fontWeight: '400', // Font weight
+        fontWeight: "400", // Font weight
         lineHeight: 24 * 1.5, // Line height based on font size (adjust as needed)
         display: 'flex', // Not required in React Native, as it's the default behavior
         flexDirection: 'column', // Flex direction: column

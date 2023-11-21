@@ -31,9 +31,17 @@ const Journal_entry_page = ({navigation, profileId}) => {
 
     return (
         <ScrollView>
-
+            {journal.img !== "" ? (
+                <View style={{alignItems:"center"}}>
+                    <Image
+                        source={{uri: journal.img}}
+                        style={{width: 200, height: 200}}
+                        onError={(error) => console.log("Error loading image")}
+                    />
+                </View>
+            ): null}
             <View>
-                <View>
+                <View style={styles.container_title}>
                     <Text style={{...styles.title}}>{journal.title}</Text>
                     <Text style={{...styles.date}}>{journal.date}</Text>
                 </View>

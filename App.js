@@ -46,11 +46,11 @@ function HomeScreen({ navigation }) {
     return (
         <View style={globalStyles.screen}>
 
-            <Pressable onPress={() => navigation.navigate('My Favourites')}>
+           {/* <Pressable onPress={() => navigation.navigate('My Favourites')}>
                 <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
                     <Text style={styles.nav_button_text}>Favourites</Text>
                 </View>
-            </Pressable>
+            </Pressable>*/}
             <ScrollView >
                 <Profile navigation={navigation}/>
             </ScrollView>

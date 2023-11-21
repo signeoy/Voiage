@@ -19,8 +19,8 @@ const ProfileComp = (props) => {
         <View style={styles.container}>
 
             <Text style={styles.title}>{props.username}</Text>
-
-            {/* checked icon */}
+{/*
+             checked icon
             <Pressable onPress={() => setIsChecked(!isChecked)}>
                 {
                     isChecked ? (
@@ -29,7 +29,7 @@ const ProfileComp = (props) => {
                         <AntDesign name="checkcircleo" size={24} color="black" />
                     )
                 }
-            </Pressable>
+            </Pressable>*/}
 
 
         </View>

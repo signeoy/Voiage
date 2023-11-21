@@ -30,48 +30,32 @@ const Profile = ({navigation}) => {
 
     const getProfileList = async () => {
 
-        if (search == null || search === ""){
-            try {
-
-                const querySnapshot = await getDocs(query(collection(db,"users")));
-                const profiles = querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
-                console.log("profiles:", profiles); // log the todo items to check if they are being fetched correctly
-                setProfileList(profiles);
-            } catch (error) {
-                console.error("Error getting Profile list: ", error);
+        try{
+            let querySnapshot;
+            if (search == null || search === "") {
+                querySnapshot = await getDocs(query(collection(db,"users")));
+                //const profiles = querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
             }
-        }
-
-        else {
-            //console.log("search used: ", search);
-            try {
+            else {
                 const searchLowerCase = search.toLowerCase();
                 const startAtValue = searchLowerCase;
                 const endAtValue = searchLowerCase + "\uf8ff";
 
-                const querySnapshot = await getDocs(
+                querySnapshot = await getDocs(
                     query(
                         collection(db, "users"),
                         where("usernameLowerCase", ">=", startAtValue),
                         where("usernameLowerCase", "<=", endAtValue)
                     )
                 );
-
-
-                if (querySnapshot.size === 0) {
-                    console.log("query is empty");
-                }
-
-                const profiles = querySnapshot.docs.map((doc) => ({
-                    ...doc.data(),
-                    id: doc.id,
-                }));
-
-                setProfileList(profiles);
-            } catch (error) {
-                console.error("Error getting Profile list: ", error);
             }
+            const profiles = querySnapshot.docs
+                .filter((doc) => doc.id !== userId) // Exclude the logged-in user
+                .map((doc) => ({ ...doc.data(), id: doc.id }));
 
+            setProfileList(profiles);
+        } catch (error) {
+            console.error("Error getting Profile list: ", error);
         }
     };
 

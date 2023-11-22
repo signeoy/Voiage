@@ -56,6 +56,8 @@ const Journal_editor = ({navigation}) => {
         Promise.all(deleteOps).then(() => console.log('documents deleted'))
     }
 
+
+
     return (
         <ScrollView>
             <View>

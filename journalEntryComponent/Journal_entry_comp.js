@@ -1,12 +1,15 @@
 import {Button, Pressable, StyleSheet, Text, View, TextInput, Image} from "react-native";
 import React, { useState, useEffect } from "react";
 import { useRoute } from "@react-navigation/native";
-import { MaterialIcons } from "@expo/vector-icons";
+import {Entypo, MaterialIcons} from "@expo/vector-icons";
 import {collection, deleteDoc, doc, getDocs, updateDoc} from "firebase/firestore";
 import {auth, db} from "../firebaseConfig";
+import { useNavigation } from '@react-navigation/native';
 
 
 const Journal_entry_comp = (props) => {
+    const navigation = useNavigation();
+
     const [entryTitle, setEntryTitle] = useState(props.title);
     const [entryText, setEntryText] = useState(props.text);
 
@@ -37,7 +40,6 @@ const Journal_entry_comp = (props) => {
                 await updateDoc(todoRef, {
                     title: entryTitle,
                     text: entryText,
-                    // Add other fields to update as needed
                 });
                 setIsEditing(false);
                 props.getEntryList();
@@ -95,9 +97,18 @@ const Journal_entry_comp = (props) => {
                             </Pressable>
 
                             {isEditing && (
-                                <Pressable onPress={handleCancelButton}>
-                                    <MaterialIcons name="cancel" size={24} color="black" />
-                                </Pressable>
+                                <View>
+
+                                    <Pressable onPress={handleCancelButton}>
+                                        <MaterialIcons name="cancel" size={24} color="black" />
+                                    </Pressable>
+                                    {props.img === "" && (
+                                        <Pressable onPress={() => navigation.navigate('Edit Image', {  path: `users/${userId}/Journal/${props.journalId}/entry/${props.id}`, previousURL: ""})}>
+                                            <Entypo name="image-inverted" size={24} color="black" />
+                                        </Pressable>
+                                    )}
+                                </View>
+
                             )}
 
                             <Pressable onPress={deleteEntry}>
@@ -107,13 +118,25 @@ const Journal_entry_comp = (props) => {
                     </View>
 
                     {isEditing ? (
-                        <TextInput
-                            style={styles.title} // Use a different style for input fields
-                            value={entryText}
-                            onChangeText={text => setEntryText(text)}
-                            multiline={true} // Enable multiline input
-                            numberOfLines={6}
-                        />
+                            <View>
+                                <TextInput
+                                    style={styles.title} // Use a different style for input fields
+                                    value={entryText}
+                                    onChangeText={text => setEntryText(text)}
+                                    multiline={true} // Enable multiline input
+                                    numberOfLines={6}
+                                />
+                                {props.img !== "" ? (
+                                    <Pressable onPress={() => navigation.navigate('Edit Image', {  path: `users/${userId}/Journal/${props.journalId}/entry/${props.id}`, previousURL: ""})}>
+                                        <Image
+                                            source={{uri: props.img}}
+                                            style={{width: 320, height: 160}}
+                                            onError={(error) => console.log("Error loading image")}
+                                        />
+                                    </Pressable>
+                                ): null}
+                            </View>
+
                     ) : (
                         <View>
                             <Text style={styles.title}>{props.text}</Text>

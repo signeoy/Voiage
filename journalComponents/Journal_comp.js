@@ -7,6 +7,7 @@ import {db, auth} from "../firebaseConfig";
 import {Entypo, MaterialIcons} from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
 
+import {deleteCollection} from '../functions/firebaseDoc_functions'
 
 const Journal_comp = (props) => {
     const navigation = useNavigation();
@@ -53,7 +54,7 @@ const Journal_comp = (props) => {
     const deleteFunction = async () => {
         try{
             console.log("deletefunction running", props.id)
-            await deleteCollection();
+            await deleteCollection(`users/${userId}/Journal/${props.id}/entries`);
             await deleteDoc(doc(db, "users", userId, "Journal", props.id));
             props.getJournalList()
         } catch (e) {
@@ -61,18 +62,7 @@ const Journal_comp = (props) => {
         }
     }
 
-    async function deleteCollection() {
-        const q = query(collection(db, "users", userId, "Journal", props.id, "entry"));
-        const querySnapshot = await getDocs(q);
 
-        const deleteOps = [];
-
-        querySnapshot.forEach((doc) => {
-            deleteOps.push(deleteDoc(doc.ref));
-        });
-
-        Promise.all(deleteOps).then(() => console.log('documents deleted'))
-    }
 
 
     return (

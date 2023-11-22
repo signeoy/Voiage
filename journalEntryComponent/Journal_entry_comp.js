@@ -5,6 +5,7 @@ import {Entypo, MaterialIcons} from "@expo/vector-icons";
 import {collection, deleteDoc, doc, getDocs, updateDoc} from "firebase/firestore";
 import {auth, db} from "../firebaseConfig";
 import { useNavigation } from '@react-navigation/native';
+import {deleteCollection} from "../functions/firebaseDoc_functions";
 
 
 const Journal_entry_comp = (props) => {
@@ -62,19 +63,15 @@ const Journal_entry_comp = (props) => {
     };
 
 
-
     const deleteEntry = async () => {
-        try {
-            console.log("delete triggered", props.id)
-            const querySnapshot = await getDocs(collection(db,"users", userId, "Journal", props.journalId, "entry"));
-            for (const docSnap of querySnapshot.docs) {
-                await deleteDoc(doc(db,"users", userId, "Journal", props.journalId, "entry", props.id));
-            }
-            props.getEntryList();
-        } catch (error) {
-            console.error("Error deleting entry list: ", error);
+        try{
+            console.log("deletefunction running", props.id)
+            await deleteDoc(doc(db,"users", userId, "Journal", props.journalId, "entry", props.id));
+            props.getEntryList()
+        } catch (e) {
+            console.log("error trying to delete: ", e)
         }
-    };
+    }
 
     return (
         <View style={styles.container}>

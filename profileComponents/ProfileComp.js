@@ -4,6 +4,7 @@ import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import {auth, db} from "../firebaseConfig"
 import {doc, getDoc, deleteDoc, addDoc, collection, getDocs, query, where} from "firebase/firestore"
 import {useRoute} from "@react-navigation/native";
+import globalStyles from "../style";
 
 
 const ProfileComp = (props) => {
@@ -16,9 +17,9 @@ const ProfileComp = (props) => {
 
 
     return (
-        <View style={styles.container}>
+        <View style={globalStyles.profilebox}>
 
-            <Text style={styles.title}>{props.username}</Text>
+            <Text style={globalStyles.profilebox_text}>{props.username}</Text>
 {/*
              checked icon
             <Pressable onPress={() => setIsChecked(!isChecked)}>
@@ -40,17 +41,6 @@ const ProfileComp = (props) => {
 export default ProfileComp
 
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: "row",
-        backgroundColor: "#FFFFFF",
-        justifyContent: "space-between",
-        padding: 10,
-        alignItems: "center",
-        width: "80%",
-        alignSelf: "center",
-        borderRadius: 10,
-        marginVertical: 10,
-    },
     title: {
         flex: 1,
         margin: 10,

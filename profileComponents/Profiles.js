@@ -67,7 +67,7 @@ const Profile = ({navigation}) => {
             <TextInput
                 style={styles.input}
                 onChangeText={setSearch}
-                placeholder="Search for profiles..."
+                placeholder="Search for profiles... "
             />
             {/* Flatlist */}
             {profileList.length > 0 ? (

@@ -33,6 +33,8 @@ import globalStyles from "./style";
 import ExternalLink from "./userComponents/PrivacyPolicy";
 
 
+import { useFonts } from 'expo-font';
+
 
 const Stack = createStackNavigator();
 
@@ -213,6 +215,9 @@ function MyStack() {
 
 
 export default function App() {
+    const [fontsLoaded] = useFonts({
+        'Imprima-Regular': require('./assets/fonts/Imprima-Regular.ttf'),
+    });
 
   return (
 

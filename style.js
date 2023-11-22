@@ -77,6 +77,25 @@ const globalStyles = StyleSheet.create({
         alignItems: "center",
         alignSelf: "center",
     },
+    profilebox:{
+        flexDirection: "row",
+        backgroundColor: "#FFFFFF",
+        justifyContent: "space-between",
+        padding: 10,
+        alignItems: "center",
+        width: "100%",
+        alignSelf: "center",
+        borderColor: "#9D9D9D",
+        borderStyle: "solid",
+        borderWidth: 1,
+    },
+    profilebox_text:{
+        flexShrink: 0,
+        color: "#4D4D4D",
+        fontFamily: 'Imprima-Regular',
+        fontSize: 16,
+        fontStyle: 'normal',
+    }
 
     // Add more global styles as needed
 });

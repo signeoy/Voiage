@@ -133,17 +133,17 @@ const Journal_comp = (props) => {
 
                     <View style={{flexDirection: "row"}}>
                         <Pressable onPress={() => isEditing ? handleSaveButton() : handleEditButton()}>
-                            <MaterialIcons name={isEditing ? "save" : "edit"} size={24} color="black"/>
+                            <MaterialIcons name={isEditing ? "save" : "edit"} size={24} color="#00000091"/>
                         </Pressable>
 
                         {isEditing && (
                             <Pressable onPress={handleCancelButton}>
-                                <MaterialIcons name="cancel" size={24} color="black"/>
+                                <MaterialIcons name="cancel" size={24} color="#00000091"/>
                             </Pressable>
                         )}
 
                         <Pressable onPress={deleteFunction}>
-                            <MaterialIcons name="delete" size={24} color="black"/>
+                            <MaterialIcons name="delete" size={24} color="#00000091"/>
                         </Pressable>
                     </View>
 

@@ -82,20 +82,20 @@ const globalStyles = StyleSheet.create({
     profilebox:{
         flexDirection: "row",
         backgroundColor: "#FFFFFF",
-        justifyContent: "space-between",
-        padding: 10,
+        paddingLeft: 30,
         alignItems: "center",
         width: "100%",
         alignSelf: "center",
         borderColor: "#9D9D9D",
         borderStyle: "solid",
         borderWidth: 1,
+        height: 70
     },
     profilebox_text:{
         flexShrink: 0,
         color: "#4D4D4D",
         fontFamily: 'Imprima-Regular',
-        fontSize: 16,
+        fontSize: 19,
         fontStyle: 'normal',
     },
     topnavlogo:{

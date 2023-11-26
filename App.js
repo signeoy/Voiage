@@ -203,7 +203,7 @@ function MyStack() {
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerLeft: null, headerShown: false }}/>
         <Stack.Screen name="Register" component={RegisterScreen} options={{ headerLeft: null, headerShown: false }}/>
 
-        <Stack.Screen name="Home" component={HomeScreen} options={{
+        <Stack.Screen name="Home" component={HomeScreen} options={{ headerLeft: null,
             headerStyle: {
                 backgroundColor: '#dff7f2',
                 elevation: 10, // Adjust the elevation to change the shadow effect
@@ -212,7 +212,6 @@ function MyStack() {
                 shadowOpacity: 10, // Shadow opacity
                 shadowRadius: 10, // Shadow blur radius
                 height: 100,
-                headerLayoutPreset: 'center',
             },
             headerTitleStyle: {
                 alignItems: 'center',
@@ -232,7 +231,6 @@ function MyStack() {
                 shadowOpacity: 10, // Shadow opacity
                 shadowRadius: 10, // Shadow blur radius
                 height: 100,
-                headerLayoutPreset: 'center',
             },
             headerTitleStyle: {
                 alignItems: 'center',
@@ -249,7 +247,6 @@ function MyStack() {
                 shadowOpacity: 10, // Shadow opacity
                 shadowRadius: 10, // Shadow blur radius
                 height: 100,
-                headerLayoutPreset: 'center',
             },
             headerTitleStyle: {
                 alignItems: 'center',
@@ -266,7 +263,6 @@ function MyStack() {
                 shadowOpacity: 10, // Shadow opacity
                 shadowRadius: 10, // Shadow blur radius
                 height: 100,
-                headerLayoutPreset: 'center',
             },
             headerTitleStyle: {
                 alignItems: 'center',
@@ -287,7 +283,6 @@ function MyStack() {
                 shadowOpacity: 10, // Shadow opacity
                 shadowRadius: 10, // Shadow blur radius
                 height: 100,
-                headerLayoutPreset: 'center',
             },
             headerTitleStyle: {
                 alignItems: 'center',
@@ -304,7 +299,6 @@ function MyStack() {
                 shadowOpacity: 10, // Shadow opacity
                 shadowRadius: 10, // Shadow blur radius
                 height: 100,
-                headerLayoutPreset: 'center',
             },
             headerTitleStyle: {
                 alignItems: 'center',
@@ -322,7 +316,6 @@ function MyStack() {
                 shadowOpacity: 10, // Shadow opacity
                 shadowRadius: 10, // Shadow blur radius
                 height: 100,
-                headerLayoutPreset: 'center',
             },
             headerTitleStyle: {
                 alignItems: 'center',

@@ -18,6 +18,7 @@ import {useRoute} from "@react-navigation/native";
 
 // scripts
 import ProfileComp from "./ProfileComp";
+import globalStyles from "../style";
 
 const Profile = ({navigation}) => {
 
@@ -64,9 +65,9 @@ const Profile = ({navigation}) => {
     }, [search]);
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, {marginBottom:20}]}>
             <TextInput
-                style={styles.input}
+                style={[styles.input, {marginBottom:20}]}
                 onChangeText={setSearch}
                 placeholder="Search for profiles... "
             />
@@ -91,7 +92,7 @@ const Profile = ({navigation}) => {
             keyExtractor={(item) => item.id}
             />
             ) : (
-                <Text>
+                <Text style={[globalStyles.text,{marginTop: 20} ]}>
                     No users found
                 </Text>
                 // <ActivityIndicator />
@@ -115,15 +116,13 @@ const styles = StyleSheet.create({
         fontSize: 25,
         backgroundColor: "#FFFFFF",
         padding: 7,
-        width: "80%",
+        width: "90%",
         alignSelf: "center",
-        borderRadius: 10,
-
-        //automatically sticks to the bottom
+        borderRadius: 15,
         flexDirection: "row",
         borderStyle: "solid",
         margin: 1,
-        borderWidth: 2,
+        borderWidth: 1,
         borderColor: "#9DBBB5",
         marginTop:20,
         fontFamily: "Imprima-Regular",

@@ -62,6 +62,7 @@ const Profile = ({navigation}) => {
     useEffect(() => {
         getProfileList();
     }, [search]);
+
     return (
         <View style={styles.container}>
             <TextInput
@@ -117,12 +118,14 @@ const styles = StyleSheet.create({
         width: "80%",
         alignSelf: "center",
         borderRadius: 10,
+
         //automatically sticks to the bottom
         flexDirection: "row",
         borderStyle: "solid",
         margin: 1,
         borderWidth: 2,
         borderColor: "#9DBBB5",
-        marginTop:20
+        marginTop:20,
+        fontFamily: "Imprima-Regular",
     },
 });

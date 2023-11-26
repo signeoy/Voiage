@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     login_button_text:{
         color: '#FFF', // Text color
         textAlign: 'center', // Text alignment
-        fontFamily: 'Roboto', // Font family
+        fontFamily: "Imprima-Regular", // Font family
         fontSize: 24, // Font size
         fontStyle: 'normal', // Font style
         fontWeight: "400", // Font weight

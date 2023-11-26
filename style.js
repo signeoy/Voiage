@@ -95,8 +95,18 @@ const globalStyles = StyleSheet.create({
         fontFamily: 'Imprima-Regular',
         fontSize: 16,
         fontStyle: 'normal',
+    },
+    topnavlogo:{
+        marginTop: 10,
+        alignItems: "center",
+        alignSelf: "center",
+        width: 198,
+        height: 61.878,
+    },
+    container_topnav:{
+        justifyContent: 'center',
+        alignItems: 'center',
     }
-
     // Add more global styles as needed
 });
 

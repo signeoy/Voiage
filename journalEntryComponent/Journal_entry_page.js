@@ -18,7 +18,7 @@ import Journal_entry_print from "./Journal_entry_print";
 import {useRoute} from "@react-navigation/native";
 
 // scripts
-
+//andre personers profiler journal entry page. uten redigering og sånt.
 const Journal_entry_page = ({navigation, profileId}) => {
 
     const route = useRoute();
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
     },
     container_title:{
-        backgroundColor: "#fbccb3",
+        backgroundColor: "blue",
         width: "70%",
         height: 80,
         alignSelf: "center",

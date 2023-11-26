@@ -76,7 +76,7 @@ const MyProfilePage = ({navigation}) => {
 
                 </View>
                 <View style = {styles.profile_photo}>
-                    <Text>
+                    <Text style={{fontFamily: "Imprima-Regular"}}>
                         Profile{'\n'}photo here
                     </Text>
                 </View>
@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: '#6C6C6C',
         marginHorizontal: 5,
+        fontFamily: "Imprima-Regular",
     },
     profile_name:{
         fontSize: 30,
@@ -113,6 +114,7 @@ const styles = StyleSheet.create({
         color: '#000000B2',
         //fontWeight: 400,
         fontStyle: 'normal',
+        fontFamily: "Imprima-Regular",
     },
     profile_photo:{
         margin:30,
@@ -123,5 +125,6 @@ const styles = StyleSheet.create({
         borderColor:'#54BDA5',
         borderRadius: 20,
         backgroundColor: '#f3f3f3',
+
     }
 });

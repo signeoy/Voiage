@@ -5,6 +5,7 @@ import {useRoute} from "@react-navigation/native";
 import {collection, deleteDoc, doc, getDocs, updateDoc, getDoc, query} from "firebase/firestore";
 import {db, auth} from "../firebaseConfig";
 import {MaterialIcons} from "@expo/vector-icons";
+import globalStyles from "../style";
 
 const Journal_comp = (props) => {
     const [title, setTitle] = useState(props.title);
@@ -78,17 +79,18 @@ const Journal_comp = (props) => {
                         <View>
                             <View>
                                 <TextInput
-                                    style={styles.title}
+                                    style={globalStyles.journal_title}
                                     value={title}
                                     onChangeText={text => setTitle(text)}
                                 />
+                                <View style={globalStyles.line}></View>
                                 <TextInput
-                                    style={styles.title}
+                                    style={globalStyles.journal_date}
                                     value={date}
                                     onChangeText={text => setDate(text)}
                                 />
                                 <TextInput
-                                    style={styles.title}
+                                    style={globalStyles.journal_desc}
                                     value={desc}
                                     onChangeText={text => setDesc(text)}
                                 />
@@ -108,9 +110,10 @@ const Journal_comp = (props) => {
 
                             <View style={styles.container_with_img}>
                                 <View>
-                                    <Text style={styles.title}>{props.title}</Text>
-                                    <Text style={styles.title}>{props.date}</Text>
-                                    <Text style={styles.title}>{props.desc}</Text>
+                                    <Text style={globalStyles.journal_title}>{props.title}</Text>
+                                    <View style={globalStyles.line}></View>
+                                    <Text style={globalStyles.journal_date}>{props.date}</Text>
+                                    <Text style={globalStyles.journal_desc}>{props.desc}</Text>
                                 </View>
                                 {props.img !== "" ? (
                                     <View>
@@ -156,16 +159,18 @@ const Journal_comp = (props) => {
                             />
                         </View>
                         <View>
-                            <Text style={styles.title}>{props.title}</Text>
-                            <Text style={styles.title}>{props.date}</Text>
-                            <Text style={styles.title}>{props.desc}</Text>
+                            <Text style={globalStyles.journal_title}>{props.title}</Text>
+                            <View style={globalStyles.line}></View>
+                            <Text style={globalStyles.journal_date}>{props.date}</Text>
+                            <Text style={globalStyles.journal_desc}>{props.desc}</Text>
                         </View>
                     </View>
                 ) : (
                     <View>
-                        <Text style={styles.title}>{props.title}</Text>
-                        <Text style={styles.title}>{props.date}</Text>
-                        <Text style={styles.title}>{props.desc}</Text>
+                        <Text style={globalStyles.journal_title}>{props.title}</Text>
+                        <View style={globalStyles.line}></View>
+                        <Text style={globalStyles.journal_date}>{props.date}</Text>
+                        <Text style={globalStyles.journal_desc}>{props.desc}</Text>
                     </View>
                 )
 
@@ -187,11 +192,6 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         borderRadius: 10,
         marginVertical: 10,
-    },
-    title: {
-        flex: 1,
-        margin: 10,
-        fontSize: 17,
     },
     journal_btn: {
         width: "30%",

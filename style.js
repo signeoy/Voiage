@@ -108,6 +108,39 @@ const globalStyles = StyleSheet.create({
     container_topnav:{
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    journal_title:{
+        fontFamily: "Imprima-Regular",
+        flex: 1,
+        marginLeft: 10,
+        fontSize: 20,
+        color: '#000',
+        fontStyle: 'normal',
+        fontWeight: "400",
+    },
+    journal_date:{
+        color: '#00000080',
+        fontFamily: "Imprima-Regular",
+        flex: 1,
+        fontSize: 12,
+        fontWeight: "400",
+        marginLeft:10,
+    },
+    journal_desc:{
+        fontFamily: "Imprima-Regular",
+        flex: 1,
+        margin: 10,
+        fontSize: 14,
+        color: '#000',
+        fontStyle: 'normal',
+        fontWeight: "400",
+    },
+    line:{
+        width:'50%',
+        height:3,
+        backgroundColor: '#21AC8B',
+        marginLeft: 10,
+        marginVertical:5,
     }
     // Add more global styles as needed
 });

@@ -32,7 +32,7 @@ const Login = ({navigation, setUser}) => {
 
     return (
         <LinearGradient
-            colors={['#CAE6E0', '#F5F5F5']}
+            colors={['#AAE8DB', '#F5F5F5']}
             style={globalStyles.gradient}>
             <ScrollView contentContainerStyle={styles.container}>
                 <View>

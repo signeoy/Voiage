@@ -254,7 +254,8 @@ const styles = StyleSheet.create({
   nav_button_text:{
     fontSize: 30,
     marginLeft: 20,
-    color: 'rgba(0, 0, 0, 0.7)'
+    color: 'rgba(0, 0, 0, 0.7)',
+    fontFamily: 'Imprima-Regular'
   },
 
   scroll_container: {

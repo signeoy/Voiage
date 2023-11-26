@@ -185,7 +185,8 @@ const styles = StyleSheet.create({
     },
     agreeText: {
         fontSize: 16,
-        alignItems: "center"
+        alignItems: "center",
+        fontFamily: "Imprima-Regular",
     },
     fixToText: {
         flexDirection: 'row',
@@ -196,13 +197,16 @@ const styles = StyleSheet.create({
     inputs: {
         //flexDirection: "row",
         marginTop: "auto",
+        fontFamily: "Imprima-Regular",
     },
     baseText: {
-        fontFamily: 'Cochin',
+        fontFamily: "Imprima-Regular",
+
     },
     titleText: {
         fontSize: 20,
         fontWeight: 'bold',
+        fontFamily: "Imprima-Regular",
     },
     underlineTextStyle: {
         textDecorationLine: 'underline',
@@ -223,7 +227,7 @@ const styles = StyleSheet.create({
     reg_button_text:{
         color: '#FFF', // Text color
         textAlign: 'center', // Text alignment
-        fontFamily: 'Roboto', // Font family
+        fontFamily: "Imprima-Regular",
         fontSize: 24, // Font size
         fontStyle: 'normal', // Font style
         lineHeight: 24 * 1.5, // Line height based on font size (adjust as needed)

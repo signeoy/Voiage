@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
     tabButtonText: {
         fontSize: 12,
         marginTop: 5,
+        fontFamily: "Imprima-Regular"
     },
 
 });

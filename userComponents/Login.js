@@ -113,11 +113,13 @@ const styles = StyleSheet.create({
         color: '#21AC8B',
         borderBottomWidth: 1,
         borderBottomColor: '#21AC8B',
+        fontFamily: "Imprima-Regular",
     },
     text:{
         fontSize: 16,
         alignItems: "center",
-        alignSelf: "center"
+        alignSelf: "center",
+        fontFamily: "Imprima-Regular",
     },
 });
 

@@ -30,7 +30,7 @@ const globalStyles = StyleSheet.create({
         borderColor: "#00000029",
         borderWidth: 1,
         backgroundColor: "#F1F1F1",
-        fontFamily: "Roboto",
+        fontFamily: "Imprima-Regular",
         paddingHorizontal: 10,
         marginTop: 11,
     },
@@ -60,22 +60,24 @@ const globalStyles = StyleSheet.create({
     },
     settingButton_text: {
         color: '#000', // Text color
-        fontFamily: 'Roboto', // Font family
         fontSize: 20, // Font size
         fontStyle: 'normal', // Font style
         lineHeight: 16 * 1.5,
         alignItems: 'center',
-        marginLeft: 10
+        marginLeft: 10,
+        fontFamily: "Imprima-Regular",
     },
     linkText: {
         color: '#21AC8B',
         borderBottomWidth: 1,
         borderBottomColor: '#21AC8B',
+        fontFamily: "Imprima-Regular",
     },
     text:{
         fontSize: 20,
         alignItems: "center",
         alignSelf: "center",
+        fontFamily: "Imprima-Regular",
     },
     profilebox:{
         flexDirection: "row",

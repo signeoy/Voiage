@@ -5,6 +5,7 @@ import globalStyles from '../style';
 import {auth} from "../firebaseConfig";
 import {signInWithEmailAndPassword} from "firebase/auth";
 import {LinearGradient} from "expo-linear-gradient";
+import { useFonts } from 'expo-font';
 
 const Login = ({navigation, setUser}) => {
     const [email, setEmail] = useState("test@uia.no");
@@ -66,8 +67,8 @@ const Login = ({navigation, setUser}) => {
                 <Pressable style={{marginTop: 80}}
                     onPress={() => navigation.navigate('Register')}>
                     <View>
-                        <Text style={styles.text}>Dont have an account?</Text>
-                        <Text style={{...styles.text, ...styles.linkText, marginTop:10}}>Sign up here!</Text>
+                        <Text style={globalStyles.text}>Dont have an account?</Text>
+                        <Text style={[globalStyles.text, globalStyles.linkText, {marginTop:10}]}>Sign up here!</Text>
                     </View>
                 </Pressable>
             </ScrollView>

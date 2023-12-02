@@ -77,24 +77,22 @@ const Journal_comp = (props) => {
                 <View>
                     {isEditing ? (
                         <View>
-                            <View>
-                                <TextInput
-                                    style={globalStyles.journal_title}
-                                    value={title}
-                                    onChangeText={text => setTitle(text)}
-                                />
-                                <View style={globalStyles.line}></View>
-                                <TextInput
-                                    style={globalStyles.journal_date}
-                                    value={date}
-                                    onChangeText={text => setDate(text)}
-                                />
-                                <TextInput
-                                    style={globalStyles.journal_desc}
-                                    value={desc}
-                                    onChangeText={text => setDesc(text)}
-                                />
-                            </View>
+                            <TextInput
+                                style={globalStyles.journal_title}
+                                value={title}
+                                onChangeText={text => setTitle(text)}
+                            />
+                            <View style={globalStyles.line}></View>
+                            <TextInput
+                                style={globalStyles.journal_date}
+                                value={date}
+                                onChangeText={text => setDate(text)}
+                            />
+                            <TextInput
+                                style={globalStyles.journal_desc}
+                                value={desc}
+                                onChangeText={text => setDesc(text)}
+                            />
                             {props.img !== "" ? (
                                 <View>
                                     <Image
@@ -151,24 +149,21 @@ const Journal_comp = (props) => {
             ) : (
                 props.img !== "" ? (
                     <View>
-                        <View>
-                            <Image
-                                source={{ uri: props.img }}
-                                style={{ width: 200, height: 200 }}
-                                onError={(error) => console.log("Error loading image")}
-                            />
-                        </View>
-                        <View>
-                            <Text style={globalStyles.journal_title}>{props.title}</Text>
-                            <View style={globalStyles.line}></View>
-                            <Text style={globalStyles.journal_date}>{props.date}</Text>
-                            <Text style={globalStyles.journal_desc}>{props.desc}</Text>
-                        </View>
-                    </View>
-                ) : (
-                    <View>
+                        <Image
+                            source={{ uri: props.img }}
+                            style={{ width: 200, height: 200 }}
+                            onError={(error) => console.log("Error loading image")}
+                        />
+
                         <Text style={globalStyles.journal_title}>{props.title}</Text>
                         <View style={globalStyles.line}></View>
+                        <Text style={globalStyles.journal_date}>{props.date}</Text>
+                        <Text style={globalStyles.journal_desc}>{props.desc}</Text>
+                    </View>
+                ) : (
+                    <View style={{width:'100%'}}>
+                        <Text style={globalStyles.journal_title}>{props.title}</Text>
+                        <View style={[globalStyles.line, {width: '100%'}]}></View>
                         <Text style={globalStyles.journal_date}>{props.date}</Text>
                         <Text style={globalStyles.journal_desc}>{props.desc}</Text>
                     </View>

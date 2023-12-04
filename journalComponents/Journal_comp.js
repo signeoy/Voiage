@@ -4,9 +4,17 @@ import {useRoute} from "@react-navigation/native";
 
 import {collection, deleteDoc, doc, getDocs, updateDoc, getDoc, query} from "firebase/firestore";
 import {db, auth} from "../firebaseConfig";
-import {MaterialIcons} from "@expo/vector-icons";
+
+import globalStyles from "../style";
+
+import {Entypo, MaterialIcons} from "@expo/vector-icons";
+import { useNavigation } from '@react-navigation/native';
+
 
 const Journal_comp = (props) => {
+    const navigation = useNavigation();
+
+
     const [title, setTitle] = useState(props.title);
     const [date, setDate] = useState(props.date);
     const [desc, setDesc] = useState(props.desc);
@@ -28,7 +36,6 @@ const Journal_comp = (props) => {
                 title: title,
                 date: date,
                 desc: desc
-                // Add other fields to update as needed
             });
             setIsEditing(false);
             props.getJournalList();
@@ -70,53 +77,54 @@ const Journal_comp = (props) => {
         Promise.all(deleteOps).then(() => console.log('documents deleted'))
     }
 
+
     return (
         <View style={styles.container}>
             {userId === props.profileId ? (
                 <View>
                     {isEditing ? (
                         <View>
-                            <View>
-                                <TextInput
-                                    style={styles.title}
-                                    value={title}
-                                    onChangeText={text => setTitle(text)}
-                                />
-                                <TextInput
-                                    style={styles.title}
-                                    value={date}
-                                    onChangeText={text => setDate(text)}
-                                />
-                                <TextInput
-                                    style={styles.title}
-                                    value={desc}
-                                    onChangeText={text => setDesc(text)}
-                                />
-                            </View>
+                            <TextInput
+                                style={globalStyles.journal_title}
+                                value={title}
+                                onChangeText={text => setTitle(text)}
+                            />
+                            <View style={globalStyles.line}></View>
+                            <TextInput
+                                style={globalStyles.journal_date}
+                                value={date}
+                                onChangeText={text => setDate(text)}
+                            />
+                            <TextInput
+                                style={globalStyles.journal_desc}
+                                value={desc}
+                                onChangeText={text => setDesc(text)}
+                            />
                             {props.img !== "" ? (
-                                <View>
+                                <Pressable onPress={() => navigation.navigate('Edit Image', {  path: `users/${userId}/Journal/${props.id}`, previousURL: props.img})}>
                                     <Image
                                         source={{uri: props.img}}
-                                        style={{width: 200, height: 200}}
+                                        style={{width: 200, height: 100}}
                                         onError={(error) => console.log("Error loading image")}
                                     />
-                                </View>
+                                </Pressable>
                             ): null}
                         </View>
 
                     ) : (
 
                             <View style={styles.container_with_img}>
-                                <View>
-                                    <Text style={styles.title}>{props.title}</Text>
-                                    <Text style={styles.title}>{props.date}</Text>
-                                    <Text style={styles.title}>{props.desc}</Text>
+                                <View style={{width:'100%'}}>
+                                    <Text style={globalStyles.journal_title}>{props.title}</Text>
+                                    <View style={globalStyles.line}></View>
+                                    <Text style={globalStyles.journal_date}>{props.date}</Text>
+                                    <Text style={globalStyles.journal_desc}>{props.desc}</Text>
                                 </View>
                                 {props.img !== "" ? (
                                     <View>
                                         <Image
                                             source={{uri: props.img}}
-                                            style={{width: 200, height: 200}}
+                                            style={{width: 200, height: 100}}
                                             onError={(error) => console.log("Error loading image")}
                                         />
                                     </View>
@@ -127,45 +135,54 @@ const Journal_comp = (props) => {
 
                     )}
 
-
-                    <View style={{flexDirection: "row"}}>
+                    <View style={[styles.icons, {flexDirection: "row", marginRight:3}]}>
                         <Pressable onPress={() => isEditing ? handleSaveButton() : handleEditButton()}>
-                            <MaterialIcons name={isEditing ? "save" : "edit"} size={24} color="black"/>
+                            <MaterialIcons name={isEditing ? "save" : "edit"} size={20} color="#00000091"/>
                         </Pressable>
 
                         {isEditing && (
-                            <Pressable onPress={handleCancelButton}>
-                                <MaterialIcons name="cancel" size={24} color="black"/>
-                            </Pressable>
+
+                            <View>
+                                <Pressable onPress={handleCancelButton}>
+                                    <MaterialIcons name="cancel" size={20} color="#00000091"/>
+                                </Pressable>
+                                {props.img === "" && (
+                                    <Pressable onPress={() => navigation.navigate('Edit Image', {  path: `users/${userId}/Journal/${props.id}`, previousURL: ""})}>
+                                        <Entypo name="image-inverted" size={20} color="#00000091" />
+                                    </Pressable>
+                                )}
+
+                            </View>
+
                         )}
 
                         <Pressable onPress={deleteFunction}>
-                            <MaterialIcons name="delete" size={24} color="black"/>
+                            <MaterialIcons name="delete" size={20} color="#00000091"/>
                         </Pressable>
+
                     </View>
 
                 </View>
             ) : (
                 props.img !== "" ? (
                     <View>
-                        <View>
-                            <Image
-                                source={{ uri: props.img }}
-                                style={{ width: 200, height: 200 }}
-                                onError={(error) => console.log("Error loading image")}
-                            />
-                        </View>
-                        <View>
-                            <Text style={styles.title}>{props.title}</Text>
-                            <Text style={styles.title}>{props.date}</Text>
-                            <Text style={styles.title}>{props.desc}</Text>
-                        </View>
+                        <Image
+                            source={{ uri: props.img }}
+                            style={{ width: 200, height: 100 }}
+                            onError={(error) => console.log("Error loading image")}
+                        />
+
+                        <Text style={globalStyles.journal_title}>{props.title}</Text>
+                        <View style={globalStyles.line}></View>
+                        <Text style={globalStyles.journal_date}>{props.date}</Text>
+                        <Text style={globalStyles.journal_desc}>{props.desc}</Text>
                     </View>
                 ) : (
-                    <View>
-                        <Text style={styles.title}>{props.title}</Text>
-                        <Text style={styles.title}>{props.date}</Text>
-                        <Text style={styles.title}>{props.desc}</Text>
+                    <View style={{width:'100%'}}>
+                        <Text style={globalStyles.journal_title}>{props.title}</Text>
+                        <View style={[globalStyles.line, {width: '100%'}]}></View>
+                        <Text style={globalStyles.journal_date}>{props.date}</Text>
+                        <Text style={globalStyles.journal_desc}>{props.desc}</Text>
                     </View>
                 )
 
@@ -188,11 +205,6 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginVertical: 10,
     },
-    title: {
-        flex: 1,
-        margin: 10,
-        fontSize: 17,
-    },
     journal_btn: {
         width: "30%",
 
@@ -201,5 +213,11 @@ const styles = StyleSheet.create({
         flexDirection:"row",
         width:"100%",
         alignContent:"space-between"
+    },
+    icons:{
+        width: '50%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-end'
     }
 });

@@ -5,6 +5,7 @@ import globalStyles from '../style';
 import {auth} from "../firebaseConfig";
 import {signInWithEmailAndPassword} from "firebase/auth";
 import {LinearGradient} from "expo-linear-gradient";
+import { useFonts } from 'expo-font';
 
 const Login = ({navigation, setUser}) => {
     const [email, setEmail] = useState("test@uia.no");
@@ -32,7 +33,7 @@ const Login = ({navigation, setUser}) => {
 
     return (
         <LinearGradient
-            colors={['#CAE6E0', '#F5F5F5']}
+            colors={['#AAE8DB', '#F5F5F5']}
             style={globalStyles.gradient}>
             <ScrollView contentContainerStyle={styles.container}>
                 <View>
@@ -66,8 +67,8 @@ const Login = ({navigation, setUser}) => {
                 <Pressable style={{marginTop: 80}}
                     onPress={() => navigation.navigate('Register')}>
                     <View>
-                        <Text style={styles.text}>Dont have an account?</Text>
-                        <Text style={{...styles.text, ...styles.linkText, marginTop:10}}>Sign up here!</Text>
+                        <Text style={globalStyles.text}>Dont have an account?</Text>
+                        <Text style={[globalStyles.text, globalStyles.linkText, {marginTop:10}]}>Sign up here!</Text>
                     </View>
                 </Pressable>
             </ScrollView>
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
     login_button_text:{
         color: '#FFF', // Text color
         textAlign: 'center', // Text alignment
-        fontFamily: 'Roboto', // Font family
+        fontFamily: "Imprima-Regular", // Font family
         fontSize: 24, // Font size
         fontStyle: 'normal', // Font style
         fontWeight: "400", // Font weight
@@ -113,11 +114,13 @@ const styles = StyleSheet.create({
         color: '#21AC8B',
         borderBottomWidth: 1,
         borderBottomColor: '#21AC8B',
+        fontFamily: "Imprima-Regular",
     },
     text:{
         fontSize: 16,
         alignItems: "center",
-        alignSelf: "center"
+        alignSelf: "center",
+        fontFamily: "Imprima-Regular",
     },
 });
 

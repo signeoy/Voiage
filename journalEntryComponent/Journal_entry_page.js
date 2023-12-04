@@ -16,9 +16,10 @@ import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, w
 
 import Journal_entry_print from "./Journal_entry_print";
 import {useRoute} from "@react-navigation/native";
+import globalStyles from "../style";
 
 // scripts
-
+//andre personers profiler journal entry page. uten redigering og sånt.
 const Journal_entry_page = ({navigation, profileId}) => {
 
     const route = useRoute();
@@ -26,31 +27,30 @@ const Journal_entry_page = ({navigation, profileId}) => {
     const user = auth.currentUser;
     const userId = user.uid; // Retrieve the user ID
 
-
-
-
     return (
-        <ScrollView>
-            {journal.img !== "" ? (
-                <View style={{alignItems:"center"}}>
-                    <Image
-                        source={{uri: journal.img}}
-                        style={{width: 200, height: 200}}
-                        onError={(error) => console.log("Error loading image")}
-                    />
-                </View>
-            ): null}
-            <View>
-                <View style={styles.container_title}>
-                    <Text style={{...styles.title}}>{journal.title}</Text>
-                    <Text style={{...styles.date}}>{journal.date}</Text>
-                </View>
-                <View style={styles.container_desc}>
-                    <Text >{journal.desc}</Text>
-                </View>
+        <ScrollView style={{flex:1}}>
+            <View style={globalStyles.thumbnailContainer}>
+                {journal.img !== "" ? (
+                    <View style={globalStyles.thumbnail}>
+                        <Image
+                            source={{uri: journal.img}}
+                            style={{width: '100%', height: '100%'}}
+                            resizeMode="cover"
+                            onError={(error) => console.log("Error loading image")}
+                        />
+                    </View>
+                ): null}
+                <View>
+                    <View style={globalStyles.entryTitleBox}>
+                        <Text style={{...styles.title}}>{journal.title}</Text>
+                        <Text style={{...styles.date}}>{journal.date}</Text>
+                    </View>
+                    <View style={styles.container_desc}>
+                        <Text >{journal.desc}</Text>
+                    </View>
 
+                </View>
             </View>
-
             <View>
                 <Journal_entry_print
                     navigation={navigation}
@@ -61,7 +61,6 @@ const Journal_entry_page = ({navigation, profileId}) => {
         </ScrollView>
 
     );
-
 }
 
 
@@ -82,15 +81,6 @@ const styles = StyleSheet.create({
     desc: {
         fontSize: 15,
         alignSelf: "center",
-    },
-    container_title:{
-        backgroundColor: "#fbccb3",
-        width: "70%",
-        height: 80,
-        alignSelf: "center",
-        alignContent: "space-between",
-        padding: 10,
-        flexDirection: "row"
     },
     container_desc:{
         width: "80%",

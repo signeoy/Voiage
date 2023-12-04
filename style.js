@@ -136,7 +136,7 @@ const globalStyles = StyleSheet.create({
         fontWeight: "400",
     },
     line:{
-        width:'100%',
+        width:'40%',
         height:3,
         backgroundColor: '#21AC8B',
         marginLeft: 10,

@@ -97,7 +97,7 @@ const Journal_comp = (props) => {
                                 <View>
                                     <Image
                                         source={{uri: props.img}}
-                                        style={{width: 200, height: 200}}
+                                        style={{width: 200, height: 100}}
                                         onError={(error) => console.log("Error loading image")}
                                     />
                                 </View>
@@ -107,7 +107,7 @@ const Journal_comp = (props) => {
                     ) : (
 
                             <View style={styles.container_with_img}>
-                                <View>
+                                <View style={{width:'100%'}}>
                                     <Text style={globalStyles.journal_title}>{props.title}</Text>
                                     <View style={globalStyles.line}></View>
                                     <Text style={globalStyles.journal_date}>{props.date}</Text>
@@ -117,7 +117,7 @@ const Journal_comp = (props) => {
                                     <View>
                                         <Image
                                             source={{uri: props.img}}
-                                            style={{width: 200, height: 200}}
+                                            style={{width: 200, height: 100}}
                                             onError={(error) => console.log("Error loading image")}
                                         />
                                     </View>
@@ -128,21 +128,21 @@ const Journal_comp = (props) => {
 
                     )}
 
-
-                    <View style={{flexDirection: "row"}}>
+                    <View style={[styles.icons, {flexDirection: "row", marginRight:3}]}>
                         <Pressable onPress={() => isEditing ? handleSaveButton() : handleEditButton()}>
-                            <MaterialIcons name={isEditing ? "save" : "edit"} size={24} color="#00000091"/>
+                            <MaterialIcons name={isEditing ? "save" : "edit"} size={20} color="#00000091"/>
                         </Pressable>
 
                         {isEditing && (
                             <Pressable onPress={handleCancelButton}>
-                                <MaterialIcons name="cancel" size={24} color="#00000091"/>
+                                <MaterialIcons name="cancel" size={20} color="#00000091"/>
                             </Pressable>
                         )}
 
                         <Pressable onPress={deleteFunction}>
-                            <MaterialIcons name="delete" size={24} color="#00000091"/>
+                            <MaterialIcons name="delete" size={20} color="#00000091"/>
                         </Pressable>
+
                     </View>
 
                 </View>
@@ -151,7 +151,7 @@ const Journal_comp = (props) => {
                     <View>
                         <Image
                             source={{ uri: props.img }}
-                            style={{ width: 200, height: 200 }}
+                            style={{ width: 200, height: 100 }}
                             onError={(error) => console.log("Error loading image")}
                         />
 
@@ -196,5 +196,11 @@ const styles = StyleSheet.create({
         flexDirection:"row",
         width:"100%",
         alignContent:"space-between"
+    },
+    icons:{
+        width: '50%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-end'
     }
 });

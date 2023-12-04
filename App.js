@@ -204,125 +204,40 @@ function MyStack() {
         <Stack.Screen name="Register" component={RegisterScreen} options={{ headerLeft: null, headerShown: false }}/>
 
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerLeft: null,
-            headerStyle: {
-                backgroundColor: '#dff7f2',
-                elevation: 10, // Adjust the elevation to change the shadow effect
-                shadowColor: '#000', // Shadow color
-                shadowOffset: { width: 10, height: 10 }, // Shadow offset
-                shadowOpacity: 10, // Shadow opacity
-                shadowRadius: 10, // Shadow blur radius
-                height: 100,
-            },
-            headerTitleStyle: {
-                alignItems: 'center',
-                alignSelf: 'center',
-                justifyContent: 'center',
-                headerLayoutPreset: 'center',
-            }, headerTitle: props => <LogoTitle {...props} />,}} />
-
+            headerStyle: {...styles.header},
+            headerTitleStyle: {...styles.headerTitle},
+            headerTitle: props => <LogoTitle {...props} />,}}/>
 
         <Stack.Screen name="My Favourites" component={FavouriteScreen} options={{ headerLeft: null, headerShown: false }}/>
         <Stack.Screen name="Profile" component={ProfileScreen} options={{
-            headerStyle: {
-                backgroundColor: '#dff7f2',
-                elevation: 10, // Adjust the elevation to change the shadow effect
-                shadowColor: '#000', // Shadow color
-                shadowOffset: { width: 10, height: 10 }, // Shadow offset
-                shadowOpacity: 10, // Shadow opacity
-                shadowRadius: 10, // Shadow blur radius
-                height: 100,
-            },
-            headerTitleStyle: {
-                alignItems: 'center',
-                alignSelf: 'center',
-                justifyContent: 'center',
-                headerLayoutPreset: 'center',
-            }, headerTitle: props => <LogoTitle {...props} />,}}/>
+            headerStyle: {...styles.header},
+            headerTitleStyle: {...styles.headerTitle},
+            headerTitle: props => <LogoTitle {...props} />,}}/>
         <Stack.Screen name="My Profile" component={MyProfileScreen} options={{ headerLeft: null,
-            headerStyle: {
-                backgroundColor: '#dff7f2',
-                elevation: 10, // Adjust the elevation to change the shadow effect
-                shadowColor: '#000', // Shadow color
-                shadowOffset: { width: 10, height: 10 }, // Shadow offset
-                shadowOpacity: 10, // Shadow opacity
-                shadowRadius: 10, // Shadow blur radius
-                height: 100,
-            },
-            headerTitleStyle: {
-                alignItems: 'center',
-                alignSelf: 'center',
-                justifyContent: 'center',
-                headerLayoutPreset: 'center',
-            }, headerTitle: props => <LogoTitle {...props} />,}}/>
+            headerStyle: {...styles.header},
+            headerTitleStyle: {...styles.headerTitle},
+            headerTitle: props => <LogoTitle {...props} />,}}/>
         <Stack.Screen name="Journal" component={JournalScreen} options={{
-            headerStyle: {
-                backgroundColor: '#dff7f2',
-                elevation: 10, // Adjust the elevation to change the shadow effect
-                shadowColor: '#000', // Shadow color
-                shadowOffset: { width: 10, height: 10 }, // Shadow offset
-                shadowOpacity: 10, // Shadow opacity
-                shadowRadius: 10, // Shadow blur radius
-                height: 100,
-            },
-            headerTitleStyle: {
-                alignItems: 'center',
-                alignSelf: 'center',
-                justifyContent: 'center',
-                headerLayoutPreset: 'center',
-            }, headerTitle: props => <LogoTitle {...props} />,}}/>
+            headerStyle: {...styles.header},
+            headerTitleStyle: {...styles.headerTitle},
+            headerTitle: props => <LogoTitle {...props} />,}}/>
 
         <Stack.Screen name="Settings" component={SettingsScreen} options={{ headerLeft: null, headerShown: false }} />
 
 
         <Stack.Screen name="Add Journal" component={AddJournalScreen} options={{
-            headerStyle: {
-                backgroundColor: '#dff7f2',
-                elevation: 10, // Adjust the elevation to change the shadow effect
-                shadowColor: '#000', // Shadow color
-                shadowOffset: { width: 10, height: 10 }, // Shadow offset
-                shadowOpacity: 10, // Shadow opacity
-                shadowRadius: 10, // Shadow blur radius
-                height: 100,
-            },
-            headerTitleStyle: {
-                alignItems: 'center',
-                alignSelf: 'center',
-                justifyContent: 'center',
-                headerLayoutPreset: 'center',
-            }, headerTitle: props => <LogoTitle {...props} />,}}/>
+            headerStyle: {...styles.header},
+            headerTitleStyle: {...styles.headerTitle},
+            headerTitle: props => <LogoTitle {...props} />,}}/>
         <Stack.Screen name="Add Entry" component={AddEntryScreen} options={{
-            headerStyle: {
-                backgroundColor: '#dff7f2',
-                elevation: 10, // Adjust the elevation to change the shadow effect
-                shadowColor: '#000', // Shadow color
-                shadowOffset: { width: 10, height: 10 }, // Shadow offset
-                shadowOpacity: 10, // Shadow opacity
-                shadowRadius: 10, // Shadow blur radius
-                height: 100,
-            },
-            headerTitleStyle: {
-                alignItems: 'center',
-                alignSelf: 'center',
-                justifyContent: 'center',
-                headerLayoutPreset: 'center',
-            }, headerTitle: props => <LogoTitle {...props} />,}}/>
+            headerStyle: {...styles.header},
+            headerTitleStyle: {...styles.headerTitle},
+            headerTitle: props => <LogoTitle {...props} />,}}/>
 
         <Stack.Screen name="Journal Editor" component={JournalEditorScreen} options={{
-            headerStyle: {
-                backgroundColor: '#dff7f2',
-                elevation: 10, // Adjust the elevation to change the shadow effect
-                shadowColor: '#000', // Shadow color
-                shadowOffset: { width: 10, height: 10 }, // Shadow offset
-                shadowOpacity: 10, // Shadow opacity
-                shadowRadius: 10, // Shadow blur radius
-                height: 100,
-            },
-            headerTitleStyle: {
-                alignItems: 'center',
-                alignSelf: 'center',
-                justifyContent: 'center',
-                headerLayoutPreset: 'center',
-            }, headerTitle: props => <LogoTitle {...props} />,}} />
+            headerStyle: {...styles.header},
+            headerTitleStyle: {...styles.headerTitle},
+            headerTitle: props => <LogoTitle {...props} />,}} />
       </Stack.Navigator>
   );
 }
@@ -365,12 +280,13 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'rgba(0, 0, 0, 0.2)',
   },
-  nav_button_text:{
+    nav_button_text:{
     fontSize: 30,
     marginLeft: 20,
     color: 'rgba(0, 0, 0, 0.7)',
     fontFamily: 'Imprima-Regular'
-  },
+    },
+
 
   scroll_container: {
     paddingTop: 60,
@@ -378,4 +294,25 @@ const styles = StyleSheet.create({
     minHeight: '100%',
     paddingBottom: 40,
   },
+    header:{
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: 20,
+        paddingTop: 40, // Adjust as needed for top padding
+        paddingBottom: 10,
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5, // For Android elevation
+        backgroundColor: '#dff7f2',
+        shadowColor: '#000', // Shadow color
+        shadowOffset: { width: 0, height: 4 }, // Shadow offset
+        height: 100,
+    },
+    headerTitle:{
+        alignItems: 'center',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        headerLayoutPreset: 'center',
+    }
 });

@@ -116,12 +116,13 @@ const Journal_create = ({navigation}) => {
                     placeholder="Date"
                 />
                 <TextInput
-                    multiline
+                    multiline={true}
                     numberOfLines={3}
                     textAlign="top"
                     style={{...styles.input}}
                     onChangeText={setDescription}
                     placeholder="Description"
+
                 />
 
             </View>

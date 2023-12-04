@@ -44,11 +44,11 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         width: '100%',
         backgroundColor: '#e6f5f2',
-        elevation: 10, // Adjust the elevation to change the shadow effect
+        elevation: 8, // Adjust the elevation to change the shadow effect
         shadowColor: '#000', // Shadow color
-        shadowOffset: { width: 0, height: -100 }, // Shadow offset
-        shadowOpacity: 10, // Shadow opacity
-        shadowRadius: 10, // Shadow blur radius
+        shadowOffset: { width: 0, height: -4 }, // Shadow offset
+        shadowOpacity: 0.3, // Shadow opacity
+        shadowRadius: 8, // Shadow blur radius
         position: 'absolute',
         bottom: 0,
     },

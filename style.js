@@ -30,7 +30,7 @@ const globalStyles = StyleSheet.create({
         borderColor: "#00000029",
         borderWidth: 1,
         backgroundColor: "#F1F1F1",
-        fontFamily: "Roboto",
+        fontFamily: "Imprima-Regular",
         paddingHorizontal: 10,
         marginTop: 11,
     },
@@ -60,24 +60,116 @@ const globalStyles = StyleSheet.create({
     },
     settingButton_text: {
         color: '#000', // Text color
-        fontFamily: 'Roboto', // Font family
         fontSize: 20, // Font size
         fontStyle: 'normal', // Font style
         lineHeight: 16 * 1.5,
         alignItems: 'center',
-        marginLeft: 10
+        marginLeft: 10,
+        fontFamily: "Imprima-Regular",
     },
     linkText: {
         color: '#21AC8B',
         borderBottomWidth: 1,
         borderBottomColor: '#21AC8B',
+        fontFamily: "Imprima-Regular",
     },
     text:{
-        fontSize: 16,
+        fontSize: 20,
         alignItems: "center",
         alignSelf: "center",
+        fontFamily: "Imprima-Regular",
     },
+    profilebox:{
+        flexDirection: "row",
+        backgroundColor: "#FFFFFF",
+        paddingLeft: 30,
+        alignItems: "center",
+        width: "100%",
+        alignSelf: "center",
+        borderColor: "#9D9D9D",
+        borderStyle: "solid",
+        borderWidth: 1,
+        height: 70
+    },
+    profilebox_text:{
+        flexShrink: 0,
+        color: "#4D4D4D",
+        fontFamily: 'Imprima-Regular',
+        fontSize: 19,
+        fontStyle: 'normal',
+    },
+    topnavlogo:{
+        marginTop: 10,
+        alignItems: "center",
+        alignSelf: "center",
+        width: 198,
+        height: 61.878,
+    },
+    container_topnav:{
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    journal_title:{
+        fontFamily: "Imprima-Regular",
+        flex: 1,
+        marginLeft: 10,
+        fontSize: 20,
+        color: '#000',
+        fontStyle: 'normal',
+        fontWeight: "400",
+    },
+    journal_date:{
+        color: '#00000080',
+        fontFamily: "Imprima-Regular",
+        flex: 1,
+        fontSize: 12,
+        fontWeight: "400",
+        marginLeft:10,
+    },
+    journal_desc:{
+        fontFamily: "Imprima-Regular",
+        flex: 1,
+        margin: 10,
+        fontSize: 14,
+        color: '#000',
+        fontStyle: 'normal',
+        fontWeight: "400",
+    },
+    line:{
+        width:'40%',
+        height:2,
+        backgroundColor: '#21AC8B',
+        marginLeft: 10,
+        marginVertical:5,
+    },
+    thumbnail:{
+        width:'100%',
+        height: '100%',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        zIndex: 1
+    },
+    entryTitleBox:{
+        flexDirection: "row",
+        paddingLeft: 30,
+        alignItems: "center",
+        alignSelf: "center",
+        borderColor: "#9D9D9D",
+        borderStyle: "solid",
+        borderWidth: 1,
+        width: '80%',
+        height: '80%',
+        backgroundColor: 'lightgreen',
+        position: 'absolute',
+        top: '60%',
+        left: '10%',
+        zIndex: 2,
 
+    },
+    thumbnailContainer:{
+        height:'40%'
+    }
     // Add more global styles as needed
 });
 

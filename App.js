@@ -36,12 +36,22 @@ import globalStyles from "./style";
 import ExternalLink from "./userComponents/PrivacyPolicy";
 
 
+import { useFonts } from 'expo-font';
+
 
 const Stack = createStackNavigator();
 
 
 const privacy = 'https://voiage-oso-soy.blogspot.com/2023/11/privacy-policy.html';
 
+function LogoTitle() {
+    return (
+        <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center', width: '100%'}}>
+            <Image style={globalStyles.topnavlogo}
+                source={require('./assets/top_nav_logo.png')} />
+        </View>
+    );
+}
 
 function HomeScreen({ navigation }) {
 
@@ -49,11 +59,11 @@ function HomeScreen({ navigation }) {
     return (
         <View style={globalStyles.screen}>
 
-            <Pressable onPress={() => navigation.navigate('My Favourites')}>
+           {/* <Pressable onPress={() => navigation.navigate('My Favourites')}>
                 <View style={{ ...styles.nav_button, backgroundColor: "#FCF6BE" }}>
                     <Text style={styles.nav_button_text}>Favourites</Text>
                 </View>
-            </Pressable>
+            </Pressable>*/}
             <ScrollView >
                 <Profile navigation={navigation}/>
             </ScrollView>
@@ -127,7 +137,8 @@ function SettingsScreen({ navigation }) {
             <Image
                 style={globalStyles.logo}
                 source={require('./assets/Headerlogo_text.png')} />
-                <View>
+                <View style={[globalStyles.settingButton, {marginVertical:60}]}>
+                    <AntDesign name="Safety" size={24} color="black" style={{marginRight:10}}/>
                     <ExternalLink url={privacy}/>
 
                 </View>
@@ -207,27 +218,53 @@ function MyStack() {
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerLeft: null, headerShown: false }}/>
         <Stack.Screen name="Register" component={RegisterScreen} options={{ headerLeft: null, headerShown: false }}/>
 
-        <Stack.Screen name="Home" component={HomeScreen} options={{ headerLeft: null}} />
+        <Stack.Screen name="Home" component={HomeScreen} options={{ headerLeft: null,
+            headerStyle: {...styles.header},
+            headerTitleStyle: {...styles.headerTitle},
+            headerTitle: props => <LogoTitle {...props} />,}}/>
 
         <Stack.Screen name="My Favourites" component={FavouriteScreen} options={{ headerLeft: null, headerShown: false }}/>
-        <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="My Profile" component={MyProfileScreen} options={{ headerLeft: null}}/>
-        <Stack.Screen name="Journal" component={JournalScreen} />
+        <Stack.Screen name="Profile" component={ProfileScreen} options={{
+            headerStyle: {...styles.header},
+            headerTitleStyle: {...styles.headerTitle},
+            headerTitle: props => <LogoTitle {...props} />,}}/>
+        <Stack.Screen name="My Profile" component={MyProfileScreen} options={{ headerLeft: null,
+            headerStyle: {...styles.header},
+            headerTitleStyle: {...styles.headerTitle},
+            headerTitle: props => <LogoTitle {...props} />,}}/>
+        <Stack.Screen name="Journal" component={JournalScreen} options={{
+            headerStyle: {...styles.header},
+            headerTitleStyle: {...styles.headerTitle},
+            headerTitle: props => <LogoTitle {...props} />,}}/>
 
         <Stack.Screen name="Settings" component={SettingsScreen} options={{ headerLeft: null, headerShown: false }} />
 
+        <Stack.Screen name="Add Journal" component={AddJournalScreen} options={{
+            headerStyle: {...styles.header},
+            headerTitleStyle: {...styles.headerTitle},
+            headerTitle: props => <LogoTitle {...props} />,}}/>
+        <Stack.Screen name="Add Entry" component={AddEntryScreen} options={{
+            headerStyle: {...styles.header},
+            headerTitleStyle: {...styles.headerTitle},
+            headerTitle: props => <LogoTitle {...props} />,}}/>
 
-        <Stack.Screen name="Add Journal" component={AddJournalScreen} />
-        <Stack.Screen name="Add Entry" component={AddEntryScreen} />
+       
         <Stack.Screen name="Edit Image" component={EditImageScreen} />
 
-        <Stack.Screen name="Journal Editor" component={JournalEditorScreen} />
+
+        <Stack.Screen name="Journal Editor" component={JournalEditorScreen} options={{
+            headerStyle: {...styles.header},
+            headerTitleStyle: {...styles.headerTitle},
+            headerTitle: props => <LogoTitle {...props} />,}} />
       </Stack.Navigator>
   );
 }
 
 
 export default function App() {
+    const [fontsLoaded] = useFonts({
+        'Imprima-Regular': require('./assets/fonts/Imprima-Regular.ttf'),
+    });
 
   return (
 
@@ -261,11 +298,13 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'rgba(0, 0, 0, 0.2)',
   },
-  nav_button_text:{
+    nav_button_text:{
     fontSize: 30,
     marginLeft: 20,
-    color: 'rgba(0, 0, 0, 0.7)'
-  },
+    color: 'rgba(0, 0, 0, 0.7)',
+    fontFamily: 'Imprima-Regular'
+    },
+
 
   scroll_container: {
     paddingTop: 60,
@@ -273,4 +312,19 @@ const styles = StyleSheet.create({
     minHeight: '100%',
     paddingBottom: 40,
   },
+    header:{
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5, // For Android elevation
+        backgroundColor: '#dff7f2',
+        shadowColor: '#000', // Shadow color
+        shadowOffset: { width: 0, height: 4 }, // Shadow offset
+        height: 100,
+    },
+    headerTitle:{
+        alignItems: 'center',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        headerLayoutPreset: 'center',
+    }
 });

@@ -95,7 +95,7 @@ const Register = ({navigation, setUser}) => {
 
     return(
         <LinearGradient
-            colors={['#CAE6E0', '#F5F5F5']}
+            colors={['#AAE8DB', '#F5F5F5']}
             style={globalStyles.gradient}>
             <ScrollView>
                 <View>
@@ -121,11 +121,11 @@ const Register = ({navigation, setUser}) => {
                     />
                     {/*<Privacy/>*/}
                     <View style={{marginTop: 20}}>
-                        <View style={{...styles.checkboxContainer, marginLeft: 35, marginTop:10}}>
+                        <View style={{...styles.checkboxContainer, marginLeft: '3%', marginTop:10}}>
                             <TouchableOpacity style={styles.checkbox} onPress={toggleAgree}>
                                 {agree ? <Text style={styles.checkmark}>✓</Text> : null}
                             </TouchableOpacity>
-                            <Text style={[globalStyles.text, {fontSize:15}]}>I accept the </Text>
+                            <Text style={[globalStyles.text, {fontSize:20}]}>I accept the </Text>
                             <ExternalLink style={[globalStyles.text, globalStyles.linkText]} url={privacy}/>
                         </View>
                     </View>
@@ -185,7 +185,8 @@ const styles = StyleSheet.create({
     },
     agreeText: {
         fontSize: 16,
-        alignItems: "center"
+        alignItems: "center",
+        fontFamily: "Imprima-Regular",
     },
     fixToText: {
         flexDirection: 'row',
@@ -196,13 +197,16 @@ const styles = StyleSheet.create({
     inputs: {
         //flexDirection: "row",
         marginTop: "auto",
+        fontFamily: "Imprima-Regular",
     },
     baseText: {
-        fontFamily: 'Cochin',
+        fontFamily: "Imprima-Regular",
+
     },
     titleText: {
         fontSize: 20,
         fontWeight: 'bold',
+        fontFamily: "Imprima-Regular",
     },
     underlineTextStyle: {
         textDecorationLine: 'underline',
@@ -223,7 +227,7 @@ const styles = StyleSheet.create({
     reg_button_text:{
         color: '#FFF', // Text color
         textAlign: 'center', // Text alignment
-        fontFamily: 'Roboto', // Font family
+        fontFamily: "Imprima-Regular",
         fontSize: 24, // Font size
         fontStyle: 'normal', // Font style
         lineHeight: 24 * 1.5, // Line height based on font size (adjust as needed)

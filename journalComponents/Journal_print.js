@@ -78,7 +78,7 @@ const Journal_print = ({navigation, profileId}) => {
                             keyExtractor={(item) => item.id}
                         />
                     ) : (
-                        <Text>No posts</Text>
+                        <Text style={{margin:'10%', fontFamily:'Imprima-Regular', fontSize:20}}>No posts</Text>
                         //<ActivityIndicator />
                     )
             ) : (
@@ -102,7 +102,7 @@ const Journal_print = ({navigation, profileId}) => {
                             keyExtractor={(item) => item.id}
                         />
                     ) : (
-                        <Text>No posts</Text>
+                        <Text style={{margin:'10%', fontFamily:'Imprima-Regular', fontSize:20}}>No posts</Text>
                         //<ActivityIndicator />
                     )
             )

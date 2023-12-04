@@ -32,10 +32,14 @@ const ProfilePage = ({navigation}) => {
                 <View style = {{flex:2, }}>
                     <Text style={styles.profile_name}>{username}</Text>
                 </View>
-                <View style={{flex: 1,}}>
+             {/*   <View style={{flex: 1,}}>
                     <Text>Star here, {username}</Text>
+                </View>*/}
+                <View style = {styles.profile_photo}>
+                    <Text style={{fontFamily: "Imprima-Regular"}}>
+                        Profile{'\n'}photo here
+                    </Text>
                 </View>
-
             </View>
 
             <View>
@@ -51,8 +55,24 @@ export default ProfilePage
 
 const styles = StyleSheet.create({
     profile_name:{
-        fontSize: 40,
-        margin: 20,
-        flex: 3
+        fontSize: 30,
+        marginVertical: '30%',
+        marginLeft:'15%',
+        flex: 3,
+        color: '#000000B2',
+        //fontWeight: 400,
+        fontStyle: 'normal',
+        fontFamily: "Imprima-Regular",
+    },
+    profile_photo: {
+        margin: 30,
+        padding: 10,
+        width: 100,
+        height: 100,
+        borderWidth: 10,
+        borderColor: '#54BDA5',
+        borderRadius: 20,
+        backgroundColor: '#f3f3f3',
+
     },
 });

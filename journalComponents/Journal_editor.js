@@ -18,6 +18,7 @@ import Journal_entry_print from "../journalEntryComponent/Journal_entry_print";
 //import {getJournalList} from "../uploadImageComponents/collectionFunctions";
 import {useRoute} from "@react-navigation/native";
 import firebase from "firebase/compat/app";
+import globalStyles from "../style";
 
 // scripts
 
@@ -59,19 +60,19 @@ const Journal_editor = ({navigation}) => {
 
 
     return (
-        <ScrollView>
-            <View>
-                <View style={styles.headerContainer}>
+        <ScrollView style={{flex:1}}>
+            <View style={globalStyles.thumbnailContainer}>
                     {journal.img !== "" ? (
-                        <View style={{alignItems:"center"}}>
+                        <View style={globalStyles.thumbnail}>
                             <Image
                                 source={{uri: journal.img}}
-                                style={{width: 200, height: 200}}
+                                style={{width: '100%', height: '100%'}}
+                                resizeMode="cover"
                                 onError={(error) => console.log("Error loading image")}
                             />
                         </View>
                     ): null}
-                    <View style={styles.titleContainer}>
+                    <View style={globalStyles.entryTitleBox}>
                         <Text style={styles.title}>{journal.title}</Text>
                         <Text style={styles.date}>{journal.date}</Text>
                     </View>
@@ -79,13 +80,13 @@ const Journal_editor = ({navigation}) => {
                     <Text style={styles.desc}>{journal.desc}</Text>
                 </View>
 
-            </View>
             <Pressable onPress={() => navigation.navigate('Add Entry', { userId: userId, journal: journal })}>
                 <View style={styles.headerButton}>
                     <MaterialIcons name={"add"}size={40} color="black"/>
                     <Text >add entry testing</Text>
                 </View>
             </Pressable>
+
             <Pressable onPress={deleteFunction}>
                 <View style={styles.headerButton}>
                     <MaterialIcons name={"delete"}size={40} color="black"/>
@@ -114,19 +115,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    titleContainer:{
-        justifyContent: "space-between",
-        alignSelf: "center",
-        width: "65%",
-        backgroundColor: "orange",
-        paddingHorizontal: 10,
-        paddingVertical: 10,
-        marginTop: 70,
 
-    },
-    headerContainer:{
-        justifyContent: "space-between",
-    },
     title:{
       fontSize: 35,
     },

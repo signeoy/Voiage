@@ -40,13 +40,15 @@ const styles = StyleSheet.create({
     bottomTabContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        backgroundColor: '#fff',
-        borderTopWidth: 1,
-        borderTopColor: '#ddd',
         paddingHorizontal: 20,
         paddingVertical: 10,
         width: '100%',
-
+        backgroundColor: '#e6f5f2',
+        elevation: 8, // Adjust the elevation to change the shadow effect
+        shadowColor: '#000', // Shadow color
+        shadowOffset: { width: 0, height: -4 }, // Shadow offset
+        shadowOpacity: 0.3, // Shadow opacity
+        shadowRadius: 8, // Shadow blur radius
         position: 'absolute',
         bottom: 0,
     },
@@ -56,6 +58,7 @@ const styles = StyleSheet.create({
     tabButtonText: {
         fontSize: 12,
         marginTop: 5,
+        fontFamily: "Imprima-Regular"
     },
 
 });

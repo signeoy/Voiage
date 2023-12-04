@@ -137,10 +137,38 @@ const globalStyles = StyleSheet.create({
     },
     line:{
         width:'40%',
-        height:3,
+        height:2,
         backgroundColor: '#21AC8B',
         marginLeft: 10,
         marginVertical:5,
+    },
+    thumbnail:{
+        width:'100%',
+        height: '100%',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        zIndex: 1
+    },
+    entryTitleBox:{
+        flexDirection: "row",
+        paddingLeft: 30,
+        alignItems: "center",
+        alignSelf: "center",
+        borderColor: "#9D9D9D",
+        borderStyle: "solid",
+        borderWidth: 1,
+        width: '80%',
+        height: '80%',
+        backgroundColor: 'lightgreen',
+        position: 'absolute',
+        top: '60%',
+        left: '10%',
+        zIndex: 2,
+
+    },
+    thumbnailContainer:{
+        height:'40%'
     }
     // Add more global styles as needed
 });

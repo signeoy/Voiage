@@ -124,6 +124,7 @@ const Journal_entry_create = ({navigation}) => {
                     style={{...styles.input, height: 200}}
                     onChangeText={setText}
                     placeholder="Text"
+                    multiline={true}
                 />
 
             </View>

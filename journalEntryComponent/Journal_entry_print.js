@@ -71,7 +71,7 @@ const Journal_entry_print = ({navigation, profileId, journal}) => {
                         keyExtractor={(item) => item.id}
                     />
                 ) : (
-                    <Text>No Entries</Text>
+                    <Text style={{margin:'10%', fontFamily:'Imprima-Regular', fontSize:20}}>No Entries</Text>
                     //<ActivityIndicator />
                 )}
 

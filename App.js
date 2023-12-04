@@ -295,12 +295,6 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
     header:{
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingHorizontal: 20,
-        paddingTop: 40, // Adjust as needed for top padding
-        paddingBottom: 10,
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 5, // For Android elevation

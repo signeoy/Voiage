@@ -4,10 +4,17 @@ import {useRoute} from "@react-navigation/native";
 
 import {collection, deleteDoc, doc, getDocs, updateDoc, getDoc, query} from "firebase/firestore";
 import {db, auth} from "../firebaseConfig";
-import {MaterialIcons} from "@expo/vector-icons";
+
 import globalStyles from "../style";
 
+import {Entypo, MaterialIcons} from "@expo/vector-icons";
+import { useNavigation } from '@react-navigation/native';
+
+
 const Journal_comp = (props) => {
+    const navigation = useNavigation();
+
+
     const [title, setTitle] = useState(props.title);
     const [date, setDate] = useState(props.date);
     const [desc, setDesc] = useState(props.desc);
@@ -29,7 +36,6 @@ const Journal_comp = (props) => {
                 title: title,
                 date: date,
                 desc: desc
-                // Add other fields to update as needed
             });
             setIsEditing(false);
             props.getJournalList();
@@ -71,6 +77,7 @@ const Journal_comp = (props) => {
         Promise.all(deleteOps).then(() => console.log('documents deleted'))
     }
 
+
     return (
         <View style={styles.container}>
             {userId === props.profileId ? (
@@ -94,13 +101,13 @@ const Journal_comp = (props) => {
                                 onChangeText={text => setDesc(text)}
                             />
                             {props.img !== "" ? (
-                                <View>
+                                <Pressable onPress={() => navigation.navigate('Edit Image', {  path: `users/${userId}/Journal/${props.id}`, previousURL: props.img})}>
                                     <Image
                                         source={{uri: props.img}}
                                         style={{width: 200, height: 100}}
                                         onError={(error) => console.log("Error loading image")}
                                     />
-                                </View>
+                                </Pressable>
                             ): null}
                         </View>
 
@@ -134,9 +141,19 @@ const Journal_comp = (props) => {
                         </Pressable>
 
                         {isEditing && (
-                            <Pressable onPress={handleCancelButton}>
-                                <MaterialIcons name="cancel" size={20} color="#00000091"/>
-                            </Pressable>
+
+                            <View>
+                                <Pressable onPress={handleCancelButton}>
+                                    <MaterialIcons name="cancel" size={20} color="#00000091"/>
+                                </Pressable>
+                                {props.img === "" && (
+                                    <Pressable onPress={() => navigation.navigate('Edit Image', {  path: `users/${userId}/Journal/${props.id}`, previousURL: ""})}>
+                                        <Entypo name="image-inverted" size={20} color="#00000091" />
+                                    </Pressable>
+                                )}
+
+                            </View>
+
                         )}
 
                         <Pressable onPress={deleteFunction}>

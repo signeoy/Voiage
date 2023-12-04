@@ -26,6 +26,9 @@ import Journal_editor from "./journalComponents/Journal_editor";
 import Journal_entry_create from "./journalEntryComponent/Journal_entry_create";
 import Journal_entry_page from "./journalEntryComponent/Journal_entry_page";
 
+import Edit_image from "./uploadImageComponents/Edit_image";
+
+
 
 import BottomTab from "./tabComponents/BottomTab";
 
@@ -184,6 +187,18 @@ function AddEntryScreen({ navigation }) {
       </View>
   );
 }
+
+function EditImageScreen({ navigation }) {
+
+    return (
+        <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+
+            <Edit_image navigation={navigation}/>
+            <BottomTab navigation={navigation}/>
+
+        </View>
+    );
+}
 function JournalEditorScreen({ navigation }) {
 
   return (
@@ -224,7 +239,6 @@ function MyStack() {
 
         <Stack.Screen name="Settings" component={SettingsScreen} options={{ headerLeft: null, headerShown: false }} />
 
-
         <Stack.Screen name="Add Journal" component={AddJournalScreen} options={{
             headerStyle: {...styles.header},
             headerTitleStyle: {...styles.headerTitle},
@@ -233,6 +247,10 @@ function MyStack() {
             headerStyle: {...styles.header},
             headerTitleStyle: {...styles.headerTitle},
             headerTitle: props => <LogoTitle {...props} />,}}/>
+
+       
+        <Stack.Screen name="Edit Image" component={EditImageScreen} />
+
 
         <Stack.Screen name="Journal Editor" component={JournalEditorScreen} options={{
             headerStyle: {...styles.header},

@@ -82,6 +82,7 @@ const Journal_editor = ({navigation}) => {
                 </View>
             </View>
             <Text style={globalStyles.journalEditorDesc}>{journal.desc}</Text>
+
             <Pressable onPress={() => navigation.navigate('Add Entry', { userId: userId, journal: journal })}>
                 <View style={styles.headerButton}>
                     <MaterialIcons name={"add"}size={40} color="black"/>

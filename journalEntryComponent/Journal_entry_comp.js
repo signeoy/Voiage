@@ -131,7 +131,7 @@ const Journal_entry_comp = (props) => {
                                     <Pressable onPress={() => navigation.navigate('Edit Image', {  path: `users/${userId}/Journal/${props.journalId}/entry/${props.id}`, previousURL: ""})}>
                                         <Image
                                             source={{uri: props.img}}
-                                            style={{width: 220, height: 220}}
+                                            style={{width: 320, height: 220, borderRadius:10}}
                                             onError={(error) => console.log("Error loading image")}
                                         />
                                     </Pressable>
@@ -145,7 +145,7 @@ const Journal_entry_comp = (props) => {
                                 <View  style={{alignItems:"center"}}>
                                     <Image
                                         source={{uri: props.img}}
-                                        style={{width: 220, height: 220}}
+                                        style={{width: 320, height: 220, borderRadius:10}}
                                         onError={(error) => console.log("Error loading image",error)}
                                     />
                                 </View>
@@ -163,7 +163,7 @@ const Journal_entry_comp = (props) => {
                         <View style={{alignItems:"center"}}>
                             <Image
                                 source={{uri: props.img}}
-                                style={{width: 220, height: 220}}
+                                style={{width: 320, height: 220, borderRadius:10}}
                                 onError={(error) => console.log("Error loading image")}
                             />
                         </View>

@@ -120,6 +120,7 @@ const globalStyles = StyleSheet.create({
         color: '#000',
         fontStyle: 'normal',
         fontWeight: "400",
+        paddingTop:10
     },
     journal_date:{
         color: '#00000080',
@@ -132,11 +133,12 @@ const globalStyles = StyleSheet.create({
     journal_desc:{
         fontFamily: "Imprima-Regular",
         flex: 1,
-        margin: 10,
+        marginHorizontal: 10,
         fontSize: 17,
         color: '#000',
         fontStyle: 'normal',
         fontWeight: "400",
+
     },
     line:{
         width:'80%',

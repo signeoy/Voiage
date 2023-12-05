@@ -17,6 +17,9 @@ import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, w
 import Journal_entry_print from "./Journal_entry_print";
 import {useRoute} from "@react-navigation/native";
 import globalStyles from "../style";
+import { Dimensions } from "react-native";
+
+const windowWidth = Dimensions.get("window").width;
 
 // scripts
 //andre personers profiler journal entry page. uten redigering og sånt.
@@ -34,7 +37,7 @@ const Journal_entry_page = ({navigation, profileId}) => {
                     <View style={globalStyles.thumbnail}>
                         <Image
                             source={{uri: journal.img}}
-                            style={{width: 360, height: 200, alignSelf:'center'}}
+                            style={{width: windowWidth*1, height: 200}}
                             resizeMode="cover"
                             onError={(error) => console.log("Error loading image")}
                         />
@@ -45,11 +48,10 @@ const Journal_entry_page = ({navigation, profileId}) => {
                         <Text style={globalStyles.journalEditorTitle}>{journal.title}</Text>
                         <Text style={globalStyles.journalEditorDate}>{journal.date}</Text>
                     </View>
-                    <View style={styles.container_desc}>
-                        <Text style={globalStyles.journalEditorDesc}>{journal.desc}</Text>
-                    </View>
-
                 </View>
+            </View>
+            <View>
+                <Text style={globalStyles.journalEditorDesc}>{journal.desc}</Text>
             </View>
             <View style={{marginTop:100}}>
                 <Journal_entry_print
@@ -71,20 +73,5 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    title: {
-        fontSize: 30,
 
-    },
-    date: {
-        fontSize: 15,
-    },
-    desc: {
-        fontSize: 15,
-        alignSelf: "center",
-    },
-    container_desc:{
-        width: "80%",
-        alignContent: "center",
-        alignSelf: "center",
-    }
 });

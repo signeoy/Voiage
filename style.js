@@ -1,6 +1,9 @@
 // style.js
 
 import { StyleSheet } from 'react-native';
+import { Dimensions } from "react-native";
+
+const windowWidth = Dimensions.get("window").width;
 
 const globalStyles = StyleSheet.create({
     screen: {
@@ -153,12 +156,12 @@ const globalStyles = StyleSheet.create({
         flexDirection: "column",
         alignItems: "center",
         alignSelf: "center",
-        width: '80%',
+        width: windowWidth*0.8,
         height: 60,
         backgroundColor: '#FBCCB3',
         position: 'absolute',
         top: 170,
-        left: '10%',
+        left: windowWidth*0.1,
         zIndex: 3,
         marginBottom:20,
 
@@ -166,6 +169,7 @@ const globalStyles = StyleSheet.create({
     thumbnailContainer:{
         height:200,
         alignItems:'center',
+        width:windowWidth*1 ,
     },
     button: {
         flexDirection: "row",

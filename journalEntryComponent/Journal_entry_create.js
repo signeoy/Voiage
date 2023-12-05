@@ -43,7 +43,7 @@ const Journal_entry_create = ({navigation}) => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
             allowsEditing: true,
-            aspect: [5, 3],
+            aspect: [5, 5],
             quality: 1
         });
         const source = { uri: result.assets[0].uri };

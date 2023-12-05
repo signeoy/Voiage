@@ -83,28 +83,30 @@ const Journal_comp = (props) => {
             {userId === props.profileId ? (
                 <View>
                     {isEditing ? (
-                        <View>
-                            <TextInput
-                                style={globalStyles.journal_title}
-                                value={title}
-                                onChangeText={text => setTitle(text)}
-                            />
-                            <View style={globalStyles.line}></View>
-                            <TextInput
-                                style={globalStyles.journal_date}
-                                value={date}
-                                onChangeText={text => setDate(text)}
-                            />
-                            <TextInput
-                                style={globalStyles.journal_desc}
-                                value={desc}
-                                onChangeText={text => setDesc(text)}
-                            />
+                        <View style={styles.container_with_img}>
+                            <View style={{width:'45%', flexDirection:'column'}}>
+                                <TextInput
+                                    style={globalStyles.journal_title}
+                                    value={title}
+                                    onChangeText={text => setTitle(text)}
+                                />
+                                <View style={globalStyles.line}></View>
+                                <TextInput
+                                    style={globalStyles.journal_date}
+                                    value={date}
+                                    onChangeText={text => setDate(text)}
+                                />
+                                <TextInput
+                                    style={globalStyles.journal_desc}
+                                    value={desc}
+                                    onChangeText={text => setDesc(text)}
+                                />
+                            </View>
                             {props.img !== "" ? (
                                 <Pressable onPress={() => navigation.navigate('Edit Image', {  path: `users/${userId}/Journal/${props.id}`, previousURL: props.img})}>
                                     <Image
                                         source={{uri: props.img}}
-                                        style={{width: 200, height: 100}}
+                                        style={{width: 220, height: 220}}
                                         onError={(error) => console.log("Error loading image")}
                                     />
                                 </Pressable>
@@ -114,7 +116,7 @@ const Journal_comp = (props) => {
                     ) : (
 
                             <View style={styles.container_with_img}>
-                                <View style={{width:'100%'}}>
+                                <View style={{width:'45%'}}>
                                     <Text style={globalStyles.journal_title}>{props.title}</Text>
                                     <View style={globalStyles.line}></View>
                                     <Text style={globalStyles.journal_date}>{props.date}</Text>
@@ -124,7 +126,7 @@ const Journal_comp = (props) => {
                                     <View>
                                         <Image
                                             source={{uri: props.img}}
-                                            style={{width: 200, height: 100}}
+                                            style={{width: 220, height: 220}}
                                             onError={(error) => console.log("Error loading image")}
                                         />
                                     </View>
@@ -137,18 +139,18 @@ const Journal_comp = (props) => {
 
                     <View style={[styles.icons, {flexDirection: "row", marginRight:3}]}>
                         <Pressable onPress={() => isEditing ? handleSaveButton() : handleEditButton()}>
-                            <MaterialIcons name={isEditing ? "save" : "edit"} size={20} color="#00000091"/>
+                            <MaterialIcons name={isEditing ? "save" : "edit"} size={24} color="#00000091"/>
                         </Pressable>
 
                         {isEditing && (
 
                             <View style={{flexDirection:"row"}}>
                                 <Pressable onPress={handleCancelButton}>
-                                    <MaterialIcons name="cancel" size={20} color="#00000091"/>
+                                    <MaterialIcons name="cancel" size={24} color="#00000091"/>
                                 </Pressable>
                                 {props.img === "" && (
                                     <Pressable onPress={() => navigation.navigate('Edit Image', {  path: `users/${userId}/Journal/${props.id}`, previousURL: ""})}>
-                                        <Entypo name="image-inverted" size={20} color="#00000091" />
+                                        <Entypo name="image-inverted" size={24} color="#00000091" />
                                     </Pressable>
                                 )}
 
@@ -157,7 +159,7 @@ const Journal_comp = (props) => {
                         )}
 
                         <Pressable onPress={deleteFunction}>
-                            <MaterialIcons name="delete" size={20} color="#00000091"/>
+                            <MaterialIcons name="delete" size={24} color="#00000091"/>
                         </Pressable>
 
                     </View>
@@ -165,17 +167,18 @@ const Journal_comp = (props) => {
                 </View>
             ) : (
                 props.img !== "" ? (
-                    <View>
+                    <View style={styles.container_with_img}>
+                        <View style={{width:'45%'}}>
+                            <Text style={globalStyles.journal_title}>{props.title}</Text>
+                            <View style={globalStyles.line}></View>
+                            <Text style={globalStyles.journal_date}>{props.date}</Text>
+                            <Text style={globalStyles.journal_desc}>{props.desc}</Text>
+                        </View>
                         <Image
                             source={{ uri: props.img }}
-                            style={{ width: 200, height: 100 }}
+                            style={{ width: 220, height: 220 }}
                             onError={(error) => console.log("Error loading image")}
                         />
-
-                        <Text style={globalStyles.journal_title}>{props.title}</Text>
-                        <View style={globalStyles.line}></View>
-                        <Text style={globalStyles.journal_date}>{props.date}</Text>
-                        <Text style={globalStyles.journal_desc}>{props.desc}</Text>
                     </View>
                 ) : (
                     <View style={{width:'100%'}}>
@@ -215,7 +218,7 @@ const styles = StyleSheet.create({
         alignContent:"space-between"
     },
     icons:{
-        width: '50%',
+        width: '45%',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-end'

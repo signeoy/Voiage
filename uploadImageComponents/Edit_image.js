@@ -117,16 +117,16 @@ const Edit_image = () => {
 
     return (
         <ScrollView>
-            <View style={{alignItems: "center", paddingVertical: 15}}>
+            <View style={{alignItems: "center", marginTop:10}}>
                 {image && <Image source={{ uri: image.uri }} style={{ width: 220, height: 120 }} />}
             </View>
 
             <View style={{alignItems:"center"}}>
-                <Pressable style={globalStyles.button}
+                <Pressable style={[globalStyles.button, {backgroundColor: "#69B9AA", marginTop: 20}]}
                            onPress={pickImage}>
                     <Text style={globalStyles.button_text}>Upload New Image</Text>
                 </Pressable>
-                <Pressable style={globalStyles.button}
+                <Pressable style={[globalStyles.button, {backgroundColor: "#69B9AA"}]}
                            onPress={handleRemove}>
                     <Text style={globalStyles.button_text}>Remove Image</Text>
                 </Pressable>

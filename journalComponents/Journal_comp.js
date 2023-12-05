@@ -142,7 +142,7 @@ const Journal_comp = (props) => {
 
                         {isEditing && (
 
-                            <View>
+                            <View style={{flexDirection:"row"}}>
                                 <Pressable onPress={handleCancelButton}>
                                     <MaterialIcons name="cancel" size={20} color="#00000091"/>
                                 </Pressable>

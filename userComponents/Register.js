@@ -120,7 +120,7 @@ const Register = ({navigation, setUser}) => {
                         placeholder="Password"
                     />
                     {/*<Privacy/>*/}
-                    <View style={{marginTop: 20}}>
+                    <View style={{marginVertical: 20}}>
                         <View style={{...styles.checkboxContainer, marginLeft: '3%', marginTop:10}}>
                             <TouchableOpacity style={styles.checkbox} onPress={toggleAgree}>
                                 {agree ? <Text style={styles.checkmark}>✓</Text> : null}
@@ -132,15 +132,15 @@ const Register = ({navigation, setUser}) => {
                     {!agree ? (
                         <Pressable
                             onPress={handleRegister} disabled={!agree}>
-                            <View style={{...styles.reg_button, backgroundColor: "#fabe9d",}}>
-                                <Text style={{...styles.reg_button_text}}>Register!</Text>
+                            <View style={[globalStyles.button, {backgroundColor: "#fabe9d"}]}>
+                                <Text style={globalStyles.button_text}>Register!</Text>
                             </View>
                         </Pressable>
                     ) : (
                         <Pressable
                             onPress={handleRegister} disabled={!agree}>
-                            <View style={styles.reg_button}>
-                                <Text style={styles.reg_button_text}>Register!</Text>
+                            <View style={globalStyles.button}>
+                                <Text style={globalStyles.button_text}>Register!</Text>
                             </View>
                         </Pressable>
                     )}
@@ -211,34 +211,7 @@ const styles = StyleSheet.create({
     underlineTextStyle: {
         textDecorationLine: 'underline',
     },
-    reg_button: {
-        flexDirection: "row",
-        alignSelf: "center",
-        justifyContent: "space-between",
-        width: 238, // Width
-        height: 43.88, // Height
-        flexShrink: 0, // Flex shrink: 0 (prevents shrinking)
-        borderRadius: 13, // Border radius
-        borderWidth: 1, // Border width
-        borderColor: 'rgba(0, 0, 0, 0.30)', // Border color
-        backgroundColor: '#F79967', // Background color
-        marginTop: 30,
-        },
-    reg_button_text:{
-        color: '#FFF', // Text color
-        textAlign: 'center', // Text alignment
-        fontFamily: "Imprima-Regular",
-        fontSize: 24, // Font size
-        fontStyle: 'normal', // Font style
-        lineHeight: 24 * 1.5, // Line height based on font size (adjust as needed)
-        display: 'flex', // Not required in React Native, as it's the default behavior
-        flexDirection: 'column', // Flex direction: column
-        justifyContent: 'center', // Align items vertically in the center
-        width: 238, // Width
-        height: 43.88, // Height
-        flexShrink: 0, // Flex shrink: 0 (prevents shrinking)
-        // Other styles
-    },
+
 });
 
 export default Register;

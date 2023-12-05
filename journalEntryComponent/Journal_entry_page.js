@@ -43,11 +43,9 @@ const Journal_entry_page = ({navigation, profileId}) => {
                         />
                     </View>
                 ): null}
-                <View>
-                    <View style={globalStyles.entryTitleBox}>
-                        <Text style={globalStyles.journalEditorTitle}>{journal.title}</Text>
-                        <Text style={globalStyles.journalEditorDate}>{journal.date}</Text>
-                    </View>
+                <View style={globalStyles.entryTitleBox}>
+                    <Text style={globalStyles.journalEditorTitle}>{journal.title}</Text>
+                    <Text style={globalStyles.journalEditorDate}>{journal.date}</Text>
                 </View>
             </View>
             <View>
@@ -70,8 +68,5 @@ export default Journal_entry_page
 
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
 
 });

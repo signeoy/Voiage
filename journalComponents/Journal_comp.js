@@ -183,7 +183,7 @@ const Journal_comp = (props) => {
                 ) : (
                     <View style={{width:'100%'}}>
                         <Text style={globalStyles.journal_title}>{props.title}</Text>
-                        <View style={[globalStyles.line, {width: '100%'}]}></View>
+                        <View style={[globalStyles.line]}></View>
                         <Text style={globalStyles.journal_date}>{props.date}</Text>
                         <Text style={globalStyles.journal_desc}>{props.desc}</Text>
                     </View>

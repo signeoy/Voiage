@@ -42,7 +42,7 @@ const Journal_create = ({navigation}) => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
             allowsEditing: true,
-            aspect: [5, 5],
+            aspect: [5, 3],
             quality: 1
         });
         const source = { uri: result.assets[0].uri };
@@ -161,20 +161,3 @@ const Journal_create = ({navigation}) => {
 }
 
 export default Journal_create
-
-
-const styles = StyleSheet.create({
-    container: {
-
-    },
-    linkText: {
-        color: 'blue',
-        borderBottomWidth: 1,
-        borderBottomColor: 'blue',
-    },
-    text:{
-        fontSize: 16,
-        alignItems: "center",
-        alignSelf: "center"
-    },
-});

@@ -191,7 +191,7 @@ function AddEntryScreen({ navigation }) {
 function EditImageScreen({ navigation }) {
 
     return (
-        <View style={{...styles.container, backgroundColor: "#CAFFCC"}}>
+        <View style={globalStyles.screen}>
 
             <Edit_image navigation={navigation}/>
             <BottomTab navigation={navigation}/>
@@ -249,7 +249,10 @@ function MyStack() {
             headerTitle: props => <LogoTitle {...props} />,}}/>
 
        
-        <Stack.Screen name="Edit Image" component={EditImageScreen} />
+        <Stack.Screen name="Edit Image" component={EditImageScreen} options={{
+            headerStyle: {...styles.header},
+            headerTitleStyle: {...styles.headerTitle},
+            headerTitle: props => <LogoTitle {...props} />,}}/>
 
 
         <Stack.Screen name="Journal Editor" component={JournalEditorScreen} options={{

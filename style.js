@@ -159,7 +159,7 @@ const globalStyles = StyleSheet.create({
         position: 'absolute',
         top: 170,
         left: '10%',
-        zIndex: 2,
+        zIndex: 3,
         marginBottom:20,
 
     },

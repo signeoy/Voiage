@@ -34,7 +34,7 @@ const Journal_entry_page = ({navigation, profileId}) => {
                     <View style={globalStyles.thumbnail}>
                         <Image
                             source={{uri: journal.img}}
-                            style={{width: '100%', height: '100%'}}
+                            style={{width: 360, height: 200, alignSelf:'center'}}
                             resizeMode="cover"
                             onError={(error) => console.log("Error loading image")}
                         />
@@ -42,16 +42,16 @@ const Journal_entry_page = ({navigation, profileId}) => {
                 ): null}
                 <View>
                     <View style={globalStyles.entryTitleBox}>
-                        <Text style={{...styles.title}}>{journal.title}</Text>
-                        <Text style={{...styles.date}}>{journal.date}</Text>
+                        <Text style={globalStyles.journalEditorTitle}>{journal.title}</Text>
+                        <Text style={globalStyles.journalEditorDate}>{journal.date}</Text>
                     </View>
                     <View style={styles.container_desc}>
-                        <Text >{journal.desc}</Text>
+                        <Text style={globalStyles.journalEditorDesc}>{journal.desc}</Text>
                     </View>
 
                 </View>
             </View>
-            <View>
+            <View style={{marginTop:100}}>
                 <Journal_entry_print
                     navigation={navigation}
                     profileId={profileId}

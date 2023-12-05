@@ -62,7 +62,7 @@ const Journal_editor = ({navigation}) => {
 
 
     return (
-        <ScrollView style={{flex:1}}>
+        <ScrollView style={{flex:1, height:'100%'}}>
             <View style={globalStyles.thumbnailContainer}>
                 {journal.img !== "" ? (
                     <View style={globalStyles.thumbnail}>
@@ -84,7 +84,7 @@ const Journal_editor = ({navigation}) => {
             <Text style={globalStyles.journalEditorDesc}>{journal.desc}</Text>
 
             <Pressable onPress={() => navigation.navigate('Add Entry', { userId: userId, journal: journal })}>
-                <View style={styles.headerButton}>
+                <View style={{...styles.headerButton, marginTop:15}}>
                     <MaterialIcons name={"add"}size={40} color="black"/>
                     <Text style={styles.iconText}>Add Journal Entry</Text>
                 </View>
@@ -93,16 +93,18 @@ const Journal_editor = ({navigation}) => {
             <Pressable onPress={deleteFunction}>
                 <View style={styles.headerButton}>
                     <MaterialIcons name={"delete"}size={40} color="black"/>
-                    <Text >Delete Journal</Text>
+                    <Text style={styles.iconText}>Delete Journal</Text>
                 </View>
             </Pressable>
 
             <View>
-                <Journal_entry_print
+                <View style={globalStyles.entry_top}>
+                    <Journal_entry_print
                     navigation={navigation}
                     profileId={userId}
                     journal={journal}
-                />
+                    />
+                </View>
             </View>
         </ScrollView>
 
@@ -131,6 +133,8 @@ const styles = StyleSheet.create({
     },
     headerButton:{
         flexDirection: "row",
+        marginLeft:'5%',
+        marginTop:5
     },
     iconText:{
         fontFamily: "Imprima-Regular",

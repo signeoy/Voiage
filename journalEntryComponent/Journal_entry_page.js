@@ -31,7 +31,7 @@ const Journal_entry_page = ({navigation, profileId}) => {
     const userId = user.uid; // Retrieve the user ID
 
     return (
-        <ScrollView style={{flex:1}}>
+        <ScrollView style={{flex:1, height:'100%'}}>
             <View style={globalStyles.thumbnailContainer}>
                 {journal.img !== "" ? (
                     <View style={globalStyles.thumbnail}>
@@ -51,12 +51,14 @@ const Journal_entry_page = ({navigation, profileId}) => {
             <View>
                 <Text style={globalStyles.journalEditorDesc}>{journal.desc}</Text>
             </View>
-            <View style={{marginTop:100}}>
-                <Journal_entry_print
-                    navigation={navigation}
-                    profileId={profileId}
-                    journal={journal}
-                />
+            <View style={{marginTop:10}}>
+                <View style={globalStyles.entry_top}>
+                    <Journal_entry_print
+                        navigation={navigation}
+                        profileId={profileId}
+                        journal={journal}
+                    />
+                </View>
             </View>
         </ScrollView>
 

@@ -146,6 +146,7 @@ const globalStyles = StyleSheet.create({
         backgroundColor: '#21AC8B',
         marginLeft: 10,
         marginVertical: 10,
+        top:0
     },
     button: {
         flexDirection: "row",
@@ -184,17 +185,20 @@ const globalStyles = StyleSheet.create({
     entryTitle:{
         fontFamily: "Imprima-Regular",
         flex: 1,
-        marginLeft: 10,
-        fontSize: 20,
+        marginLeft: '8%',
+        fontSize: 30,
         color: '#000',
         fontStyle: 'normal',
         fontWeight: "400",
+
     },
     entryDesc:{
         fontFamily: "Imprima-Regular",
         flex: 1,
-        margin: 10,
-        fontSize: 14,
+        marginHorizontal: '8%',
+        marginTop:15,
+        marginBottom:30,
+        fontSize: 16,
         color: '#000',
         fontStyle: 'normal',
         fontWeight: "400",
@@ -224,12 +228,12 @@ const globalStyles = StyleSheet.create({
         flex: 1,
         marginTop: 50,
         marginBottom: 10,
-        fontSize: 14,
+        fontSize: 18,
         color: '#000',
         fontStyle: 'normal',
         fontWeight: "400",
         marginHorizontal:'10%',
-
+        textAlign: 'center',
     },
     thumbnail:{
         position: 'absolute',
@@ -258,6 +262,15 @@ const globalStyles = StyleSheet.create({
         width:windowWidth*1 ,
         flexDirection:'row',
     },
+    entry_top:{
+        backgroundColor: "#FBCCB3",
+        borderRadius: 14,
+        zIndex:1,
+        marginTop:20,
+        paddingTop:30,
+        height:'100%',
+        paddingBottom:100,
+    }
     // Add more global styles as needed
 });
 

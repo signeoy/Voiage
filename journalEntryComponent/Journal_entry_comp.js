@@ -5,6 +5,7 @@ import {Entypo, MaterialIcons} from "@expo/vector-icons";
 import {collection, deleteDoc, doc, getDocs, updateDoc} from "firebase/firestore";
 import {auth, db} from "../firebaseConfig";
 import { useNavigation } from '@react-navigation/native';
+import globalStyles from "../style";
 
 
 const Journal_entry_comp = (props) => {
@@ -83,12 +84,12 @@ const Journal_entry_comp = (props) => {
                     <View style={{ flexDirection: "row" }}>
                         {isEditing ? (
                             <TextInput
-                                style={styles.titleInput} // Use a different style for input fields
+                                style={globalStyles.entryTitle}
                                 value={entryTitle}
                                 onChangeText={text => setEntryTitle(text)}
                             />
                         ) : (
-                            <Text style={styles.title}>{props.title}</Text>
+                            <Text style={globalStyles.entryTitle}>{props.title}</Text>
                         )}
 
                         <View style={{ flexDirection: "row" }}>
@@ -120,10 +121,10 @@ const Journal_entry_comp = (props) => {
                     {isEditing ? (
                             <View>
                                 <TextInput
-                                    style={styles.title} // Use a different style for input fields
+                                    style={globalStyles.entryDesc}
                                     value={entryText}
                                     onChangeText={text => setEntryText(text)}
-                                    multiline={true} // Enable multiline input
+                                    multiline={true}
                                     numberOfLines={6}
                                 />
                                 {props.img !== "" ? (
@@ -139,7 +140,7 @@ const Journal_entry_comp = (props) => {
 
                     ) : (
                         <View>
-                            <Text style={styles.title}>{props.text}</Text>
+                            <Text style={globalStyles.entryDesc}>{props.text}</Text>
                             {props.img !== "" ? (
                                 <View  style={{alignItems:"center"}}>
                                     <Image
@@ -156,8 +157,8 @@ const Journal_entry_comp = (props) => {
                 </View>
             ) : (
                 <View>
-                    <Text style={styles.title}>{entryTitle}</Text>
-                    <Text style={styles.title}>{entryText}</Text>
+                    <Text style={globalStyles.entryTitle}>{entryTitle}</Text>
+                    <Text style={globalStyles.entryDesc}>{entryText}</Text>
                     {props.img !== "" ? (
                         <View style={{alignItems:"center"}}>
                             <Image
@@ -178,13 +179,13 @@ export default Journal_entry_comp;
 const styles = StyleSheet.create({
     container: {
         flexDirection: "column",
-        backgroundColor: "#fff",
+        backgroundColor: "#FBCCB3",
         justifyContent: "space-between",
         padding: 10,
         width: "100%",
         alignSelf: "center",
-        borderRadius: 10,
-        marginVertical: 10,
+        borderRadius: 14,
+
     },
     title: {
         flex: 1,

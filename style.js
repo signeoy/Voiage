@@ -143,32 +143,29 @@ const globalStyles = StyleSheet.create({
         marginVertical:5,
     },
     thumbnail:{
-        width:'100%',
-        height: '100%',
         position: 'absolute',
         top: 0,
         left: 0,
-        zIndex: 1
+        zIndex: 1,
+        alignItems: "center"
     },
     entryTitleBox:{
-        flexDirection: "row",
-        paddingLeft: 30,
+        flexDirection: "column",
         alignItems: "center",
         alignSelf: "center",
-        borderColor: "#9D9D9D",
-        borderStyle: "solid",
-        borderWidth: 1,
         width: '80%',
-        height: '80%',
-        backgroundColor: 'lightgreen',
+        height: 60,
+        backgroundColor: '#FBCCB3',
         position: 'absolute',
-        top: '60%',
+        top: 170,
         left: '10%',
         zIndex: 2,
+        marginBottom:20,
 
     },
     thumbnailContainer:{
-        height:'40%'
+        height:200,
+        alignItems:'center',
     },
     button: {
         flexDirection: "row",
@@ -203,6 +200,52 @@ const globalStyles = StyleSheet.create({
         width:238,
         alignSelf: "center",
         paddingVertical:'10%'
+    },
+    entryTitle:{
+        fontFamily: "Imprima-Regular",
+        flex: 1,
+        marginLeft: 10,
+        fontSize: 20,
+        color: '#000',
+        fontStyle: 'normal',
+        fontWeight: "400",
+    },
+    entryDesc:{
+        fontFamily: "Imprima-Regular",
+        flex: 1,
+        margin: 10,
+        fontSize: 14,
+        color: '#000',
+        fontStyle: 'normal',
+        fontWeight: "400",
+    },
+    journalEditorTitle:{
+        fontFamily: "Imprima-Regular",
+        flex: 1,
+        marginLeft: 10,
+        fontSize: 20,
+        color: '#000',
+        fontStyle: 'normal',
+        fontWeight: "400",
+    },
+    journalEditorDate:{
+        color: '#00000080',
+        fontFamily: "Imprima-Regular",
+        flex: 1,
+        fontSize: 12,
+        fontWeight: "400",
+        marginLeft:10,
+    },
+    journalEditorDesc:{
+        fontFamily: "Imprima-Regular",
+        flex: 1,
+        marginTop: 300,
+        marginBottom: 10,
+        fontSize: 14,
+        color: '#000',
+        fontStyle: 'normal',
+        fontWeight: "400",
+        marginHorizontal:10,
     }
     // Add more global styles as needed
 });

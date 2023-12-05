@@ -20,7 +20,7 @@ import {useRoute} from "@react-navigation/native";
 import firebase from "firebase/compat/app";
 import globalStyles from "../style";
 
-// scripts
+// entry page for current user
 
 const Journal_editor = ({navigation}) => {
 
@@ -66,24 +66,24 @@ const Journal_editor = ({navigation}) => {
                         <View style={globalStyles.thumbnail}>
                             <Image
                                 source={{uri: journal.img}}
-                                style={{width: '100%', height: '100%'}}
+                                style={{width: 360, height: 200, alignSelf:'center'}}
                                 resizeMode="cover"
                                 onError={(error) => console.log("Error loading image")}
                             />
                         </View>
                     ): null}
                     <View style={globalStyles.entryTitleBox}>
-                        <Text style={styles.title}>{journal.title}</Text>
-                        <Text style={styles.date}>{journal.date}</Text>
+                        <Text style={globalStyles.journalEditorTitle}>{journal.title}</Text>
+                        <Text style={globalStyles.journalEditorDate}>{journal.date}</Text>
                     </View>
 
-                    <Text style={styles.desc}>{journal.desc}</Text>
+                    <Text style={globalStyles.journalEditorDesc}>{journal.desc}</Text>
                 </View>
 
             <Pressable onPress={() => navigation.navigate('Add Entry', { userId: userId, journal: journal })}>
                 <View style={styles.headerButton}>
                     <MaterialIcons name={"add"}size={40} color="black"/>
-                    <Text >add entry testing</Text>
+                    <Text style={styles.iconText}>Add Journal Entry</Text>
                 </View>
             </Pressable>
 
@@ -129,4 +129,13 @@ const styles = StyleSheet.create({
     headerButton:{
         flexDirection: "row",
     },
+    iconText:{
+        fontFamily: "Imprima-Regular",
+        flex: 1,
+        margin: 10,
+        fontSize: 14,
+        color: '#000',
+        fontStyle: 'normal',
+        fontWeight: "400",
+    }
 });

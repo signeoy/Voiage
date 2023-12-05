@@ -122,7 +122,7 @@ function JournalScreen({ navigation }) {
     const { profileId } = route.params;
 
   return (
-      <View style={globalStyles.screen}>
+      <View style={[globalStyles.screen, {backgroundColor: '#fff'}]}>
         <Journal_entry_page navigation={navigation} profileId={profileId}/>
         <BottomTab navigation={navigation}/>
 
@@ -202,7 +202,7 @@ function EditImageScreen({ navigation }) {
 function JournalEditorScreen({ navigation }) {
 
   return (
-      <View style={globalStyles.screen}>
+      <View style={[globalStyles.screen, {backgroundColor: '#fff'}]}>
 
           <Journal_editor navigation={navigation}/>
 

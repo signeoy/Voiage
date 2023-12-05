@@ -199,22 +199,6 @@ const globalStyles = StyleSheet.create({
         flexShrink: 0, // Flex shrink: 0 (prevents shrinking)
         // Other styles
     },
-    inputcreate:{
-        color: "#030303",
-        fontSize: 25,
-        backgroundColor: "#FFFFFF",
-        padding: 7,
-        width: "80%",
-        alignSelf: "center",
-        borderRadius: 10,
-        //automatically sticks to the bottom
-        flexDirection: "row",
-        borderStyle: "solid",
-        margin: 1,
-        borderWidth: 2,
-        borderColor: "#9DBBB5",
-        marginTop:10
-    },
     info:{
         width:238,
         alignSelf: "center",

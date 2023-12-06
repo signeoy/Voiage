@@ -1,4 +1,4 @@
-// style.js
+// Global stylesheet.
 
 import { StyleSheet } from 'react-native';
 import { Dimensions } from "react-native";
@@ -6,21 +6,12 @@ import { Dimensions } from "react-native";
 const windowWidth = Dimensions.get("window").width;
 
 const globalStyles = StyleSheet.create({
-    screen: {
+    screen: { //used to set the background color of every screen and adjust for the bottomnav.
         backgroundColor: '#CBE6E0',
         flex: 1,
         paddingBottom: 70
     },
-    container: {
-        width: 238,
-        height: 43.88,
-        flexShrink: 0,
-        borderRadius: 8, // border-radius in React Native
-        borderWidth: 1, // border-width in React Native
-        borderColor: 'rgba(0, 0, 0, 0.16)', // border-color in React Native
-        backgroundColor: '#F1F1F1', // background color in React Native
-    },
-    input: {
+    input: { // used for input fields in login and register and so on.
         width: 238,
         height: 43.88,
         flexShrink: 0,
@@ -37,7 +28,7 @@ const globalStyles = StyleSheet.create({
         paddingHorizontal: 10,
         marginTop: 11,
     },
-    logo: {
+    logo: { // logo shown in login and register
         marginTop: 74,
         alignItems: "center",
         alignSelf: "center",
@@ -45,44 +36,44 @@ const globalStyles = StyleSheet.create({
         height: 87,
 
     },
-    gradient: {
+    gradient: { //gradient style in login and register
         flex: 0,
         height: '100%',
         width: '100%'
     },
-    settingButton: {
-        borderWidth: 1, // Border width
-        borderColor: '#DBDBDB', // Border color
-        backgroundColor: '#FFF', // Background color
-        width: '100%', // Width (100%)
-        height: 50, // Height
-        flexShrink: 0, // Flex
+    settingButton: { // buttons on setting screen
+        borderWidth: 1,
+        borderColor: '#DBDBDB',
+        backgroundColor: '#FFF',
+        width: '100%',
+        height: 50,
+        flexShrink: 0,
         flexDirection: 'row',
         alignItems: 'center',
         paddingLeft:10,
     },
-    settingButton_text: {
-        color: '#000', // Text color
-        fontSize: 20, // Font size
-        fontStyle: 'normal', // Font style
+    settingButton_text: { // text in buttons on setting screen
+        color: '#000',
+        fontSize: 20,
+        fontStyle: 'normal',
         lineHeight: 16 * 1.5,
         alignItems: 'center',
         marginLeft: 10,
         fontFamily: "Imprima-Regular",
     },
-    linkText: {
+    linkText: { // hypertext, color adjustment.
         color: '#21AC8B',
         borderBottomWidth: 1,
         borderBottomColor: '#21AC8B',
         fontFamily: "Imprima-Regular",
     },
-    text:{
+    text:{ //normal text
         fontSize: 20,
         alignItems: "center",
         alignSelf: "center",
         fontFamily: "Imprima-Regular",
     },
-    profilebox:{
+    profilebox:{ // Used in Home screen. Boxes for browsing profiles.
         flexDirection: "row",
         backgroundColor: "#FFFFFF",
         paddingLeft: 30,
@@ -94,25 +85,25 @@ const globalStyles = StyleSheet.create({
         borderWidth: 1,
         height: 70
     },
-    profilebox_text:{
+    profilebox_text:{ // Text in the profile boxes in Home screen.
         flexShrink: 0,
         color: "#4D4D4D",
         fontFamily: 'Imprima-Regular',
         fontSize: 19,
         fontStyle: 'normal',
     },
-    topnavlogo:{
+    topnavlogo:{ // Logo used in top nav bar
         marginTop: 10,
         alignItems: "center",
         alignSelf: "center",
         width: 198,
         height: 61.878,
     },
-    container_topnav:{
+    container_topnav:{ // top nav bar
         justifyContent: 'center',
         alignItems: 'center',
     },
-    journal_title:{
+    journal_title:{ //Journal component title
         fontFamily: "Imprima-Regular",
         flex: 1,
         marginLeft: 10,
@@ -122,7 +113,7 @@ const globalStyles = StyleSheet.create({
         fontWeight: "400",
         paddingTop:10
     },
-    journal_date:{
+    journal_date:{ //Journal component date
         color: '#00000080',
         fontFamily: "Imprima-Regular",
         flex: 1,
@@ -130,7 +121,7 @@ const globalStyles = StyleSheet.create({
         fontWeight: "400",
         marginLeft:10,
     },
-    journal_desc:{
+    journal_desc:{ //Journal component description
         fontFamily: "Imprima-Regular",
         flex: 1,
         marginHorizontal: 10,
@@ -140,7 +131,7 @@ const globalStyles = StyleSheet.create({
         fontWeight: "400",
 
     },
-    line:{
+    line:{ //Journal component line under title
         width:'80%',
         height:2,
         backgroundColor: '#21AC8B',
@@ -148,41 +139,41 @@ const globalStyles = StyleSheet.create({
         marginVertical: 10,
         top:0
     },
-    button: {
+    button: { // Button used in login, register, create.
         flexDirection: "row",
         alignSelf: "center",
         justifyContent: "space-between",
-        width: 238, // Width
-        height: 43.88, // Height
-        flexShrink: 0, // Flex shrink: 0 (prevents shrinking)
-        borderRadius: 13, // Border radius
-        borderWidth: 1, // Border width
-        borderColor: 'rgba(0, 0, 0, 0.30)', // Border color
-        backgroundColor: '#F79967', // Background color
+        width: 238,
+        height: 43.88,
+        flexShrink: 0,
+        borderRadius: 13,
+        borderWidth: 1,
+        borderColor: 'rgba(0, 0, 0, 0.30)',
+        backgroundColor: '#F79967',
         marginTop: 12,
     },
-    button_text:{
-        color: '#FFF', // Text color
-        textAlign: 'center', // Text alignment
-        fontFamily: "Imprima-Regular", // Font family
-        fontSize: 24, // Font size
-        fontStyle: 'normal', // Font style
-        fontWeight: "400", // Font weight
-        lineHeight: 24 * 1.5, // Line height based on font size (adjust as needed)
-        display: 'flex', // Not required in React Native, as it's the default behavior
-        flexDirection: 'column', // Flex direction: column
-        justifyContent: 'center', // Align items vertically in the center
-        width: 238, // Width
-        height: 43.88, // Height
-        flexShrink: 0, // Flex shrink: 0 (prevents shrinking)
-        // Other styles
+    button_text:{ // Text in buttons
+        color: '#FFF',
+        textAlign: 'center',
+        fontFamily: "Imprima-Regular",
+        fontSize: 24,
+        fontStyle: 'normal',
+        fontWeight: "400",
+        lineHeight: 24 * 1.5,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        width: 238,
+        height: 43.88,
+        flexShrink: 0,
+
     },
-    info:{
+    info:{ //information on create pages.
         width:238,
         alignSelf: "center",
         paddingVertical:'10%'
     },
-    entryTitle:{
+    entryTitle:{ // Journal entry component Title
         fontFamily: "Imprima-Regular",
         flex: 1,
         marginLeft: '8%',
@@ -192,7 +183,7 @@ const globalStyles = StyleSheet.create({
         fontWeight: "400",
 
     },
-    entryDesc:{
+    entryDesc:{ // Journal entry component Description
         fontFamily: "Imprima-Regular",
         flex: 1,
         marginHorizontal: '8%',
@@ -203,7 +194,7 @@ const globalStyles = StyleSheet.create({
         fontStyle: 'normal',
         fontWeight: "400",
     },
-    journalEditorTitle:{
+    journalEditorTitle:{ //Style for when you go into a Journal to view the entries. Title.
         fontFamily: "Imprima-Regular",
         flex: 1,
         marginLeft: 15,
@@ -212,7 +203,7 @@ const globalStyles = StyleSheet.create({
         fontStyle: 'normal',
         fontWeight: "400",
     },
-    journalEditorDate:{
+    journalEditorDate:{ //Style for when you go into a Journal to view the entries. Date.
         color: '#00000080',
         fontFamily: "Imprima-Regular",
         flex: 1,
@@ -223,7 +214,7 @@ const globalStyles = StyleSheet.create({
         bottom: 5,
         right: 7,
     },
-    journalEditorDesc:{
+    journalEditorDesc:{ //Style for when you go into a Journal to view the entries. Description.
         fontFamily: "Imprima-Regular",
         flex: 1,
         marginTop: 50,
@@ -235,14 +226,14 @@ const globalStyles = StyleSheet.create({
         marginHorizontal:'10%',
         textAlign: 'center',
     },
-    thumbnail:{
+    thumbnail:{ //Thumbnail photo
         position: 'absolute',
         top: 0,
         left: 0,
         zIndex: 1,
         alignItems: "center"
     },
-    entryTitleBox:{
+    entryTitleBox:{ //Title and Date Box container in open Journal.
         flexDirection: "row",
         alignItems: "center",
         alignSelf: "center",
@@ -256,13 +247,13 @@ const globalStyles = StyleSheet.create({
         marginBottom:20,
 
     },
-    thumbnailContainer:{
+    thumbnailContainer:{ //Container for thumbnail
         height:200,
         alignItems:'center',
         width:windowWidth*1 ,
         flexDirection:'row',
     },
-    entry_top:{
+    entry_top:{ //View on top of entries to make only the top event have border radius.
         backgroundColor: "#FBCCB3",
         borderRadius: 14,
         zIndex:1,
@@ -271,7 +262,6 @@ const globalStyles = StyleSheet.create({
         height:'100%',
         paddingBottom:100,
     }
-    // Add more global styles as needed
 });
 
 export default globalStyles;

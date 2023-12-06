@@ -27,6 +27,7 @@ const Journal_create = ({navigation}) => {
     const [date, setDate] = useState("test date");
     const [img, setImg] = useState("");
 
+
     const [description,setDescription] = useState("test desc");
 
     const user = auth.currentUser;
@@ -83,11 +84,13 @@ const Journal_create = ({navigation}) => {
 
     const createJournal = async (title, date, desc, img) => {
         try {
+            const dateTime = new Date().toLocaleString()
             const docRef = await addDoc(collection(db,"users", userId, "Journal"), {
                 title: title,
                 date: date,
                 desc: desc,
-                img: img
+                img: img,
+                timeStamp: dateTime
             });
             setJournalId(docRef.id);
             console.log("Document written with ID: ", docRef.id, "and img url:",img);

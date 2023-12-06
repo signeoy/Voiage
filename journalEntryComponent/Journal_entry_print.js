@@ -12,7 +12,7 @@ import {
 import React, { useState, useEffect} from "react";
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import {auth, db} from "../firebaseConfig"
-import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where, setDoc} from "firebase/firestore"
+import {doc, updateDoc, deleteDoc, getDocs, query, collection, orderBy, getDoc, where, setDoc} from "firebase/firestore"
 
 import {useIsFocused, useRoute} from "@react-navigation/native";
 import Journal_entry_comp from "./Journal_entry_comp";
@@ -32,10 +32,16 @@ const Journal_entry_print = ({navigation, profileId, journal}) => {
         console.log("Getting list of entries for journal: ", journal)
 
         try {
-            const querySnapshot = await getDocs(query(collection(db,"users",profileId, "Journal", journal.id, "entry")));
-            const entries = querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
-            //console.log("journal:", journals); // log the items to check if they are being fetched correctly
+            const querySnapshot = await getDocs(
+                query(
+                    collection(db, "users", profileId, "Journal", journal.id, "entry"),
+                    orderBy("timeStamp", "desc")  // "desc" for descending order, use "asc" for ascending
+                )
+            );
+
+            const entries = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
             setEntryList(entries);
+            console.log("entries:", entries)
         } catch (error) {
             console.error("Error getting journal entry list: ", error);
         }

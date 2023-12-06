@@ -18,6 +18,7 @@ import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, w
 import * as ImagePicker from 'expo-image-picker';
 
 import { uploadImageToFirebase } from "../uploadImageComponents/uploadToStorage"
+import globalStyles from "../style";
 
 
 const Journal_create = ({navigation}) => {
@@ -106,15 +107,21 @@ const Journal_create = ({navigation}) => {
 
 
     return (
-        <ScrollView contentContainerStyle={styles.container}>
+        <ScrollView contentContainerStyle={{...styles.container, paddingBottom:10}}>
+            <View style={globalStyles.info}>
+                <Text style={[globalStyles.text, {fontSize: 17}]}>
+                    Customize your own journal with a unique title and description.{'\n'}
+                    {'\n'}Upload a picture from the trip to complete your Travel Journal thumbnail!
+                </Text>
+            </View>
             <View>
                 <TextInput
-                    style={{...styles.input, marginTop: 60}}
+                    style={[globalStyles.input, {marginTop: 10}]}
                     onChangeText={setTitle}
                     placeholder="Title"
                 />
                 <TextInput
-                    style={styles.input}
+                    style={globalStyles.input}
                     onChangeText={setDate}
                     placeholder="Date"
                 />
@@ -122,7 +129,7 @@ const Journal_create = ({navigation}) => {
                     multiline={true}
                     numberOfLines={3}
                     textAlign="top"
-                    style={{...styles.input}}
+                    style={[globalStyles.input, {height: 100}]}
                     onChangeText={setDescription}
                     placeholder="Description"
 
@@ -139,15 +146,15 @@ const Journal_create = ({navigation}) => {
 
                 <Pressable
                     onPress={pickImage}>
-                    <View style={{...styles.login_button, backgroundColor: "#69B9AA"}}>
-                        <Text style={styles.login_button_text}>Upload image</Text>
+                    <View style={[globalStyles.button, { backgroundColor: "#69B9AA"}]}>
+                        <Text style={globalStyles.button_text}>Upload image</Text>
                     </View>
                 </Pressable>
 
-                <Pressable style={{marginTop: 40, marginBottom:60}}
+                <Pressable style={{marginBottom:60}}
                            onPress={handleCreateJournal}>
-                    <View style={{...styles.login_button, backgroundColor: "#fff"}}>
-                        <Text style={styles.login_button_text}>Create Journal</Text>
+                    <View style={globalStyles.button}>
+                        <Text style={globalStyles.button_text}>Create Journal</Text>
                     </View>
                 </Pressable>
             </View>
@@ -158,57 +165,8 @@ const Journal_create = ({navigation}) => {
 
 export default Journal_create
 
-
 const styles = StyleSheet.create({
     container: {
-        paddingVertical: 20,
-        paddingHorizontal: 16,
-    },
-    input: {
-        color: "#030303",
-        fontSize: 25,
-        backgroundColor: "#FFFFFF",
-        padding: 7,
-        width: "70%",
-        alignSelf: "center",
-        borderRadius: 10,
-        //automatically sticks to the bottom
-        flexDirection: "row",
-        borderStyle: "solid",
-        margin: 1,
-        borderWidth: 2,
-        borderColor: "#9DBBB5",
-        marginTop:20
-    },
-    login_button: {
-        flexDirection: "row",
-        //backgroundColor: "lightblue",
-        justifyContent: "space-between",
-        padding: 7,
-        //alignItems: "center",
-        width: "70%",
-        alignSelf: "center",
-        borderRadius: 10,
-        marginVertical: 25,
-        marginBottom: 0,
-        //elevation: 30,
-        //boarder
-        borderWidth: 2,
-        borderColor: 'rgba(0, 0, 0, 0.2)',
-    },
-    login_button_text:{
-        fontSize: 30,
-        marginLeft: 20,
-        color: "#304D47",
-    },
-    linkText: {
-        color: 'blue',
-        borderBottomWidth: 1,
-        borderBottomColor: 'blue',
-    },
-    text:{
-        fontSize: 16,
-        alignItems: "center",
-        alignSelf: "center"
+        padding:1
     },
 });

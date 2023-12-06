@@ -1,6 +1,9 @@
 // style.js
 
 import { StyleSheet } from 'react-native';
+import { Dimensions } from "react-native";
+
+const windowWidth = Dimensions.get("window").width;
 
 const globalStyles = StyleSheet.create({
     screen: {
@@ -113,62 +116,160 @@ const globalStyles = StyleSheet.create({
         fontFamily: "Imprima-Regular",
         flex: 1,
         marginLeft: 10,
-        fontSize: 20,
+        fontSize: 22,
         color: '#000',
         fontStyle: 'normal',
         fontWeight: "400",
+        paddingTop:10
     },
     journal_date:{
         color: '#00000080',
         fontFamily: "Imprima-Regular",
         flex: 1,
-        fontSize: 12,
+        fontSize: 15,
         fontWeight: "400",
         marginLeft:10,
     },
     journal_desc:{
         fontFamily: "Imprima-Regular",
         flex: 1,
-        margin: 10,
-        fontSize: 14,
+        marginHorizontal: 10,
+        fontSize: 17,
+        color: '#000',
+        fontStyle: 'normal',
+        fontWeight: "400",
+
+    },
+    line:{
+        width:'80%',
+        height:2,
+        backgroundColor: '#21AC8B',
+        marginLeft: 10,
+        marginVertical: 10,
+        top:0
+    },
+    button: {
+        flexDirection: "row",
+        alignSelf: "center",
+        justifyContent: "space-between",
+        width: 238, // Width
+        height: 43.88, // Height
+        flexShrink: 0, // Flex shrink: 0 (prevents shrinking)
+        borderRadius: 13, // Border radius
+        borderWidth: 1, // Border width
+        borderColor: 'rgba(0, 0, 0, 0.30)', // Border color
+        backgroundColor: '#F79967', // Background color
+        marginTop: 12,
+    },
+    button_text:{
+        color: '#FFF', // Text color
+        textAlign: 'center', // Text alignment
+        fontFamily: "Imprima-Regular", // Font family
+        fontSize: 24, // Font size
+        fontStyle: 'normal', // Font style
+        fontWeight: "400", // Font weight
+        lineHeight: 24 * 1.5, // Line height based on font size (adjust as needed)
+        display: 'flex', // Not required in React Native, as it's the default behavior
+        flexDirection: 'column', // Flex direction: column
+        justifyContent: 'center', // Align items vertically in the center
+        width: 238, // Width
+        height: 43.88, // Height
+        flexShrink: 0, // Flex shrink: 0 (prevents shrinking)
+        // Other styles
+    },
+    info:{
+        width:238,
+        alignSelf: "center",
+        paddingVertical:'10%'
+    },
+    entryTitle:{
+        fontFamily: "Imprima-Regular",
+        flex: 1,
+        marginLeft: '8%',
+        fontSize: 30,
+        color: '#000',
+        fontStyle: 'normal',
+        fontWeight: "400",
+
+    },
+    entryDesc:{
+        fontFamily: "Imprima-Regular",
+        flex: 1,
+        marginHorizontal: '8%',
+        marginTop:15,
+        marginBottom:30,
+        fontSize: 16,
         color: '#000',
         fontStyle: 'normal',
         fontWeight: "400",
     },
-    line:{
-        width:'40%',
-        height:2,
-        backgroundColor: '#21AC8B',
-        marginLeft: 10,
-        marginVertical:5,
+    journalEditorTitle:{
+        fontFamily: "Imprima-Regular",
+        flex: 1,
+        marginLeft: 15,
+        fontSize: 32,
+        color: '#000',
+        fontStyle: 'normal',
+        fontWeight: "400",
+    },
+    journalEditorDate:{
+        color: '#00000080',
+        fontFamily: "Imprima-Regular",
+        flex: 1,
+        fontSize: 16,
+        fontWeight: "400",
+        marginLeft:10,
+        position: 'absolute',
+        bottom: 5,
+        right: 7,
+    },
+    journalEditorDesc:{
+        fontFamily: "Imprima-Regular",
+        flex: 1,
+        marginTop: 50,
+        marginBottom: 10,
+        fontSize: 18,
+        color: '#000',
+        fontStyle: 'normal',
+        fontWeight: "400",
+        marginHorizontal:'10%',
+        textAlign: 'center',
     },
     thumbnail:{
-        width:'100%',
-        height: '100%',
         position: 'absolute',
         top: 0,
         left: 0,
-        zIndex: 1
+        zIndex: 1,
+        alignItems: "center"
     },
     entryTitleBox:{
         flexDirection: "row",
-        paddingLeft: 30,
         alignItems: "center",
         alignSelf: "center",
-        borderColor: "#9D9D9D",
-        borderStyle: "solid",
-        borderWidth: 1,
-        width: '80%',
-        height: '80%',
-        backgroundColor: 'lightgreen',
+        width: windowWidth*0.8,
+        height: 60,
+        backgroundColor: '#FBCCB3',
         position: 'absolute',
-        top: '60%',
-        left: '10%',
-        zIndex: 2,
+        top: 170,
+        left: windowWidth*0.1,
+        zIndex: 3,
+        marginBottom:20,
 
     },
     thumbnailContainer:{
-        height:'40%'
+        height:200,
+        alignItems:'center',
+        width:windowWidth*1 ,
+        flexDirection:'row',
+    },
+    entry_top:{
+        backgroundColor: "#FBCCB3",
+        borderRadius: 14,
+        zIndex:1,
+        marginTop:20,
+        paddingTop:30,
+        height:'100%',
+        paddingBottom:100,
     }
     // Add more global styles as needed
 });

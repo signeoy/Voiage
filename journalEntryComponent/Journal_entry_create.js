@@ -17,6 +17,7 @@ import * as ImagePicker from 'expo-image-picker';
 
 import {useRoute} from "@react-navigation/native";
 import { uploadImageToFirebase } from "../uploadImageComponents/uploadToStorage"
+import globalStyles from "../style";
 
 // scripts
 
@@ -115,14 +116,20 @@ const Journal_entry_create = ({navigation}) => {
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
+            <View style={globalStyles.info}>
+                <Text style={[globalStyles.text, {fontSize: 17}]}>
+                    Add text or pictures to your journal and show off your travels!
+                </Text>
+            </View>
+
             <View>
                 <TextInput
-                    style={{...styles.input, marginTop: 80}}
+                    style={globalStyles.input}
                     onChangeText={setTitle}
                     placeholder="Title"
                 />
                 <TextInput
-                    style={{...styles.input, height: 200}}
+                    style={[globalStyles.input,{ height: 200}]}
                     onChangeText={setText}
                     placeholder="Text"
                     multiline={true}
@@ -130,22 +137,21 @@ const Journal_entry_create = ({navigation}) => {
 
             </View>
             <View style={{alignItems: "center", paddingVertical: 15}}>
-                {image && <Image source={{ uri: image.uri }} style={{ width: 320, height: 160 }} />}
+                {image && <Image source={{ uri: image.uri }} style={{ width: 220, height: 120 }} />}
             </View>
 
 
             <View>
                 <Pressable
                     onPress={pickImage}>
-                    <View style={{...styles.login_button, backgroundColor: "#69B9AA"}}>
-                        <Text style={styles.login_button_text}>Upload image</Text>
+                    <View style={[globalStyles.button, {backgroundColor: "#69B9AA"}]}>
+                        <Text style={globalStyles.button_text}>Upload image</Text>
                     </View>
                 </Pressable>
 
-                <Pressable style={{marginTop: 40}}
-                           onPress={handleCreateEntry}>
-                    <View style={{...styles.login_button, backgroundColor: "#fff"}}>
-                        <Text style={styles.login_button_text}>Create entry</Text>
+                <Pressable onPress={handleCreateEntry}>
+                    <View style={[globalStyles.button]}>
+                        <Text style={globalStyles.button_text}>Create entry</Text>
                     </View>
                 </Pressable>
             </View>
@@ -161,8 +167,6 @@ export default Journal_entry_create
 
 const styles = StyleSheet.create({
     container: {
-        paddingVertical: 20,
-        paddingHorizontal: 16,
     },
     input: {
         color: "#030303",

@@ -5,6 +5,7 @@ import {Entypo, MaterialIcons} from "@expo/vector-icons";
 import {collection, deleteDoc, doc, getDocs, updateDoc} from "firebase/firestore";
 import {auth, db} from "../firebaseConfig";
 import { useNavigation } from '@react-navigation/native';
+import globalStyles from "../style";
 
 
 const Journal_entry_comp = (props) => {
@@ -83,12 +84,12 @@ const Journal_entry_comp = (props) => {
                     <View style={{ flexDirection: "row" }}>
                         {isEditing ? (
                             <TextInput
-                                style={styles.titleInput} // Use a different style for input fields
+                                style={globalStyles.entryTitle}
                                 value={entryTitle}
                                 onChangeText={text => setEntryTitle(text)}
                             />
                         ) : (
-                            <Text style={styles.title}>{props.title}</Text>
+                            <Text style={globalStyles.entryTitle}>{props.title}</Text>
                         )}
 
                         <View style={{ flexDirection: "row" }}>
@@ -120,17 +121,17 @@ const Journal_entry_comp = (props) => {
                     {isEditing ? (
                             <View>
                                 <TextInput
-                                    style={styles.title} // Use a different style for input fields
+                                    style={globalStyles.entryDesc}
                                     value={entryText}
                                     onChangeText={text => setEntryText(text)}
-                                    multiline={true} // Enable multiline input
+                                    multiline={true}
                                     numberOfLines={6}
                                 />
                                 {props.img !== "" ? (
                                     <Pressable onPress={() => navigation.navigate('Edit Image', {  path: `users/${userId}/Journal/${props.journalId}/entry/${props.id}`, previousURL: ""})}>
                                         <Image
                                             source={{uri: props.img}}
-                                            style={{width: 320, height: 160}}
+                                            style={{width: 320, height: 220, borderRadius:10, marginBottom:30}}
                                             onError={(error) => console.log("Error loading image")}
                                         />
                                     </Pressable>
@@ -139,12 +140,12 @@ const Journal_entry_comp = (props) => {
 
                     ) : (
                         <View>
-                            <Text style={styles.title}>{props.text}</Text>
+                            <Text style={globalStyles.entryDesc}>{props.text}</Text>
                             {props.img !== "" ? (
                                 <View  style={{alignItems:"center"}}>
                                     <Image
                                         source={{uri: props.img}}
-                                        style={{width: 320, height: 160}}
+                                        style={{width: 320, height: 220, borderRadius:10, marginBottom:30}}
                                         onError={(error) => console.log("Error loading image",error)}
                                     />
                                 </View>
@@ -156,13 +157,13 @@ const Journal_entry_comp = (props) => {
                 </View>
             ) : (
                 <View>
-                    <Text style={styles.title}>{entryTitle}</Text>
-                    <Text style={styles.title}>{entryText}</Text>
+                    <Text style={globalStyles.entryTitle}>{entryTitle}</Text>
+                    <Text style={globalStyles.entryDesc}>{entryText}</Text>
                     {props.img !== "" ? (
                         <View style={{alignItems:"center"}}>
                             <Image
                                 source={{uri: props.img}}
-                                style={{width: 320, height: 160}}
+                                style={{width: 320, height: 220, borderRadius:10, marginBottom:30}}
                                 onError={(error) => console.log("Error loading image")}
                             />
                         </View>
@@ -178,13 +179,14 @@ export default Journal_entry_comp;
 const styles = StyleSheet.create({
     container: {
         flexDirection: "column",
-        backgroundColor: "#fff",
+        backgroundColor: "#FBCCB3",
         justifyContent: "space-between",
         padding: 10,
         width: "100%",
         alignSelf: "center",
-        borderRadius: 10,
-        marginVertical: 10,
+        zIndex:2,
+        borderBottomColor:'#FFFFFF66',
+        borderBottomWidth:3
     },
     title: {
         flex: 1,

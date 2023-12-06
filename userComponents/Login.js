@@ -59,8 +59,8 @@ const Login = ({navigation, setUser}) => {
 
                 <Pressable
                     onPress={loginUser}>
-                    <View style={styles.login_button}>
-                        <Text style={styles.login_button_text}>Log in!</Text>
+                    <View style={globalStyles.button}>
+                        <Text style={globalStyles.button_text}>Log in!</Text>
                     </View>
                 </Pressable>
 
@@ -110,18 +110,7 @@ const styles = StyleSheet.create({
         flexShrink: 0, // Flex shrink: 0 (prevents shrinking)
         // Other styles
     },
-    linkText: {
-        color: '#21AC8B',
-        borderBottomWidth: 1,
-        borderBottomColor: '#21AC8B',
-        fontFamily: "Imprima-Regular",
-    },
-    text:{
-        fontSize: 16,
-        alignItems: "center",
-        alignSelf: "center",
-        fontFamily: "Imprima-Regular",
-    },
+
 });
 
 export default Login;

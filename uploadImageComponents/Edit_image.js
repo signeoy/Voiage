@@ -18,6 +18,7 @@ import {useRoute} from "@react-navigation/native";
 import * as ImagePicker from "expo-image-picker";
 import {uploadImageToFirebase} from "./uploadToStorage";
 import { useNavigation } from '@react-navigation/native';
+import globalStyles from "../style";
 
 // scripts
 
@@ -116,22 +117,22 @@ const Edit_image = () => {
 
     return (
         <ScrollView>
-            <View style={{alignItems: "center", paddingVertical: 15}}>
-                {image && <Image source={{ uri: image.uri }} style={{ width: 320, height: 160 }} />}
+            <View style={{alignItems: "center", marginTop:10}}>
+                {image && <Image source={{ uri: image.uri }} style={{ width: 220, height: 120 }} />}
             </View>
 
-            <View>
-                <Pressable style={{marginTop: 10}}
+            <View style={{alignItems:"center"}}>
+                <Pressable style={[globalStyles.button, {backgroundColor: "#69B9AA", marginTop: 20}]}
                            onPress={pickImage}>
-                    <Text >Upload New Image</Text>
+                    <Text style={globalStyles.button_text}>Upload New Image</Text>
                 </Pressable>
-                <Pressable style={{marginTop: 10}}
+                <Pressable style={[globalStyles.button, {backgroundColor: "#69B9AA"}]}
                            onPress={handleRemove}>
-                    <Text >Remove Image</Text>
+                    <Text style={globalStyles.button_text}>Remove Image</Text>
                 </Pressable>
-                <Pressable style={{marginTop: 10}}
+                <Pressable style={globalStyles.button}
                            onPress={handleEdit}>
-                    <Text >Confirm</Text>
+                    <Text style={globalStyles.button_text}>Confirm</Text>
                 </Pressable>
             </View>
         </ScrollView>

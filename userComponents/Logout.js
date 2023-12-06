@@ -114,37 +114,11 @@ const Logout = ({navigation, setUser}) => {
 export default Logout
 const styles = StyleSheet.create({
 
-    container: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        padding: 10,
-        alignItems: "center",
-        width: "90%",
-        alignSelf: "center",
-        borderRadius: 10,
-        marginVertical: 10,
-    },
-
     buttonContainer: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'flex-start',
         width: "100%",
 
-    },
-    button: {
-        paddingVertical: 12,
-        //paddingHorizontal: 90,
-        width: "70%",
-        borderRadius: 10,
-        backgroundColor: '#FFFFFF',
-        marginVertical: 15,
-        elevation: 10,
-    },
-    buttonText: {
-        color: '#304D47',
-        fontSize: 18,
-        fontWeight: 'bold',
-        textAlign: 'center',
     },
 });

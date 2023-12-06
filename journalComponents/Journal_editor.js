@@ -19,8 +19,10 @@ import Journal_entry_print from "../journalEntryComponent/Journal_entry_print";
 import {useRoute} from "@react-navigation/native";
 import firebase from "firebase/compat/app";
 import globalStyles from "../style";
+import { Dimensions } from "react-native";
 
-// scripts
+// entry page for current user
+const windowWidth = Dimensions.get("window").width;
 
 const Journal_editor = ({navigation}) => {
 
@@ -60,46 +62,49 @@ const Journal_editor = ({navigation}) => {
 
 
     return (
-        <ScrollView style={{flex:1}}>
+        <ScrollView style={{flex:1, height:'100%'}}>
             <View style={globalStyles.thumbnailContainer}>
-                    {journal.img !== "" ? (
-                        <View style={globalStyles.thumbnail}>
-                            <Image
-                                source={{uri: journal.img}}
-                                style={{width: '100%', height: '100%'}}
-                                resizeMode="cover"
-                                onError={(error) => console.log("Error loading image")}
-                            />
-                        </View>
-                    ): null}
-                    <View style={globalStyles.entryTitleBox}>
-                        <Text style={styles.title}>{journal.title}</Text>
-                        <Text style={styles.date}>{journal.date}</Text>
+                {journal.img !== "" ? (
+                    <View style={globalStyles.thumbnail}>
+                        <Image
+                            source={{uri: journal.img}}
+                            style={{
+                                width: windowWidth * 1,
+                                height: 200}}
+                            resizeMode="cover"
+                            onError={(error) => console.log("Error loading image")}
+                        />
                     </View>
-
-                    <Text style={styles.desc}>{journal.desc}</Text>
+                ): null}
+                <View style={globalStyles.entryTitleBox}>
+                    <Text style={globalStyles.journalEditorTitle}>{journal.title}</Text>
+                    <Text style={globalStyles.journalEditorDate}>{journal.date}</Text>
                 </View>
+            </View>
+            <Text style={globalStyles.journalEditorDesc}>{journal.desc}</Text>
 
             <Pressable onPress={() => navigation.navigate('Add Entry', { userId: userId, journal: journal })}>
-                <View style={styles.headerButton}>
+                <View style={{...styles.headerButton, marginTop:15}}>
                     <MaterialIcons name={"add"}size={40} color="black"/>
-                    <Text >add entry testing</Text>
+                    <Text style={styles.iconText}>Add Journal Entry</Text>
                 </View>
             </Pressable>
 
             <Pressable onPress={deleteFunction}>
                 <View style={styles.headerButton}>
                     <MaterialIcons name={"delete"}size={40} color="black"/>
-                    <Text >Delete Journal</Text>
+                    <Text style={styles.iconText}>Delete Journal</Text>
                 </View>
             </Pressable>
 
             <View>
-                <Journal_entry_print
+                <View style={globalStyles.entry_top}>
+                    <Journal_entry_print
                     navigation={navigation}
                     profileId={userId}
                     journal={journal}
-                />
+                    />
+                </View>
             </View>
         </ScrollView>
 
@@ -128,5 +133,16 @@ const styles = StyleSheet.create({
     },
     headerButton:{
         flexDirection: "row",
+        marginLeft:'5%',
+        marginTop:5
     },
+    iconText:{
+        fontFamily: "Imprima-Regular",
+        flex: 1,
+        margin: 10,
+        fontSize: 14,
+        color: '#000',
+        fontStyle: 'normal',
+        fontWeight: "400",
+    }
 });

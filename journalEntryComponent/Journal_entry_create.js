@@ -93,11 +93,12 @@ const Journal_entry_create = ({navigation}) => {
 
     const createEntry = async (title, text, img) => {
         try {
-            console.log("image url, img: ", img);
+            const dateTime = new Date().toLocaleString()
             const docRef = await addDoc(collection(db,"users",userId, "Journal", journal.id, "entry"), {
                 title: title,
                 text: text,
-                img: img
+                img: img,
+                timeStamp: dateTime
             });
             //setJournalId(docRef.id);
             console.log("Document written with ID: ", docRef.id);

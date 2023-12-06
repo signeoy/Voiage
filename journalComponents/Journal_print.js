@@ -12,7 +12,19 @@ import {
 import React, { useState, useEffect} from "react";
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import {auth, db} from "../firebaseConfig"
-import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where, setDoc} from "firebase/firestore"
+import {
+    doc,
+    updateDoc,
+    deleteDoc,
+    getDocs,
+    query,
+    collection,
+    addDoc,
+    getDoc,
+    where,
+    setDoc,
+    orderBy
+} from "firebase/firestore"
 
 import Journal_comp from "../journalComponents/Journal_comp";
 import {useIsFocused, useRoute} from "@react-navigation/native";
@@ -30,9 +42,14 @@ const Journal_print = ({navigation, profileId}) => {
     const getJournalList = async () => {
         console.log("Getting list of journals")
         try {
-            const querySnapshot = await getDocs(query(collection(db,"users",profileId, "Journal")));
-            const journals = querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
-            //console.log("journal:", journals);
+            const querySnapshot = await getDocs(
+                query(
+                    collection(db,"users",profileId, "Journal"),
+                    orderBy("timeStamp", "desc")  // "desc" for descending order, use "asc" for ascending
+                )
+            );
+
+            const journals = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
             setJournalList(journals);
         } catch (error) {
             console.error("Error getting journal list: ", error);

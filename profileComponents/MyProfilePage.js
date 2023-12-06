@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         //boarder
     },
     profile_btn_txt:{
-        fontSize: 15,
+        fontSize: 18,
         color: '#6C6C6C',
         marginHorizontal: 5,
         fontFamily: "Imprima-Regular",

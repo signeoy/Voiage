@@ -104,7 +104,7 @@ const Journal_create = ({navigation}) => {
 
 
     return (
-        <ScrollView contentContainerStyle={styles.container}>
+        <ScrollView contentContainerStyle={{...styles.container, paddingBottom:10}}>
             <View style={globalStyles.info}>
                 <Text style={[globalStyles.text, {fontSize: 17}]}>
                     Customize your own journal with a unique title and description.{'\n'}
@@ -161,3 +161,9 @@ const Journal_create = ({navigation}) => {
 }
 
 export default Journal_create
+
+const styles = StyleSheet.create({
+    container: {
+        padding:1
+    },
+});

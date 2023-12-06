@@ -171,14 +171,12 @@ const Journal_comp = (props) => {
                             <Text style={globalStyles.journal_date}>{props.date}</Text>
                             <Text style={globalStyles.journal_desc}>{props.desc}</Text>
                         </View>
-                        <View style={styles.img_container}>
-                            <Image
-                                source={{ uri: props.img }}
-                                style={{ width: windowWidth*0.5, height: '100%' }}
-                                resizeMode="cover"
-                                onError={(error) => console.log("Error loading image")}
-                            />
-                        </View>
+                        <Image
+                            source={{ uri: props.img }}
+                            style={{ width: windowWidth*0.5, height: '100%' }}
+                            resizeMode="cover"
+                            onError={(error) => console.log("Error loading image")}
+                        />
                     </View>
                 ) : (
                     <View style={styles.container_with_img}>
@@ -205,10 +203,6 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFFFFF",
         width: "100%",
         marginVertical: 10,
-    },
-    journal_btn: {
-        width: "30%",
-
     },
     container_with_img:{
         flexDirection:"row",

@@ -81,36 +81,6 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         paddingHorizontal: 16,
     },
-    login_button: {
-        flexDirection: "row",
-        alignSelf: "center",
-        justifyContent: "space-between",
-        width: 238, // Width
-        height: 43.88, // Height
-        flexShrink: 0, // Flex shrink: 0 (prevents shrinking)
-        borderRadius: 13, // Border radius
-        borderWidth: 1, // Border width
-        borderColor: 'rgba(0, 0, 0, 0.30)', // Border color
-        backgroundColor: '#F79967', // Background color
-        marginTop: 12,
-    },
-    login_button_text:{
-        color: '#FFF', // Text color
-        textAlign: 'center', // Text alignment
-        fontFamily: "Imprima-Regular", // Font family
-        fontSize: 24, // Font size
-        fontStyle: 'normal', // Font style
-        fontWeight: "400", // Font weight
-        lineHeight: 24 * 1.5, // Line height based on font size (adjust as needed)
-        display: 'flex', // Not required in React Native, as it's the default behavior
-        flexDirection: 'column', // Flex direction: column
-        justifyContent: 'center', // Align items vertically in the center
-        width: 238, // Width
-        height: 43.88, // Height
-        flexShrink: 0, // Flex shrink: 0 (prevents shrinking)
-        // Other styles
-    },
-
 });
 
 export default Login;

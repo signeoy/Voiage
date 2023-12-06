@@ -308,7 +308,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Imprima-Regular'
     },
 
-
   scroll_container: {
     paddingTop: 60,
     justifyContent: 'space-between',

@@ -117,20 +117,6 @@ export default Journal_editor
 
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-
-    title:{
-      fontSize: 35,
-    },
-    date:{
-        alignSelf: "flex-end"
-    },
-    desc:{
-      alignSelf: "center",
-      fontSize: 20,
-    },
     headerButton:{
         flexDirection: "row",
         marginLeft:'5%',

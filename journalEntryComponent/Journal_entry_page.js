@@ -67,8 +67,3 @@ const Journal_entry_page = ({navigation, profileId}) => {
 
 
 export default Journal_entry_page
-
-
-const styles = StyleSheet.create({
-
-});

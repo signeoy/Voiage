@@ -159,10 +159,6 @@ const Register = ({navigation, setUser}) => {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        paddingVertical: 20,
-        paddingHorizontal: 16,
-    },
     checkboxContainer: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -183,35 +179,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         //fontWeight: 'bold',
     },
-    agreeText: {
-        fontSize: 16,
-        alignItems: "center",
-        fontFamily: "Imprima-Regular",
-    },
-    fixToText: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginVertical: 1,
-        alignItems: 'center',
-    },
-    inputs: {
-        //flexDirection: "row",
-        marginTop: "auto",
-        fontFamily: "Imprima-Regular",
-    },
-    baseText: {
-        fontFamily: "Imprima-Regular",
-
-    },
-    titleText: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        fontFamily: "Imprima-Regular",
-    },
-    underlineTextStyle: {
-        textDecorationLine: 'underline',
-    },
-
 });
 
 export default Register;

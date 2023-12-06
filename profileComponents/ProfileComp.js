@@ -39,14 +39,3 @@ const ProfileComp = (props) => {
 }
 
 export default ProfileComp
-
-const styles = StyleSheet.create({
-    title: {
-        flex: 1,
-        margin: 10,
-        fontSize: 17,
-
-        fontWeight: '500',
-
-    },
-});

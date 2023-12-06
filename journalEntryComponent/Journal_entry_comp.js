@@ -188,16 +188,4 @@ const styles = StyleSheet.create({
         borderBottomColor:'#FFFFFF66',
         borderBottomWidth:3
     },
-    title: {
-        flex: 1,
-        margin: 10,
-        fontSize: 17,
-        fontWeight: '500',
-    },
-    titleInput: {
-        flex: 1,
-        margin: 10,
-        fontSize: 17,
-        fontWeight: '500',
-    },
 });

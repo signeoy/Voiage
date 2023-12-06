@@ -86,9 +86,7 @@ const Journal_entry_print = ({navigation, profileId, journal}) => {
     );
 }
 
-
 export default Journal_entry_print
-
 
 const styles = StyleSheet.create({
     container: {

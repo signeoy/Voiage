@@ -115,7 +115,7 @@ const Journal_entry_create = ({navigation}) => {
 
 
     return (
-        <ScrollView contentContainerStyle={styles.container}>
+        <ScrollView>
             <View style={globalStyles.info}>
                 <Text style={[globalStyles.text, {fontSize: 17}]}>
                     Add text or pictures to your journal and show off your travels!
@@ -163,56 +163,3 @@ const Journal_entry_create = ({navigation}) => {
 }
 
 export default Journal_entry_create
-
-
-const styles = StyleSheet.create({
-    container: {
-    },
-    input: {
-        color: "#030303",
-        fontSize: 25,
-        backgroundColor: "#FFFFFF",
-        padding: 7,
-        width: "70%",
-        alignSelf: "center",
-        borderRadius: 10,
-        //automatically sticks to the bottom
-        flexDirection: "row",
-        borderStyle: "solid",
-        margin: 1,
-        borderWidth: 2,
-        borderColor: "#9DBBB5",
-        marginTop:20
-    },
-    login_button: {
-        flexDirection: "row",
-        //backgroundColor: "lightblue",
-        justifyContent: "space-between",
-        padding: 7,
-        //alignItems: "center",
-        width: "70%",
-        alignSelf: "center",
-        borderRadius: 10,
-        marginVertical: 25,
-        marginBottom: 0,
-        //elevation: 30,
-        //boarder
-        borderWidth: 2,
-        borderColor: 'rgba(0, 0, 0, 0.2)',
-    },
-    login_button_text:{
-        fontSize: 30,
-        marginLeft: 20,
-        color: "#304D47",
-    },
-    linkText: {
-        color: 'blue',
-        borderBottomWidth: 1,
-        borderBottomColor: 'blue',
-    },
-    text:{
-        fontSize: 16,
-        alignItems: "center",
-        alignSelf: "center"
-    },
-});

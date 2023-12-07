@@ -1,4 +1,4 @@
-import {Pressable, StyleSheet, Text, View, TextInput, Image} from "react-native";
+import {Pressable, StyleSheet, Text, View, TextInput, Image, Alert} from "react-native";
 import React, { useState} from "react";
 
 import {collection, deleteDoc, doc, getDocs, updateDoc, query} from "firebase/firestore";
@@ -53,6 +53,22 @@ const Journal_comp = (props) => {
         setDate(props.date);
         setDesc(props.desc);
     };
+
+    const handleDelete = () => {
+        Alert.alert(
+            `All data belonging to the Journal will be lost. Proceed?`,
+            '',
+            [
+                {
+                    text: 'Cancel',
+                    onPress: () => console.log('User canceled'),
+                    style: 'cancel',
+                },
+                { text: 'Delete', onPress: () => deleteFunction() },
+            ],
+            { cancelable: false }
+        );
+    }
 
     const deleteFunction = async () => {
         try{
@@ -149,7 +165,7 @@ const Journal_comp = (props) => {
                                         <Pressable onPress={() => handleEditButton()}>
                                             <MaterialIcons name={"edit"} size={24} color="#00000091"/>
                                         </Pressable>
-                                        <Pressable onPress={deleteFunction}>
+                                        <Pressable onPress={handleDelete}>
                                             <MaterialIcons name="delete" size={24} color="#00000091"/>
                                         </Pressable>
 

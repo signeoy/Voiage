@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
-import { Entypo } from '@expo/vector-icons';
+import { Entypo, Ionicons, Feather, AntDesign } from '@expo/vector-icons';
 
 import {useRoute} from "@react-navigation/native";
 import {auth} from "../firebaseConfig";
@@ -14,22 +14,19 @@ const BottomTab = ({navigation}) => {
         <View style={styles.bottomTabContainer}>
             <Pressable onPress={() => navigation.navigate('Home', { userId })}>
                 <View style={styles.tabButton}>
-                    <Entypo name="home" size={24} color="black" />
-                    <Text style={styles.tabButtonText}>Home</Text>
+                    <Feather name="users" size={34} color="black" />
                 </View>
             </Pressable>
 
             <Pressable onPress={() => navigation.navigate('My Profile', {userId})}>
                 <View style={styles.tabButton}>
-                    <Entypo name="user" size={24} color="black" />
-                    <Text style={styles.tabButtonText}>Profile</Text>
+                    <AntDesign name="home" size={34} color="black" />
                 </View>
             </Pressable>
 
             <Pressable onPress={() => navigation.navigate('Settings', {userId})}>
                 <View style={styles.tabButton}>
-                    <Entypo name="cog" size={24} color="black" />
-                    <Text style={styles.tabButtonText}>Settings</Text>
+                    <Ionicons name="settings-outline" size={34} color="black" />
                 </View>
             </Pressable>
         </View>
@@ -40,8 +37,8 @@ const styles = StyleSheet.create({
     bottomTabContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingHorizontal: 20,
-        paddingVertical: 10,
+        paddingHorizontal: 40,
+        paddingVertical: 20,
         width: '100%',
         backgroundColor: '#e6f5f2',
         elevation: 8, // Adjust the elevation to change the shadow effect
@@ -55,12 +52,6 @@ const styles = StyleSheet.create({
     tabButton: {
         alignItems: 'center',
     },
-    tabButtonText: {
-        fontSize: 12,
-        marginTop: 5,
-        fontFamily: "Imprima-Regular"
-    },
-
 });
 
 export default BottomTab;

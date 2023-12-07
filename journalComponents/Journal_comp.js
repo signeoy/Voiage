@@ -1,8 +1,7 @@
-import {Button, Pressable, StyleSheet, Text, View, TextInput, Image} from "react-native";
-import React, { useState, useEffect} from "react";
-import {useRoute} from "@react-navigation/native";
+import {Pressable, StyleSheet, Text, View, TextInput, Image, Alert} from "react-native";
+import React, { useState} from "react";
 
-import {collection, deleteDoc, doc, getDocs, updateDoc, getDoc, query} from "firebase/firestore";
+import {collection, deleteDoc, doc, getDocs, updateDoc, query} from "firebase/firestore";
 import {db, auth} from "../firebaseConfig";
 
 import globalStyles from "../style";
@@ -54,6 +53,22 @@ const Journal_comp = (props) => {
         setDate(props.date);
         setDesc(props.desc);
     };
+
+    const handleDelete = () => {
+        Alert.alert(
+            `All data belonging to the Journal will be lost. Proceed?`,
+            '',
+            [
+                {
+                    text: 'Cancel',
+                    onPress: () => console.log('User canceled'),
+                    style: 'cancel',
+                },
+                { text: 'Delete', onPress: () => deleteFunction() },
+            ],
+            { cancelable: false }
+        );
+    }
 
     const deleteFunction = async () => {
         try{
@@ -108,8 +123,16 @@ const Journal_comp = (props) => {
                                         <MaterialIcons name={"save"} size={24} color="#00000091"/>
                                     </Pressable>
                                     {props.img === "" && (
-                                        <Pressable onPress={() => navigation.navigate('Edit Image', {  path: `users/${userId}/Journal/${props.id}`, previousURL: ""})}>
-                                            <Entypo name="image-inverted" size={24} color="#00000091" />
+                                        <Pressable onPress={() => navigation.navigate('Edit Image', {
+                                            path: `users/${userId}/Journal/${props.id}`,
+                                            previousURL: ""
+                                        })}>
+                                            <Entypo name="image-inverted" size={24} color="#00000091"/>
+                                        </Pressable>
+                                    )}
+                                    {props.img !== "" &&(
+                                        <Pressable onPress={() => navigation.navigate('Edit Image', {path: `users/${userId}/Journal/${props.id}`, previousURL: props.img})}>
+                                            <Entypo name="image-inverted" size={24} color="#00000091"/>
                                         </Pressable>
                                     )}
                                     <Pressable onPress={handleCancelButton}>
@@ -142,7 +165,7 @@ const Journal_comp = (props) => {
                                         <Pressable onPress={() => handleEditButton()}>
                                             <MaterialIcons name={"edit"} size={24} color="#00000091"/>
                                         </Pressable>
-                                        <Pressable onPress={deleteFunction}>
+                                        <Pressable onPress={handleDelete}>
                                             <MaterialIcons name="delete" size={24} color="#00000091"/>
                                         </Pressable>
 

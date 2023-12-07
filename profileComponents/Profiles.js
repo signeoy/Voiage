@@ -1,20 +1,15 @@
 import {
-    Button,
-    Pressable,
     StyleSheet,
     Text,
     View,
     TextInput,
     TouchableOpacity,
-    FlatList, ActivityIndicator
+    FlatList
 } from "react-native";
 
 import React, { useState, useEffect} from "react";
-import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { db, auth } from "../firebaseConfig"
-import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where} from "firebase/firestore"
-
-import {useRoute} from "@react-navigation/native";
+import { getDocs, query, collection, where} from "firebase/firestore"
 
 // scripts
 import ProfileComp from "./ProfileComp";
@@ -24,7 +19,6 @@ const Profile = ({navigation}) => {
 
     const [profileList, setProfileList] = useState([]);
     const [search, setSearch] = useState("");
-    //const navigation = useNavigation();
 
     const user = auth.currentUser;
     const userId = user.uid; // Retrieve the user ID
@@ -35,7 +29,6 @@ const Profile = ({navigation}) => {
             let querySnapshot;
             if (search == null || search === "") {
                 querySnapshot = await getDocs(query(collection(db,"users")));
-                //const profiles = querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}));
             }
             else {
                 const searchLowerCase = search.toLowerCase();

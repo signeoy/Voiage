@@ -1,6 +1,5 @@
-import {Button, Pressable, StyleSheet, Text, View, TextInput, Image} from "react-native";
+import {Pressable, StyleSheet, Text, View, TextInput, Image} from "react-native";
 import React, { useState, useEffect } from "react";
-import { useRoute } from "@react-navigation/native";
 import {Entypo, MaterialIcons} from "@expo/vector-icons";
 import {collection, deleteDoc, doc, getDocs, updateDoc} from "firebase/firestore";
 import {auth, db} from "../firebaseConfig";

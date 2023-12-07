@@ -1,18 +1,14 @@
 import {
-    Button,
     Pressable,
     StyleSheet,
     Text,
     View,
-    TextInput,
-    TouchableOpacity,
-    FlatList, ActivityIndicator
 } from "react-native";
 
 import React, { useState, useEffect} from "react";
-import { AntDesign, MaterialIcons, FontAwesome } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import {auth, db} from "../firebaseConfig"
-import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where} from "firebase/firestore"
+import {doc, getDoc} from "firebase/firestore"
 
 import {useRoute} from "@react-navigation/native";
 
@@ -24,8 +20,6 @@ const MyProfilePage = ({navigation}) => {
     const user = auth.currentUser;
     const userId = user.uid; // Retrieve the user ID
 
-    const route = useRoute();
-    const { journals } = route.params;
 
     const [username, setUsername] = useState("");
     const docRef = doc(db, 'users', userId);

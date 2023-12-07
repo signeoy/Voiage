@@ -9,7 +9,6 @@ import {
     TextInput,
     Pressable,
     Image,
-    Linking
 } from 'react-native';
 import ExternalLink from './PrivacyPolicy';
 import globalStyles from '../style';
@@ -21,9 +20,9 @@ import {doc, setDoc} from "firebase/firestore";
 import {LinearGradient} from "expo-linear-gradient";
 
 const Register = ({navigation, setUser}) => {
-    const [email, setEmail] = useState("test@uia.no");
-    const [username, setUsername] = useState("testUser");
-    const [password, setPassword] = useState("qwerty");
+    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
 
     const [agree, setAgree] = useState(false);
     //for the checkbox

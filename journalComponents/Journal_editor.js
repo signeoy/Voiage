@@ -1,23 +1,18 @@
 import {
-    Button,
     Pressable,
     StyleSheet,
     Text,
     View,
-    TextInput,
-    TouchableOpacity,
-    FlatList, ActivityIndicator, ScrollView, Image
+    ScrollView,
+    Image, Alert
 } from "react-native";
 
-import React, { useState, useEffect} from "react";
-import { AntDesign, MaterialIcons } from '@expo/vector-icons';
+import {  MaterialIcons } from '@expo/vector-icons';
 import {auth, db} from "../firebaseConfig"
-import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where, setDoc} from "firebase/firestore"
+import {doc, deleteDoc, getDocs, query, collection} from "firebase/firestore"
 
 import Journal_entry_print from "../journalEntryComponent/Journal_entry_print";
-//import {getJournalList} from "../uploadImageComponents/collectionFunctions";
 import {useRoute} from "@react-navigation/native";
-import firebase from "firebase/compat/app";
 import globalStyles from "../style";
 import { Dimensions } from "react-native";
 
@@ -32,7 +27,21 @@ const Journal_editor = ({navigation}) => {
     const user = auth.currentUser;
     const userId = user.uid; // Retrieve the user ID
 
-
+    const handleDelete = () => {
+        Alert.alert(
+            `All data belonging to the Journal will be lost. Proceed?`,
+            '',
+            [
+                {
+                    text: 'Cancel',
+                    onPress: () => console.log('User canceled'),
+                    style: 'cancel',
+                },
+                { text: 'Delete', onPress: () => deleteFunction() },
+            ],
+            { cancelable: false }
+        );
+    }
     const deleteFunction = async () => {
         try{
             console.log("deletefunction running", journal.id)
@@ -90,7 +99,7 @@ const Journal_editor = ({navigation}) => {
                 </View>
             </Pressable>
 
-            <Pressable onPress={deleteFunction}>
+            <Pressable onPress={handleDelete}>
                 <View style={styles.headerButton}>
                     <MaterialIcons name={"delete"}size={40} color="black"/>
                     <Text style={styles.iconText}>Delete Journal</Text>

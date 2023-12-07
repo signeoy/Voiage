@@ -1,33 +1,22 @@
 import {
-    Button,
-    Pressable,
     StyleSheet,
     Text,
     View,
-    TextInput,
     TouchableOpacity,
-    FlatList, ActivityIndicator, ScrollView
+    FlatList
 } from "react-native";
 
 import React, { useState, useEffect} from "react";
-import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import {auth, db} from "../firebaseConfig"
 import {
-    doc,
-    updateDoc,
-    deleteDoc,
     getDocs,
     query,
     collection,
-    addDoc,
-    getDoc,
-    where,
-    setDoc,
     orderBy
 } from "firebase/firestore"
 
 import Journal_comp from "../journalComponents/Journal_comp";
-import {useIsFocused, useRoute} from "@react-navigation/native";
+import {useIsFocused} from "@react-navigation/native";
 
 // scripts
 

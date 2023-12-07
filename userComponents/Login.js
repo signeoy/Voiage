@@ -5,11 +5,10 @@ import globalStyles from '../style';
 import {auth} from "../firebaseConfig";
 import {signInWithEmailAndPassword} from "firebase/auth";
 import {LinearGradient} from "expo-linear-gradient";
-import { useFonts } from 'expo-font';
 
 const Login = ({navigation, setUser}) => {
-    const [email, setEmail] = useState("test@uia.no");
-    const [password, setPassword] = useState("qwerty");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const loginUser = () => {
         signInWithEmailAndPassword(auth, email, password)

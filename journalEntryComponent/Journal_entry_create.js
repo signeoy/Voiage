@@ -1,18 +1,15 @@
 import {
-    Button,
     Pressable,
-    StyleSheet,
     Text,
     View,
     TextInput,
-    TouchableOpacity,
-    FlatList, ActivityIndicator, ScrollView, Image
+    ScrollView,
+    Image
 } from "react-native";
 
 import React, { useState, useEffect} from "react";
-import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import {auth, db} from "../firebaseConfig"
-import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where, setDoc} from "firebase/firestore"
+import { collection, addDoc} from "firebase/firestore"
 import * as ImagePicker from 'expo-image-picker';
 
 import {useRoute} from "@react-navigation/native";
@@ -23,8 +20,8 @@ import globalStyles from "../style";
 
 const Journal_entry_create = ({navigation}) => {
 
-    const [title, setTitle] = useState("Test");
-    const [text, setText] = useState("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium animi architecto aut blanditiis consequatur cumque delectus, dolore enim explicabo ipsa laboriosam nesciunt obcaecati possimus quod rerum sequi temporibus ut voluptatem!");
+    const [title, setTitle] = useState("");
+    const [text, setText] = useState("");
     //const navigation = useNavigation();
 
     const route = useRoute();

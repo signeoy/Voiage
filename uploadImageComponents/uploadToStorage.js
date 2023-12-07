@@ -1,5 +1,4 @@
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import firebase from "firebase/compat/app";
 import {storage} from "../firebaseConfig"
 
 export function uriToBlob(uri) {

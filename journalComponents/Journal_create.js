@@ -1,35 +1,30 @@
 import {
-    Button,
     Pressable,
     StyleSheet,
     Text,
     View,
     TextInput,
-    TouchableOpacity,
-    FlatList,
     Image,
-    ActivityIndicator, ScrollView
+    ScrollView
 } from "react-native";
 
 import React, { useState, useEffect} from "react";
-import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import {auth, db} from "../firebaseConfig"
-import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where, setDoc} from "firebase/firestore"
+import { collection, addDoc } from "firebase/firestore"
+import { uploadImageToFirebase } from "../uploadImageComponents/uploadToStorage"
+
 import * as ImagePicker from 'expo-image-picker';
 
-import { uploadImageToFirebase } from "../uploadImageComponents/uploadToStorage"
 import globalStyles from "../style";
 
 
 const Journal_create = ({navigation}) => {
 
-    const [journalId, setJournalId] = useState("Test");
-    const [title, setTitle] = useState("Test");
-    const [date, setDate] = useState("test date");
+    const [journalId, setJournalId] = useState("");
+    const [title, setTitle] = useState("");
+    const [date, setDate] = useState("");
     const [img, setImg] = useState("");
-
-
-    const [description,setDescription] = useState("test desc");
+    const [description,setDescription] = useState("");
 
     const user = auth.currentUser;
     const userId = user.uid; // Retrieve the user ID

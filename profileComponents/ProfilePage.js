@@ -1,23 +1,12 @@
 import {
-    Button,
-    Pressable,
     StyleSheet,
     Text,
     View,
-    TextInput,
-    TouchableOpacity,
-    FlatList, ActivityIndicator
 } from "react-native";
-
-import React, { useState, useEffect} from "react";
-import { AntDesign, MaterialIcons } from '@expo/vector-icons';
-import {auth, db} from "../firebaseConfig"
-import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where} from "firebase/firestore"
 
 import {useRoute} from "@react-navigation/native";
 
 // scripts
-import ProfileComp from "./ProfileComp";
 import Journal_print from "../journalComponents/Journal_print";
 
 const ProfilePage = ({navigation}) => {

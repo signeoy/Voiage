@@ -1,23 +1,18 @@
 import {
-    Button,
     Pressable,
     StyleSheet,
     Text,
     View,
-    TextInput,
-    TouchableOpacity,
-    FlatList, ActivityIndicator, ScrollView, Image
+    ScrollView,
+    Image
 } from "react-native";
 
-import React, { useState, useEffect} from "react";
-import { AntDesign, MaterialIcons } from '@expo/vector-icons';
+import {  MaterialIcons } from '@expo/vector-icons';
 import {auth, db} from "../firebaseConfig"
-import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where, setDoc} from "firebase/firestore"
+import {doc, updateDoc, deleteDoc, getDocs, query, collection} from "firebase/firestore"
 
 import Journal_entry_print from "../journalEntryComponent/Journal_entry_print";
-//import {getJournalList} from "../uploadImageComponents/collectionFunctions";
 import {useRoute} from "@react-navigation/native";
-import firebase from "firebase/compat/app";
 import globalStyles from "../style";
 import { Dimensions } from "react-native";
 

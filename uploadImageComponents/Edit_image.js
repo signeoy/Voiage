@@ -1,18 +1,14 @@
 import {
-    Button,
     Pressable,
-    StyleSheet,
     Text,
     View,
-    TextInput,
-    TouchableOpacity,
-    FlatList, ActivityIndicator, ScrollView, Image
+    ScrollView,
+    Image
 } from "react-native";
 
 import React, { useState, useEffect} from "react";
-import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import {auth, db} from "../firebaseConfig"
-import {doc, updateDoc, deleteDoc, getDocs, query, collection, addDoc, getDoc, where, setDoc} from "firebase/firestore"
+import {doc, updateDoc} from "firebase/firestore"
 
 import {useRoute} from "@react-navigation/native";
 import * as ImagePicker from "expo-image-picker";
@@ -24,8 +20,6 @@ import globalStyles from "../style";
 
 const Edit_image = () => {
     const navigation = useNavigation();
-    const user = auth.currentUser;
-    const userId = user.uid; // Retrieve the user ID
 
     const route = useRoute();
     const { path, previousURL } = route.params || {};

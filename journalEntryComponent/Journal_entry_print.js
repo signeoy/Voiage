@@ -1,28 +1,20 @@
 import {
-    Button,
-    Pressable,
     StyleSheet,
     Text,
     View,
-    TextInput,
-    TouchableOpacity,
-    FlatList, ActivityIndicator, ScrollView
+    FlatList
 } from "react-native";
 
 import React, { useState, useEffect} from "react";
-import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import {auth, db} from "../firebaseConfig"
-import {doc, updateDoc, deleteDoc, getDocs, query, collection, orderBy, getDoc, where, setDoc} from "firebase/firestore"
+import { getDocs, query, collection, orderBy } from "firebase/firestore"
 
-import {useIsFocused, useRoute} from "@react-navigation/native";
+import {useIsFocused} from "@react-navigation/native";
 import Journal_entry_comp from "./Journal_entry_comp";
 
 // scripts
 
-const Journal_entry_print = ({navigation, profileId, journal}) => {
-
-    const user = auth.currentUser;
-    const userId = user.uid; // Retrieve the user ID
+const Journal_entry_print = ({profileId, journal}) => {
 
     const [entryList, setEntryList] = useState([]);
 

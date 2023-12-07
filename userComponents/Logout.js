@@ -1,13 +1,11 @@
 import {signOut, deleteUser} from "firebase/auth";
 import {auth, db} from "../firebaseConfig";
 
-import React, { useState } from 'react';
-
 import globalStyles from "../style";
 import { Entypo } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import {View, Text, StyleSheet, SafeAreaView, TouchableOpacity, Image, Alert} from 'react-native';
-import {collection, deleteDoc, doc, getDoc, getDocs, query, where} from "firebase/firestore";
+import {collection, deleteDoc, doc, getDoc, getDocs} from "firebase/firestore";
 
 const Logout = ({navigation, setUser}) => {
     const user = auth.currentUser;

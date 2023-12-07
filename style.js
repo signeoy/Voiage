@@ -9,7 +9,7 @@ const globalStyles = StyleSheet.create({
     screen: { //used to set the background color of every screen and adjust for the bottomnav.
         backgroundColor: '#CBE6E0',
         flex: 1,
-        paddingBottom: 70
+        paddingBottom: 60,
     },
     input: { // used for input fields in login and register and so on.
         width: 238,
@@ -202,6 +202,7 @@ const globalStyles = StyleSheet.create({
         color: '#000',
         fontStyle: 'normal',
         fontWeight: "400",
+        top: -5
     },
     journalEditorDate:{ //Style for when you go into a Journal to view the entries. Date.
         color: '#00000080',
@@ -238,10 +239,10 @@ const globalStyles = StyleSheet.create({
         alignItems: "center",
         alignSelf: "center",
         width: windowWidth*0.8,
-        height: 60,
+        height: 80,
         backgroundColor: '#FBCCB3',
         position: 'absolute',
-        top: 170,
+        top: 160,
         left: windowWidth*0.1,
         zIndex: 3,
         marginBottom:20,

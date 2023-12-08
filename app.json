@@ -2,12 +2,12 @@
   "expo": {
     "name": "Voiage",
     "slug": "Voiage",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "orientation": "portrait",
-    "icon": "./assets/voiageLogo.jpg",
+    "icon": "./assets/voiageLogo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/voiageLogo.jpg",
+      "image": "./assets/voiageLogo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -19,12 +19,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/voiageLogo.jpg",
+        "foregroundImage": "./assets/voiageLogo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.signeoy.Voiage"
     },
     "web": {
-      "favicon": "./assets/voiageLogo.jpg"
+      "favicon": "./assets/voiageLogo.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9a5bb0e6-0c47-4146-94b8-1a3685b95834"
+      }
     }
   }
 }

@@ -27,7 +27,7 @@ const Journal_entry_print = ({profileId, journal}) => {
             const querySnapshot = await getDocs(
                 query(
                     collection(db, "users", profileId, "Journal", journal.id, "entry"),
-                    orderBy("timeStamp", "desc")  // "desc" for descending order, use "asc" for ascending
+                    orderBy("timeStamp", "asc")  // "desc" for descending order, use "asc" for ascending
                 )
             );
 
